@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- c'est la correction du TP2-->
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane styleClass="background" stylesheets="@dark.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.tngomarie_tchen_dlillian.sae.Controleur">
+    <center>
+        <Pane fx:id="panneauJeu" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: green;" BorderPane.alignment="CENTER">
+            <BorderPane.margin>
+                <Insets />
+            </BorderPane.margin>
+        </Pane>
+    </center>
+</BorderPane>
