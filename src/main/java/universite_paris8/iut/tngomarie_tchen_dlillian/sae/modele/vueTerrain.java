@@ -7,7 +7,7 @@ import javafx.scene.image.ImageView;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Environnement;
 
 public class vueTerrain {
-/*    private Image[] imageTerrain;
+/*  private Image[] imageTerrain;
     private void vueTerraintableau() {
         this.imageTerrain = new Image[4];{
             imageTerrain[0] = new Image("test/src/main/resources/universite_paris8/iut/tngomarie_tchen_dlillian/sae/blocktexture/Texture air.png");
@@ -22,7 +22,7 @@ public class vueTerrain {
      //@param tuilesFond  Le TilePane au se trouve les Tuiles de la map
      //@param terrain 		Terrain utilise pour la creation de la Vue de celui ci
 
-    public TerrainVue(TilePane tuilesFond, Terrain terrain) {
+    public TerrainVue(TilePane tuilesFond, Environnement terrain) {
         this.tuilesFond = tuilesFond;
         tableauImageTerrain();
     }
@@ -81,15 +81,12 @@ public class vueTerrain {
         }
     }
     public void changementTuileMinage(int numeroTuile , Environnement env, int blocChanger) {
-        if(env.getTabTerrain()[numeroTuile] == blocChanger) {
+        if(env.getMap1()[numeroTuile] == blocChanger) {
             ImageView img = new ImageView();
             img.setImage(imageTerrain[blocChanger]); // utilisation des images qui sont dans le tableua créer une seul fois plus haut
             tuilesFond.getChildren().set(numeroTuile, img); // on change l'image a la position souhaiter par la nouvelle
         }
     }
 
-}
-}
-
- */
+}*/
 }
