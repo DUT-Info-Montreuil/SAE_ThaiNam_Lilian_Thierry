@@ -14,14 +14,23 @@ public class Npc extends Entity {
     public void seDeplace() {
         gravité();
         setY(getY()+this.getGravite());
-        if (forwardbackward<20) {
-            setX(getX()+1);
-            forwardbackward++;
-        }else if (forwardbackward>80) {
-            setX(getX() - 1);
-        } else if (forwardbackward<100) {
-        forwardbackward-=100;
-        }else{forwardbackward++;}
+        double co = this.getX();
+        int rand = (int)(Math.random() * 3);
+        switch (rand) {
+            case 0:
+                if(this.getX()>co - 20 && this.getX()<co + 20){
+                    this.setX(getV()+5);
+                }
+                break;
+            case 1:
+                if(this.getX()>co - 20 && this.getX()<co + 20){
+                    this.setX(getV()-5);
+                }
+                break;
+            case 2:
+                this.setX(getV());
+                break;
+        };
     }
 
     @Override

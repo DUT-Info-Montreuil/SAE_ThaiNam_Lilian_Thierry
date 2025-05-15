@@ -1,4 +1,6 @@
+
 package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele;
+
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -87,4 +89,7 @@ public class vueTerrain {
     }
 
 }
+}
+
+ */
 }

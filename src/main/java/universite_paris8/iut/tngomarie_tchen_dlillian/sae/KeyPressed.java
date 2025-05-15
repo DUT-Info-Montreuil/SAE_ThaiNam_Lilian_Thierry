@@ -1,13 +1,13 @@
 package universite_paris8.iut.tngomarie_tchen_dlillian.sae;
 
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.input.KeyEvent;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Player;
 
 
 public class KeyPressed implements EventHandler<KeyEvent>{
     private Player player;
-    Controleur controleur = new Controleur();
 
     public KeyPressed(Player player) {
         this.player = player;
@@ -16,12 +16,13 @@ public class KeyPressed implements EventHandler<KeyEvent>{
     public void handle(KeyEvent event) {
         switch(event.getCode()) {
             case RIGHT:
-                System.out.println("droite");
-                player.setX(player.getX() + 10);
+                player.aDroite();
                 break;
             case LEFT:
-                System.out.println("gauche");
-                player.setX(player.getX() - 10);
+                player.aGauche();
+                break;
+            case UP:
+                player.saute();
                 break;
         }
     }
