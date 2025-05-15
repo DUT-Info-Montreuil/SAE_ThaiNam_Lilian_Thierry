@@ -10,14 +10,14 @@ import java.util.Random;
 public abstract class Entity {
 
 	private DoubleProperty x,y;
-	private int v; // vitesse de deplacement
+	private double v; // vitesse de deplacement
 	protected Environnement env;
 	public static int compteur=0;
 	private String id;
 	private int pv;
-	private double gravite=0;
+	private double gravite;
 	private boolean asaptrite;
-	public Entity(double x, double y, int v, Environnement env,int pv) {
+	public Entity(double x, double y, double v, Environnement env,int pv) {
 		this.pv=pv;
 		this.x= new SimpleDoubleProperty(x);
 		this.y = new SimpleDoubleProperty(y);
@@ -29,7 +29,7 @@ public abstract class Entity {
 		compteur++;
 	}
 
-	public Entity( int v, Environnement env, int pv) {
+	public Entity( double v, Environnement env, int pv) {
 		this.pv=pv;
 		Random random=new Random();
 		int x = random.nextInt(env.getWidth()-1);
@@ -76,7 +76,10 @@ public abstract class Entity {
 	public void incrementerPv(int n) {
 		this.pv+=n;	
 	}
+	public double getV() {return this.v;}
+	public void setV(double n){this.v=n;}
 	public double getGravite() {return gravite;}
+	public void setGravité(double n){this.gravite=n;}
 
 
 
@@ -84,7 +87,6 @@ public abstract class Entity {
 	public boolean estVivant() {
 		return this.pv>0;
 	}
-
 	public void meurt(){
 		this.pv=0;
 	}
@@ -100,11 +102,17 @@ public abstract class Entity {
 		double lastY=0;
 		if(this.y.getValue() == lastY){
 			this.gravite=0;
-		} else if (gravite>5) {
-			gravite=5;
+		} else if (gravite>2) {
+			gravite=2;
 		} else
 			this.gravite+=0.1;
 		lastY=this.y.getValue();
+	}
+	public void deceleration(){
+	this.v=this.v*0.99;
+	}
+	public void frictiont(){
+
 	}
 
 

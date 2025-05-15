@@ -10,7 +10,9 @@ public class Player extends Entity {
     @Override
     public void seDeplace() {
         gravité();
+        deceleration();
         this.setY(getY()+this.getGravite());
+        this.setX(getX()+this.getV());
         System.out.println(this.getGravite());
     }
 
@@ -20,10 +22,10 @@ public class Player extends Entity {
     }
 
     public void aDroite() {
-        this.setX(this.getX() + 10);
+        this.setV(this.getV()+1);
     }
 
     public void aGauche() {
-        this.setX(this.getX() - 10);
+        this.setV(this.getV()-1 );
     }
  }

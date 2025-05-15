@@ -12,5 +12,4 @@
                 <Insets />
             </BorderPane.margin>
         </Pane>
-    </center>
 </BorderPane>

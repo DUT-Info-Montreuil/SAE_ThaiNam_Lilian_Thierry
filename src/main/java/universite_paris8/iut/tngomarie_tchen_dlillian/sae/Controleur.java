@@ -26,17 +26,6 @@ public class Controleur implements Initializable{
 
     @FXML
     private Pane panneauJeu;
-
-    public void aDroite(){
-        player.setX(player.getX()+10);
-    }
-
-    public void aGauche(){
-        player.setX(player.getX()-10);
-    }
-
-
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.env=new Environnement(256,64);
