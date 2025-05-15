@@ -15,6 +15,7 @@ public abstract class Entity {
 	public static int compteur=0;
 	private String id;
 	private int pv;
+	private double gravite=0;
 	private boolean asaptrite;
 	public Entity(double x, double y, int v, Environnement env,int pv) {
 		this.pv=pv;
@@ -24,6 +25,7 @@ public abstract class Entity {
 		this.env=env;	
 		this.id="A"+compteur;
 		this.asaptrite=false;
+		this.gravite=0;
 		compteur++;
 	}
 
@@ -35,20 +37,22 @@ public abstract class Entity {
 		this.x=new SimpleDoubleProperty(x);
 		this.y =new SimpleDoubleProperty(y);
 		this.v = v;
-		this.env=env;	
+		this.env=env;
 		this.id="A"+compteur;
+		this.asaptrite=false;
+		this.gravite=0;
 		compteur++;
 		//System.out.println("y" + y + "x" +x);
 	}	
 	public void gotasprite(){this.asaptrite=true;}
 	public boolean getasprite(){return this.asaptrite;}
+
 	public  double getX() {
 		return x.getValue();
 	}
 	public DoubleProperty getXProperty() {
 		return x;
 	}
-
 	public  void setX(double n){
 		x.setValue(n);
 	}
@@ -66,14 +70,13 @@ public abstract class Entity {
 	public String getId() {
 		return id;
 	}
-
 	public void decrementerPv(int n) {
 		this.pv-=n;	
 	}
-
 	public void incrementerPv(int n) {
 		this.pv+=n;	
 	}
+	public double getGravite() {return gravite;}
 
 
 
@@ -92,6 +95,16 @@ public abstract class Entity {
 		double x= Math.random();
 		double pp=pourcent/100;
 		return (x<=pp);
+	}
+	public void gravité(){
+		double lastY=0;
+		if(this.y.getValue() == lastY){
+			this.gravite=0;
+		} else if (gravite>5) {
+			gravite=5;
+		} else
+			this.gravite+=0.1;
+		lastY=this.y.getValue();
 	}
 
 

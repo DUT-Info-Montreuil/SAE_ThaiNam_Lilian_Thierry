@@ -17,13 +17,11 @@ public class KeyPressed implements EventHandler<KeyEvent>{
         switch(event.getCode()) {
             case RIGHT:
                 System.out.println("droite");
-                controleur.aDroite();
-                player.aDroite();
+                player.setX(player.getX() + 10);
                 break;
             case LEFT:
                 System.out.println("gauche");
-                controleur.aGauche();
-                player.aGauche();
+                player.setX(player.getX() - 10);
                 break;
         }
     }

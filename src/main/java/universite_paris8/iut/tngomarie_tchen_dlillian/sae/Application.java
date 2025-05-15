@@ -1,6 +1,6 @@
 package universite_paris8.iut.tngomarie_tchen_dlillian.sae;
 
-/*import javafx.event.EventHandler;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
@@ -16,23 +16,28 @@ public class Application extends javafx.application.Application{
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
-        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>(){
+
             @Override
             public void handle(KeyEvent keyEvent) {
 
-                switch(KeyEvent.KEY_PRESSED) {
-                    case RIGHT:
+                switch(keyEvent.getCode()) {
+                    case D:
                         System.out.println("droite");
                         controleur.aDroite();
-                        player.aDroite();
                         break;
-                    case LEFT:
+                    case Q:
                         System.out.println("gauche");
                         controleur.aGauche();
-                        player.aGauche();
                         break;
+
+                    case E:
+                        System.out.println("Inventaire");
+                        break;
+
                 }
             }
         });
     }
-}*/
+}

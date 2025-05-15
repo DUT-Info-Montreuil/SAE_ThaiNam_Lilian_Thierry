@@ -9,7 +9,9 @@ public class Player extends Entity {
 
     @Override
     public void seDeplace() {
-
+        gravité();
+        this.setY(getY()+this.getGravite());
+        System.out.println(this.getGravite());
     }
 
     @Override
@@ -24,9 +26,4 @@ public class Player extends Entity {
     public void aGauche() {
         this.setX(this.getX() - 10);
     }
-
-    public void gravité() {
-        this.setX(getX() - 1.5);
-    }
-
-}
+ }

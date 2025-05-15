@@ -1,4 +1,4 @@
-package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele;
+/*package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele;
 
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.Controleur;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Entity;
@@ -28,10 +28,6 @@ public class BoucleDeJeux {
         }
     }
 
-    public static void update() {
-        for(Entity e :env.entities) {
-            e.seDeplace();
-            System.out.println(e.getX()+":"+e.getY());
-        }
-    }
+
 }
+*/
