@@ -17,7 +17,10 @@ public class Environnement {
 		this.width = width;
 		this.height = height;
 		this.entities=new ArrayList<Entity>();
-		map1= new int[][]{{0, 0, 0, 0}, {1, 1, 1, 1}, {2, 2, 2}, {3, 3, 3,}};
+		map1= new int[][]{{0,0,0,0},
+						  {1,1,1,1},
+						  {2,2,2,2},
+						  {3,3,3,3}};
 	}
 	public void addentities(Entity e){
 		this.entities.add(e);

@@ -16,10 +16,10 @@ public class KeyPressed implements EventHandler<KeyEvent>{
     public void handle(KeyEvent event) {
         switch(event.getCode()) {
             case RIGHT:
-                player.aDroite();
+                player.activeDroite();
                 break;
             case LEFT:
-                player.aGauche();
+                player.activeGauche();
                 break;
             case UP:
                 player.saute();

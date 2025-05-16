@@ -5,8 +5,10 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
@@ -14,6 +16,7 @@ import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Entity;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Npc.Npc;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Player;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Environnement;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.vueTerrain;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,28 +24,32 @@ import java.util.ResourceBundle;
 public class Controleur implements Initializable{
     public static Environnement env;
     Timeline gameLoop = new Timeline();
+    //private vueTerrain = new vueTerrain();
     private Player player = new Player(128,32,10,env,60);
     private Npc npc = new Npc(140,50,10,env,100);
 
     @FXML
-    private Pane panneauJeu;
+    private TilePane panneauJeu;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.env=new Environnement(256,64);
+        this.env=new Environnement(256*16,64*16);
+
         // mettre cela pour que les acteurs ne sortent pas visuellement du panneau de jeu en bas et a sroite...
         this.panneauJeu.setMaxWidth(305); // 5== largeur de l'image ou du rectangle.
         this.panneauJeu.setMaxHeight(305);
         this.env.addentities(player);
         this.env.addentities(npc);
+
+
         creerSprite();
         initAnimation();
         // demarre l'animation
         gameLoop.play();
 
         KeyPressed keyPressed = new KeyPressed(player);
-
+        KeyReleased keyReleased = new KeyReleased(player);
         panneauJeu.addEventHandler(KeyEvent.KEY_PRESSED, keyPressed);
-
+        panneauJeu.addEventHandler(KeyEvent.KEY_RELEASED, keyReleased);
 
     }
 
@@ -85,7 +92,6 @@ public class Controleur implements Initializable{
         creerSprite();
         for(Entity e :env.entities) {
             e.seDeplace();
-            System.out.println(e.getX()+":"+e.getY());
         }
     }
 }
