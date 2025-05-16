@@ -1,6 +1,7 @@
 package universite_paris8.iut.tngomarie_tchen_dlillian.sae;
 
 import javafx.event.EventHandler;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Player;
 
@@ -12,10 +13,11 @@ public class MouseClick implements EventHandler<MouseEvent> {
     }
 
     public void handle(MouseEvent mouseEvent) {
-        if(mouseEvent.isPrimaryButtonDown()){
+        if(mouseEvent.getButton() == MouseButton.PRIMARY){
             player.agit();
+            System.out.println("click");
         }
-        else if(mouseEvent.isSecondaryButtonDown()){
+        else if(mouseEvent.getButton() == MouseButton.SECONDARY){
 
         }
     }

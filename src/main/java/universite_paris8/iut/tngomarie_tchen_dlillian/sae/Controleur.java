@@ -4,11 +4,14 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
+import javafx.scene.layout.StackPane;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
@@ -29,7 +32,15 @@ public class Controleur implements Initializable{
     private Npc npc = new Npc(140,50,10,env,100);
 
     @FXML
-    private TilePane panneauJeu;
+    private Pane panneauJeu;
+
+    //@FXML
+    //private StackPane panneauJeu;
+
+    //@FXML
+    //private TilePane panneauJeu;
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.env=new Environnement(256*16,64*16);
@@ -40,7 +51,6 @@ public class Controleur implements Initializable{
         this.env.addentities(player);
         this.env.addentities(npc);
 
-
         creerSprite();
         initAnimation();
         // demarre l'animation
@@ -48,8 +58,10 @@ public class Controleur implements Initializable{
 
         KeyPressed keyPressed = new KeyPressed(player);
         KeyReleased keyReleased = new KeyReleased(player);
+        MouseClick mouseClick = new MouseClick(player);
         panneauJeu.addEventHandler(KeyEvent.KEY_PRESSED, keyPressed);
         panneauJeu.addEventHandler(KeyEvent.KEY_RELEASED, keyReleased);
+        panneauJeu.setOnMouseClicked(mouseClick);
 
     }
 
@@ -60,8 +72,12 @@ public class Controleur implements Initializable{
             if (!e.getasprite()){
                 if(e instanceof Player){
                     r =new Circle(4, Color.RED);
+                    e.gotasprite();
+                    System.out.println("player");
                 }else
                     r =new Circle(3,Color.WHITE);
+                e.gotasprite();
+                System.out.println(e.getId());
                 // ils ont le meme identifiant
 
                 r.setId(e.getId());
