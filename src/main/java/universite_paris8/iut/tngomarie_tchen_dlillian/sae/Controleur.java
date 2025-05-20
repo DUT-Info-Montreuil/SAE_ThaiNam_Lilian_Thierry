@@ -28,8 +28,8 @@ public class Controleur implements Initializable{
     public static Environnement env;
     Timeline gameLoop = new Timeline();
     //private vueTerrain = new vueTerrain();
-    private Player player = new Player(128,32,10,env,60);
-    private Npc npc = new Npc(140,50,10,env,100);
+    private Player player ;//= new Player(128,32,10,env,60);
+    //private Npc npc = new Npc(140,50,10,env,100);
 
     @FXML
     private Pane panneauJeu;
@@ -44,12 +44,13 @@ public class Controleur implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.env=new Environnement(256*16,64*16);
+        this.player= new Player(128,32,10,env,60);
 
         // mettre cela pour que les acteurs ne sortent pas visuellement du panneau de jeu en bas et a sroite...
         this.panneauJeu.setMaxWidth(305); // 5== largeur de l'image ou du rectangle.
         this.panneauJeu.setMaxHeight(305);
         this.env.addentities(player);
-        this.env.addentities(npc);
+        //this.env.addentities(npc);
 
         creerSprite();
         initAnimation();

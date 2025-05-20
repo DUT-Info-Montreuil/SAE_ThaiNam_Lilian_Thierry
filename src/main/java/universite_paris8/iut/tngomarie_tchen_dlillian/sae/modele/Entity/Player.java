@@ -1,17 +1,20 @@
 package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity;
 
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Arc;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Epee;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Inventaire;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Environnement;
 
 import java.util.ArrayList;
 
 public class Player extends Entity {
-    private ArrayList<Items> inventaire;
+    private Inventaire inventaire;
     private boolean Droite = false;
     private boolean Gauche = false;
     private boolean afficherInv;
     public Player(double x, double y, int v, Environnement env, int pv) {
         super(x, y, v, env, pv);
-        this.inventaire = new ArrayList<Items>();
+        this.inventaire = new Inventaire();
     }
 
     @Override
@@ -27,7 +30,7 @@ public class Player extends Entity {
         this.setX(getX()+this.getV());
     }
 
-    public ArrayList<Items> getInventaire() {
+    public Inventaire getInventaire() {
         return inventaire;
     }
 
@@ -37,8 +40,23 @@ public class Player extends Entity {
 
     @Override
     public void agit() {
-        Fleche f = new Fleche(this.getX(),this.getY(),5,this.getEnv(),1);
-        this.env.addentities(f);
+        if (this.inventaire.objetEnMain() instanceof Arc){
+            Fleche f = new Fleche(this.getX(),this.getY(),5,this.getEnv(),1);
+            this.env.addentities(f);
+        }
+        else if(this.inventaire.objetEnMain() instanceof Epee){
+            Epee epee = (Epee) this.inventaire.objetEnMain();
+            System.out.println("utiliser epee");
+            for(Entity mob : env.getEntities()){
+                if(mob.getX() - this.getX() < 20 && mob.getY() - this.getX() <20){
+                    mob.decrementerPv(((Epee) this.inventaire.objetEnMain()).getDegat(epee));
+                }
+            }
+        }
+        else{
+            System.out.println("rien dans la main");
+        }
+
     }
 
     public void activeDroite(){
