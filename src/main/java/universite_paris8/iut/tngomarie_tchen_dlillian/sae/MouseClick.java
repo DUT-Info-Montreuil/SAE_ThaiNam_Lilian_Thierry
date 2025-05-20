@@ -13,8 +13,14 @@ public class MouseClick implements EventHandler<MouseEvent> {
     }
 
     public void handle(MouseEvent mouseEvent) {
+        double sourisX = mouseEvent.getX();
+
         if(mouseEvent.getButton() == MouseButton.PRIMARY){
-            System.out.println("click droit");
+            if (sourisX < player.getX()) {
+                player.setDirection(-1); // droite
+            } else if (sourisX > player.getX()){
+                player.setDirection(1); // gauche
+            }
             player.agit();
         }
         else if(mouseEvent.getButton() == MouseButton.SECONDARY){

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 public class Player extends Entity {
     private Inventaire inventaire;
+    private int direction = 1; // 1 = droite, -1 = gauche
     private boolean Droite = false;
     private boolean Gauche = false;
     private boolean afficherInv;
@@ -38,12 +39,22 @@ public class Player extends Entity {
         return this.env;
     }
 
+    public void setDirection(int dir) {
+        this.direction = dir;
+    }
+
+    public int getDirection() {
+        return this.direction;
+    }
+
+
     @Override
     public void agit() {
         if (this.inventaire.objetEnMain() instanceof Arc){
-            Fleche f = new Fleche(this.getX(),this.getY(),5,this.getEnv(),1);
+            Fleche f = new Fleche(this.getX(), this.getY(), 20 * this.direction, this.getEnv(), 1);
             this.env.addentities(f);
         }
+
         else if(this.inventaire.objetEnMain() instanceof Epee){
             Epee epee = (Epee) this.inventaire.objetEnMain();
             System.out.println("utiliser epee");

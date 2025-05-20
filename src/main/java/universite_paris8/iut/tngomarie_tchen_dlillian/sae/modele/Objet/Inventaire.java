@@ -5,11 +5,12 @@ import java.util.ArrayList;
 public class Inventaire {
     private ArrayList<Objet> Inventaire;
     private int enMain;
-    private int caseVide = 0;
+    private int caseVide;
 
     public Inventaire(){
         this.Inventaire = new ArrayList<Objet>();
         this.enMain = 0;
+        this.caseVide =0;
     }
 
     public Objet objetEnMain(){
