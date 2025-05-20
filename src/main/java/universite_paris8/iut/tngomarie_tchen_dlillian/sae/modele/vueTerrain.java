@@ -36,7 +36,7 @@ public class vueTerrain {
 
 
     public void dessinerTerrain (int[][] terrain) {
-        decors.setMaxSize(40*16, 23*16); // largeur * taille tuile hauteur * nb tuiles pour pas que la fenetre quand on l'agrandit change
+        decors.setMaxSize(256*16, 64*16); // largeur * taille tuile hauteur * nb tuiles pour pas que la fenetre quand on l'agrandit change
         decors.getChildren().clear(); // on clean le tilePane si jamais
         ImageView images ;
 

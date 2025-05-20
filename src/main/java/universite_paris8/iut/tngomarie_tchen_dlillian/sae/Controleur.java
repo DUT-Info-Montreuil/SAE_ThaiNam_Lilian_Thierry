@@ -66,7 +66,7 @@ public class Controleur implements Initializable{
                     e.gotasprite();
                     System.out.println("player");
                 } else if (e instanceof Fleche) {
-                    r = new ImageView("Petit Bonhomme.png");
+                    r = new ImageView("fleche.png");
                 }else r = new ImageView("Petit Bonhomme.png");
                     e.gotasprite();
                 System.out.println(e.getId());
