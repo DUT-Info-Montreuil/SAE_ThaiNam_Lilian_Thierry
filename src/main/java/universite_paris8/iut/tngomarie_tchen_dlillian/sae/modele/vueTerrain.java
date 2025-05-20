@@ -54,11 +54,11 @@ public class vueTerrain {
             }
         }
     }
-//    public void changementTuileMinage(int numeroTuile , Environnement env, int blocChanger) {
-//        if(env.getMap1()[numeroTuile] == blocChanger) {
+//   public void changementTuileMinage(int tuilex,int tuiley , Environnement env, int blocChanger) {
+//        if(env.getMap1()[tuilex][tuiley] == blocChanger) {
 //            ImageView img = new ImageView();
 //            img.setImage(imageTerrain[blocChanger]); // utilisation des images qui sont dans le tableua créer une seul fois plus haut
-//            decors.getChildren().set(numeroTuile, img); // on change l'image a la position souhaiter par la nouvelle
+//            decors.getChildren().set((tuiley*16+tuilex), img); // on change l'image a la position souhaiter par la nouvelle
 //        }
 //    }
 }

@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 
 import javafx.fxml.Initializable;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 
 import javafx.scene.layout.TilePane;
@@ -14,6 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Entity;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Fleche;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Player;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Environnement;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.vueTerrain;
@@ -35,12 +38,11 @@ public class Controleur implements Initializable{
         this.env=new Environnement(256*16,64*16);
         this.player = new Player(128,32,1,env,60);
         // mettre cela pour que les acteurs ne sortent pas visuellement du panneau de jeu en bas et a sroite...
-        this.panneauJeu.setMaxWidth(305); // 5== largeur de l'image ou du rectangle.
-        this.panneauJeu.setMaxHeight(305);// a mettre dans vueterrain
+
         this.terrain =new vueTerrain(panneauJeu,env);
         this.env.addentities(player);
 
-        creerSprite();//a supprimer
+        geréeSprite();//a supprimer
         initAnimation();
         // demarre l'animation
         gameLoop.play();
@@ -54,18 +56,19 @@ public class Controleur implements Initializable{
 
     }
 
-    private void creerSprite() {
+    private void geréeSprite() {
         for(Entity e :env.entities) {
             //System.out.println("ajouter sprite");
-            Circle r;
+            ImageView r;
             if (!e.getasprite()){
                 if(e instanceof Player){
-                    r =new Circle(4, Color.RED);
+                    r = new ImageView("Petit Bonhomme.png");
                     e.gotasprite();
                     System.out.println("player");
-                }else
-                    r =new Circle(3,Color.WHITE);
-                e.gotasprite();
+                } else if (e instanceof Fleche) {
+                    r = new ImageView("Petit Bonhomme.png");
+                }else r = new ImageView("Petit Bonhomme.png");
+                    e.gotasprite();
                 System.out.println(e.getId());
                 // ils ont le meme identifiant
 
@@ -94,7 +97,7 @@ public class Controleur implements Initializable{
         gameLoop.getKeyFrames().add(kf);
     }
     public void update() {
-        creerSprite();
+        geréeSprite();
         for(Entity e :env.entities) {
             e.seDeplace();
         }

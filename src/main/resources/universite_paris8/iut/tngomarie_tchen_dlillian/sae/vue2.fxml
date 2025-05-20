@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane focusTraversable="true" styleClass="background" stylesheets="@dark.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.tngomarie_tchen_dlillian.sae.Controleur">
+<StackPane focusTraversable="true" prefHeight="513.0" prefWidth="871.0" styleClass="background" stylesheets="@dark.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.tngomarie_tchen_dlillian.sae.Controleur">
     <children>
         <Pane fx:id="background">
         </Pane>
