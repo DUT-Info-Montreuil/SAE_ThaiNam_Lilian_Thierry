@@ -1,22 +1,19 @@
 package universite_paris8.iut.tngomarie_tchen_dlillian.sae;
 
-import javafx.animation.Animation;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
-import javafx.scene.layout.StackPane;
+
 import javafx.fxml.Initializable;
-import javafx.scene.control.ScrollPane;
+
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
+
 import javafx.scene.layout.TilePane;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Entity;
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Npc.Npc;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Player;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Environnement;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.vueTerrain;
