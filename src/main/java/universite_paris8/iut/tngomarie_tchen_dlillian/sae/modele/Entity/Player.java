@@ -12,6 +12,7 @@ public class Player extends Entity {
     public Player(double x, double y, int v, Environnement env, int pv) {
         super(x, y, v, env, pv);
         this.inventaire = new ArrayList<Items>();
+        this.afficherInv = false;
     }
 
     @Override
@@ -67,4 +68,13 @@ public class Player extends Entity {
     }
 
     public void saute() { this.setGravité(-3);}
+
+
+    public boolean activerInv(){
+        return this.afficherInv = true;
+    }
+
+    public boolean deactiverInv(){
+        return this .afficherInv = false;
+    }
  }

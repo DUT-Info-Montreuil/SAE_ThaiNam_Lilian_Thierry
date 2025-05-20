@@ -1,13 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane focusTraversable="true" styleClass="background" stylesheets="@dark.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.tngomarie_tchen_dlillian.sae.Controleur">
+<?import javafx.scene.control.Label?>
+<StackPane focusTraversable="true" styleClass="background" stylesheets="@dark.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.tngomarie_tchen_dlillian.sae.Controleur">
     <children>
-        <Pane fx:id="background">
-        </Pane>
-        <TilePane fx:id="panneauJeu" focusTraversable="true" prefHeight="505.0" prefWidth="819.0" BorderPane.alignment="CENTER">
-        </TilePane>
+        <Pane fx:id="background" />
+        <TilePane fx:id="panneauJeu" focusTraversable="true" prefHeight="505.0" prefWidth="819.0" BorderPane.alignment="CENTER"> </TilePane>
+        <GridPane fx:id="paneInv" focusTraversable="true" gridLinesVisible="true" layoutX="50.0" maxHeight="200.0" maxWidth="550.0" opacity="0.33" prefHeight="60.0" prefWidth="50.0" scaleShape="false" style="-fx-border-color: white;" StackPane.alignment="TOP_LEFT">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints maxHeight="100.0" minHeight="0.0" prefHeight="50.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="100.0" minHeight="0.0" prefHeight="50.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="100.0" minHeight="0.0" prefHeight="50.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+        </GridPane>
     </children>
 </StackPane>

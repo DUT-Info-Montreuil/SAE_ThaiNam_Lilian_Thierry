@@ -7,6 +7,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Environnement;
 
+import javax.sound.sampled.Control;
+
 public class vueTerrain {
     private TilePane decors;
     private Image[] imageTerrain;
@@ -36,7 +38,7 @@ public class vueTerrain {
 
 
     public void dessinerTerrain (int[][] terrain) {
-        decors.setMaxSize(40*16, 23*16); // largeur * taille tuile hauteur * nb tuiles pour pas que la fenetre quand on l'agrandit change
+        decors.setMaxSize(256*16, 64*16); // largeur * taille tuile hauteur * nb tuiles pour pas que la fenetre quand on l'agrandit change
         decors.getChildren().clear(); // on clean le tilePane si jamais
         ImageView images ;
 

@@ -7,8 +7,10 @@ import javafx.fxml.FXML;
 
 import javafx.fxml.Initializable;
 
+import javafx.scene.Node;
 import javafx.scene.input.KeyEvent;
 
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -30,13 +32,15 @@ public class Controleur implements Initializable{
     @FXML
     private TilePane panneauJeu;
 
+    @FXML
+    private GridPane paneInv;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.env=new Environnement(256*16,64*16);
         this.player = new Player(128,32,1,env,60);
         // mettre cela pour que les acteurs ne sortent pas visuellement du panneau de jeu en bas et a sroite...
-        this.panneauJeu.setMaxWidth(305); // 5== largeur de l'image ou du rectangle.
-        this.panneauJeu.setMaxHeight(305);// a mettre dans vueterrain
+
         this.terrain =new vueTerrain(panneauJeu,env);
         this.env.addentities(player);
 
@@ -45,12 +49,22 @@ public class Controleur implements Initializable{
         // demarre l'animation
         gameLoop.play();
 
-        KeyPressed keyPressed = new KeyPressed(player);
+        KeyPressed keyPressed = new KeyPressed(player, this);
         KeyReleased keyReleased = new KeyReleased(player);
         MouseClick mouseClick = new MouseClick(player);
         panneauJeu.addEventHandler(KeyEvent.KEY_PRESSED, keyPressed);
         panneauJeu.addEventHandler(KeyEvent.KEY_RELEASED, keyReleased);
         panneauJeu.setOnMouseClicked(mouseClick);
+
+        for(Node n : paneInv.getChildren()){
+            Integer row = GridPane.getRowIndex(n);
+            if(row == null) row = 0;
+            if(row >= 1){
+                n.setVisible(false);
+                n.setManaged(false);
+            }
+        }
+
 
     }
 
@@ -99,4 +113,28 @@ public class Controleur implements Initializable{
             e.seDeplace();
         }
     }
+
+    public void afficherInv(){
+        System.out.println("affiche inv");
+        for (Node n : paneInv.getChildren()) {
+            Integer row = GridPane.getRowIndex(n);
+            if (row == null) row = 0;
+            if (row >= 1) {
+                n.setVisible(true);
+                n.setManaged(true);
+            }
+        }
+    }
+    public void deactiverInv(){
+        System.out.println("deaffiche inv");
+        for (Node n : paneInv.getChildren()) {
+            Integer row = GridPane.getRowIndex(n);
+            if (row == null) row = 0;
+            if (row >= 1) {
+                n.setVisible(false);
+                n.setManaged(false);
+            }
+        }
+    }
+
 }
