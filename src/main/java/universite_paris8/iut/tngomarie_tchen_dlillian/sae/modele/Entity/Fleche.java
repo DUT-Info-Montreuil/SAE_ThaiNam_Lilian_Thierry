@@ -5,16 +5,16 @@ import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.En
 import java.util.ArrayList;
 
 public class Fleche extends Entity {
-    private Player player;
-    public Fleche(double x, double y, int v, Environnement env, int pv) {
+    private double dir;
+    public Fleche(double x, double y, int v, Environnement env, int pv,double dir) {
         super(x, y, v, env, pv);
+        this.dir=dir;
     }
 
     public void seDeplace() {
         gravité();
-        deceleration();
         this.setY(getY()+this.getGravite());
-        this.setX(getX()+this.getV());
+        this.setX(getX()+this.getV()*dir);
     }
 
     public void agit(){

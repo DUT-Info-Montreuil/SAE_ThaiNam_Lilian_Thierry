@@ -37,7 +37,7 @@ public class Player extends Entity {
 
     @Override
     public void agit() {
-        Fleche f = new Fleche(this.getX(),this.getY(),5,this.getEnv(),1);
+        Fleche f = new Fleche(this.getX(),this.getY(),5,this.getEnv(),1,-2);
         this.env.addentities(f);
     }
 
@@ -56,13 +56,13 @@ public class Player extends Entity {
 
     public void aDroite() {
         if(Droite){
-            this.setV(this.getV()+1);
+            this.setV(this.getV()+0.5);
         }
     }
 
     public void aGauche() {
         if(Gauche){
-            this.setV(this.getV()-1 );
+            this.setV(this.getV()-0.5 );
         }
     }
 

@@ -11,15 +11,17 @@ import java.io.IOException;
 
 public class Main1 extends Application {
     FXMLLoader fxmlLoader = new FXMLLoader(Main1.class.getResource("vue2.fxml"));
-    public static Scene scene;
+    public Scene scene;
 
     {
         try {
-            scene = new Scene(fxmlLoader.load(), 800, 600);
+            scene = new Scene(fxmlLoader.load());
         } catch (IOException e) {
+            System.out.println("execption");
             throw new RuntimeException(e);
         }
     }
+
     public static void main(String[] args) {
         launch();
     }
@@ -27,7 +29,7 @@ public class Main1 extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         TilePane decors = new TilePane();
-        stage.setTitle("jeu tro klas");
+        stage.setTitle("jeu");
         stage.setScene(scene);
         stage.show();
 

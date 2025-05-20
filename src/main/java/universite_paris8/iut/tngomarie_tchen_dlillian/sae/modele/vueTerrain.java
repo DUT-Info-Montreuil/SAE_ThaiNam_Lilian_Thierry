@@ -8,17 +8,17 @@ import javafx.scene.layout.TilePane;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Environnement;
 
 public class vueTerrain {
-   private TilePane decors;
-  private Image[] imageTerrain;
-  private Environnement env;
+    private TilePane decors;
+    private Image[] imageTerrain;
+    private Environnement env;
     private void vueTerraintableau() {
         this.imageTerrain = new Image[4];{
-            imageTerrain[0] = new Image("test/src/main/resources/universite_paris8/iut/tngomarie_tchen_dlillian/sae/blocktexture/Texture air.png");
-            imageTerrain[1] = new Image("test/src/main/resources/universite_paris8/iut/tngomarie_tchen_dlillian/sae/blocktexture/Texture terre.png");
-            imageTerrain[2] = new Image("test/src/main/resources/universite_paris8/iut/tngomarie_tchen_dlillian/sae/blocktexture/Texture pierre.png");
-            imageTerrain[3] = new Image("test/src/main/resources/universite_paris8/iut/tngomarie_tchen_dlillian/sae/blocktexture/Texture herbe.png");
+            imageTerrain[0] = new Image("Texture air.png");
+            imageTerrain[1] = new Image("Texture terre.png");
+            imageTerrain[2] = new Image("Texture de pierre.png");
+            imageTerrain[3] = new Image("Texture herbe.png");
 
-        };
+        }
 
     }
 
@@ -42,30 +42,14 @@ public class vueTerrain {
 
         for(int cases = 0; cases < terrain.length ; cases++) {
             for (int cases2 = 0; cases2 < terrain[cases].length; cases2++) {
-                switch (terrain[cases][cases2]) {
-                    case 0:
-                        images = new ImageView(imageTerrain[0]);
-                        break;
-
-                    case 1:
-                        images = new ImageView(imageTerrain[1]);
-                        break;
-
-                    case 2:
-                        images = new ImageView(imageTerrain[2]);
-                        break;
-
-                    case 3:
-                        images = new ImageView(imageTerrain[3]);
-                        break;
-
-                    case 4:
-                        images = new ImageView(imageTerrain[4]);
-                        break;
-                    default:
-                        images = null;
-                        break;
-                }
+                images = switch (terrain[cases][cases2]) {
+                    case 0 -> new ImageView(imageTerrain[0]);
+                    case 1 -> new ImageView(imageTerrain[1]);
+                    case 2 -> new ImageView(imageTerrain[2]);
+                    case 3 -> new ImageView(imageTerrain[3]);
+                    case 4 -> new ImageView(imageTerrain[4]);
+                    default -> null;
+                };
                 decors.getChildren().add(images); //ajoute les images dans le tilePane
             }
         }
