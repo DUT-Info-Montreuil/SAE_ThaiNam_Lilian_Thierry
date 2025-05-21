@@ -1,6 +1,8 @@
-package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet;
+package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil;
 
-public class Epee extends Objet{
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Objet;
+
+public class Epee extends Objet {
     private int degat;
     private int durabilité;
     private String type;

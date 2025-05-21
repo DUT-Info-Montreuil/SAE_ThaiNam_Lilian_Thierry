@@ -1,12 +1,10 @@
 package universite_paris8.iut.tngomarie_tchen_dlillian.sae;
 
 import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.input.KeyEvent;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Player;
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Arc;
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Epee;
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Objet;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Arc;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Epee;
 
 
 public class KeyPressed implements EventHandler<KeyEvent>{

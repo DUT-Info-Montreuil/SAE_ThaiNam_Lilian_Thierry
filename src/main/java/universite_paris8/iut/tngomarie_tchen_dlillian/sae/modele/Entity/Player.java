@@ -1,11 +1,9 @@
 package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity;
 
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Arc;
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Epee;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Arc;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Epee;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Inventaire;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Environnement;
-
-import java.util.ArrayList;
 
 public class Player extends Entity {
     private Inventaire inventaire;
