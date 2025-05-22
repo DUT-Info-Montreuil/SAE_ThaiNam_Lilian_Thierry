@@ -1,6 +1,11 @@
 package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet;
 
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Bloc.Bois;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredient.Baton;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredient.Fils;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredient.Ingredient;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Arc;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Epee;
 
 import java.util.ArrayList;
 
@@ -10,6 +15,10 @@ public class Inventaire {
     private int caseVide;
     private Ingredient Objet1;
     private Ingredient Objet2;
+
+    //different boolean pour le craft
+    private boolean craftArc = false;
+    private boolean craftEpee = false;
 
     public Inventaire(){
         this.Inventaire = new ArrayList<Objet>();
@@ -51,9 +60,54 @@ public class Inventaire {
             }
         }
     }
+    //la fonction craft est appeler avec un bouton dans l'inventaire selon le booleen qui est active aussi dans l'inventaire selon le craft selectionner
+    public void craft() {
+        if (craftArc) {
+            craftArc = false;
+            Baton batonTrouve = null;
+            Fils filsTrouve = null;
+            // Recherche dans l'inventaire
+            for (Objet obj : Inventaire) {
+                if (obj instanceof Baton && ((Baton) obj).getNbObjet() >= 3) {
+                    batonTrouve = (Baton) obj;
+                }
+                if (obj instanceof Fils && ((Fils) obj).getNbObjet() >= 3) {
+                    filsTrouve = (Fils) obj;
+                }
+            }
+            // Si les deux ingrédients sont disponibles on supprime les ingredient et ajoute l'objet
+            if (batonTrouve != null && filsTrouve != null) {
+                supprimerIngredient(batonTrouve, 3);
+                supprimerIngredient(filsTrouve, 3);
+                this.ajoutObjet(new Arc(8));
+            }}
+        else if (craftEpee) {
+            craftEpee=false;
+            Baton batonTrouve = null;
+            Bois boisTrouve = null;
+            for(Objet obj : Inventaire){
+                if(obj instanceof Baton && ((Baton) obj).getNbObjet() >= 1) {
+                    batonTrouve = (Baton) obj;
+                }
+                if (obj instanceof Bois && ((Bois) obj).getNbObjet() >= 2) {
+                    boisTrouve = (Bois) obj;
+                }
+            }
+            if(batonTrouve != null && boisTrouve != null){
+                supprimerIngredient(batonTrouve,1);
+                supprimerIngredient(boisTrouve,2);
+                this.ajoutObjet(new Epee(10,20,50,"Bois"));
+            }
+        }
+    }
 
-    public void craft(Ingredient I1,Ingredient I2){
-        //enorme else if pour les different craft possible en fonction des id
+
+    //differente fonction booleen;
+    public void setCraftArc(){
+        this.craftArc=true;
+    }
+    public void setCraftEpee(){
+        this.craftEpee=true;
     }
 }
 
