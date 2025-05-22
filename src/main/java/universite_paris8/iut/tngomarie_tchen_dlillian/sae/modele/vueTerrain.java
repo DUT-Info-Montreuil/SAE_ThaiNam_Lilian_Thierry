@@ -8,6 +8,7 @@ import javafx.scene.layout.TilePane;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Environnement;
 
 import javax.sound.sampled.Control;
+import java.io.IOException;
 
 public class vueTerrain {
     private TilePane decors;
@@ -15,7 +16,7 @@ public class vueTerrain {
     private Environnement env;
     private void vueTerraintableau() {
         this.imageTerrain = new Image[4];{
-            imageTerrain[0] = new Image("Texture air.png");
+            imageTerrain[0] = new Image("Texture vide.png");
             imageTerrain[1] = new Image("Texture terre.png");
             imageTerrain[2] = new Image("Texture de pierre.png");
             imageTerrain[3] = new Image("Texture herbe.png");
@@ -38,8 +39,15 @@ public class vueTerrain {
 
 
     public void dessinerTerrain (int[][] terrain) {
+
         decors.setMaxSize(256*16, 64*16); // largeur * taille tuile hauteur * nb tuiles pour pas que la fenetre quand on l'agrandit change
         decors.getChildren().clear(); // on clean le tilePane si jamais
+
+        try{
+            terrain = env.chargerMapFichier("src/main/java/universite_paris8/iut/tngomarie_tchen_dlillian/sae/modele/environement/environement.txt");
+        } catch (IOException e){
+            e.printStackTrace();
+        }
         ImageView images ;
 
         for(int cases = 0; cases < terrain.length ; cases++) {
@@ -49,13 +57,15 @@ public class vueTerrain {
                     case 1 -> new ImageView(imageTerrain[1]);
                     case 2 -> new ImageView(imageTerrain[2]);
                     case 3 -> new ImageView(imageTerrain[3]);
-                    case 4 -> new ImageView(imageTerrain[4]);
                     default -> null;
                 };
                 decors.getChildren().add(images); //ajoute les images dans le tilePane
             }
         }
     }
+
+
+
 //    public void changementTuileMinage(int numeroTuile , Environnement env, int blocChanger) {
 //        if(env.getMap1()[numeroTuile] == blocChanger) {
 //            ImageView img = new ImageView();

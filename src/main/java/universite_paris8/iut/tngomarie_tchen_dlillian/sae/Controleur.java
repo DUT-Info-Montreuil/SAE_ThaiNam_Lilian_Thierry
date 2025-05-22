@@ -8,9 +8,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -20,7 +22,11 @@ import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Player;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Environnement;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.vueTerrain;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class Controleur implements Initializable{
@@ -35,13 +41,33 @@ public class Controleur implements Initializable{
     @FXML
     private GridPane paneInv;
 
+    @FXML
+    private Pane slot1;
+    @FXML
+    private Pane slot2;
+    @FXML
+    private Pane slot3;
+    @FXML
+    private Pane slot4;
+    @FXML
+    private Pane slot5;
+    @FXML
+    private Pane slot6;
+    @FXML
+    private Pane slot7;
+
+    private List<Pane> slotsInventaire;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        slotsInventaire = Arrays.asList(slot1, slot2, slot3, slot4, slot5, slot6, slot7);
         this.env=new Environnement(256*16,64*16);
-        this.player = new Player(128,32,1,env,60);
+
+        this.player = new Player(220,130,1,env,60);
         // mettre cela pour que les acteurs ne sortent pas visuellement du panneau de jeu en bas et a sroite...
 
         this.terrain =new vueTerrain(panneauJeu,env);
+
         this.env.addentities(player);
 
         creerSprite();//a supprimer
@@ -49,22 +75,12 @@ public class Controleur implements Initializable{
         // demarre l'animation
         gameLoop.play();
 
-        KeyPressed keyPressed = new KeyPressed(player, this);
+        KeyPressed keyPressed = new KeyPressed(player, this, slot1, slot2, slot3, slot4, slot5, slot6, slot7);
         KeyReleased keyReleased = new KeyReleased(player);
         MouseClick mouseClick = new MouseClick(player);
         panneauJeu.addEventHandler(KeyEvent.KEY_PRESSED, keyPressed);
         panneauJeu.addEventHandler(KeyEvent.KEY_RELEASED, keyReleased);
         panneauJeu.setOnMouseClicked(mouseClick);
-
-        for(Node n : paneInv.getChildren()){
-            Integer row = GridPane.getRowIndex(n);
-            if(row == null) row = 0;
-            if(row >= 1){
-                n.setVisible(false);
-                n.setManaged(false);
-            }
-        }
-
 
     }
 
@@ -115,26 +131,15 @@ public class Controleur implements Initializable{
     }
 
     public void afficherInv(){
-        System.out.println("affiche inv");
-        for (Node n : paneInv.getChildren()) {
-            Integer row = GridPane.getRowIndex(n);
-            if (row == null) row = 0;
-            if (row >= 1) {
-                n.setVisible(true);
-                n.setManaged(true);
-            }
-        }
+        paneInv.setVisible(true);
     }
-    public void deactiverInv(){
-        System.out.println("deaffiche inv");
-        for (Node n : paneInv.getChildren()) {
-            Integer row = GridPane.getRowIndex(n);
-            if (row == null) row = 0;
-            if (row >= 1) {
-                n.setVisible(false);
-                n.setManaged(false);
-            }
-        }
+    public void deactiverInv() {
+        paneInv.setVisible(false);
+
+
     }
 
+    public void afficherCaseInv(Pane paneau){
+        slotsInventaire.forEach(p -> p.setVisible(p == paneau));
+    }
 }

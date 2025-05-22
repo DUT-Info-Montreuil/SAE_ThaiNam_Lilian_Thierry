@@ -9,10 +9,14 @@ public class Player extends Entity {
     private boolean Droite = false;
     private boolean Gauche = false;
     private boolean afficherInv;
+    private int hitBoxX;
+    private int hitBoxY;
     public Player(double x, double y, int v, Environnement env, int pv) {
         super(x, y, v, env, pv);
         this.inventaire = new ArrayList<Items>();
         this.afficherInv = false;
+        this.hitBoxX = 5;
+        this.hitBoxY = 5;
     }
 
     @Override
