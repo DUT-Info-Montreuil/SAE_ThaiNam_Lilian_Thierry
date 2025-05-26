@@ -81,9 +81,6 @@ public abstract class Entity {
 	public double getGravite() {return gravite;}
 	public void setGravité(double n){this.gravite=n;}
 
-
-
-
 	public boolean estVivant() {
 		return this.pv>0;
 	}
@@ -115,7 +112,6 @@ public abstract class Entity {
 
 	}
 
-
 	public abstract void seDeplace();
 
 
@@ -125,6 +121,5 @@ public abstract class Entity {
 	public String toString() {
 		return "x=" + x + ", y=" + y + ", id=" + id ;
 	}
-
 
 }
