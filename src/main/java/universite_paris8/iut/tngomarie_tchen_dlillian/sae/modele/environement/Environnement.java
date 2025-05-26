@@ -16,6 +16,7 @@ public class Environnement {
 	public ArrayList<Entity> entities;
 	public int[][] map1 =new int[4][4];
 	public File file=new File("environnement.txt");
+	//bonjour
 
 
 	public Environnement(int width, int height) {
