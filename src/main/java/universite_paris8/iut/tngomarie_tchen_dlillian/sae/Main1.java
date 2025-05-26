@@ -15,7 +15,7 @@ public class Main1 extends Application {
 
     {
         try {
-            scene = new Scene(fxmlLoader.load());
+            scene = new Scene(fxmlLoader.load(), 1600, 1200);
         } catch (IOException e) {
             System.out.println("execption");
             throw new RuntimeException(e);

@@ -1,21 +1,17 @@
 package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity;
 
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Arc;
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Epee;
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Inventaire;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Environnement;
 
 import java.util.ArrayList;
 
 public class Player extends Entity {
-    private Inventaire inventaire;
-    private double direction = 1; // 1 = droite, -1 = gauche
+    private ArrayList<Items> inventaire;
     private boolean Droite = false;
     private boolean Gauche = false;
     private boolean afficherInv;
     public Player(double x, double y, int v, Environnement env, int pv) {
         super(x, y, v, env, pv);
-        this.inventaire = new Inventaire();
+        this.inventaire = new ArrayList<Items>();
     }
 
     @Override
@@ -31,7 +27,7 @@ public class Player extends Entity {
         this.setX(getX()+this.getV());
     }
 
-    public Inventaire getInventaire() {
+    public ArrayList<Items> getInventaire() {
         return inventaire;
     }
 
@@ -39,37 +35,10 @@ public class Player extends Entity {
         return this.env;
     }
 
-    public void setDirection(int dir) {
-        this.direction = dir;
-    }
-
-    public double getDirection() {
-        return this.direction;
-    }
-
-
     @Override
     public void agit() {
-        System.out.println("Direction actuelle : " + direction);
-
-        if (this.inventaire.objetEnMain() instanceof Arc) {
-            Fleche f = new Fleche(this.getX(), this.getY(), (int) (20 * this.direction), this.getEnv(), 1);
-            this.env.addentities(f);
-        }
-
-        else if(this.inventaire.objetEnMain() instanceof Epee){
-            Epee epee = (Epee) this.inventaire.objetEnMain();
-            System.out.println("utiliser epee");
-            for(Entity mob : env.getEntities()){
-                if(mob.getX() - this.getX() < 20 && mob.getY() - this.getX() <20){
-                    mob.decrementerPv(((Epee) this.inventaire.objetEnMain()).getDegat(epee));
-                }
-            }
-        }
-        else{
-            System.out.println("rien dans la main");
-        }
-
+        Fleche f = new Fleche(this.getX(),this.getY(),5,this.getEnv(),1,-2);
+        this.env.addentities(f);
     }
 
     public void activeDroite(){

@@ -1,22 +1,19 @@
 package universite_paris8.iut.tngomarie_tchen_dlillian.sae;
 
-import javafx.animation.Animation;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
-import javafx.scene.layout.StackPane;
+
 import javafx.fxml.Initializable;
-import javafx.scene.control.ScrollPane;
+
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
+
 import javafx.scene.layout.TilePane;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Entity;
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Npc.Npc;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Player;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Environnement;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.vueTerrain;
@@ -27,25 +24,23 @@ import java.util.ResourceBundle;
 public class Controleur implements Initializable{
     public static Environnement env;
     Timeline gameLoop = new Timeline();
-    //private vueTerrain = new vueTerrain();
-    private Player player ;//= new Player(128,32,10,env,60);
-    //private Npc npc = new Npc(140,50,10,env,100);
+    private vueTerrain terrain;
+    private Player player;
 
     @FXML
-    private Pane panneauJeu;
+    private TilePane panneauJeu;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.env=new Environnement(256*16,64*16);
-        this.player= new Player(128,32,10,env,60);
-
+        this.player = new Player(128,32,1,env,60);
         // mettre cela pour que les acteurs ne sortent pas visuellement du panneau de jeu en bas et a sroite...
-
+        this.panneauJeu.setMaxWidth(305); // 5== largeur de l'image ou du rectangle.
+        this.panneauJeu.setMaxHeight(305);// a mettre dans vueterrain
         this.terrain =new vueTerrain(panneauJeu,env);
         this.env.addentities(player);
-        //this.env.addentities(npc);
 
-        geréeSprite();//a supprimer
+        creerSprite();//a supprimer
         initAnimation();
         // demarre l'animation
         gameLoop.play();
@@ -59,19 +54,18 @@ public class Controleur implements Initializable{
 
     }
 
-    private void geréeSprite() {
+    private void creerSprite() {
         for(Entity e :env.entities) {
             //System.out.println("ajouter sprite");
-            ImageView r;
+            Circle r;
             if (!e.getasprite()){
                 if(e instanceof Player){
-                    r = new ImageView("Petit Bonhomme.png");
+                    r =new Circle(4, Color.RED);
                     e.gotasprite();
                     System.out.println("player");
-                } else if (e instanceof Fleche) {
-                    r = new ImageView("fleche.png");
-                }else r = new ImageView("Petit Bonhomme.png");
-                    e.gotasprite();
+                }else
+                    r =new Circle(3,Color.WHITE);
+                e.gotasprite();
                 System.out.println(e.getId());
                 // ils ont le meme identifiant
 
@@ -100,7 +94,7 @@ public class Controleur implements Initializable{
         gameLoop.getKeyFrames().add(kf);
     }
     public void update() {
-        geréeSprite();
+        creerSprite();
         for(Entity e :env.entities) {
             e.seDeplace();
         }
