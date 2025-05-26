@@ -47,6 +47,7 @@ public class Environnement {
 	public void addentities(Entity e){
 		this.entities.add(e);
 	}
+	public ArrayList<Entity> getEntities(){return this.entities;}
 	public int getWidth() {
 		return width;
 	}

@@ -29,7 +29,7 @@ public abstract class Entity {
 		compteur++;
 	}
 
-	public Entity( double v, Environnement env, int pv) {
+	/*public Entity( double v, Environnement env, int pv) {
 		this.pv=pv;
 		Random random=new Random();
 		int x = random.nextInt(env.getWidth()-1);
@@ -43,7 +43,7 @@ public abstract class Entity {
 		this.gravite=0;
 		compteur++;
 		//System.out.println("y" + y + "x" +x);
-	}	
+	}*/
 	public void gotasprite(){this.asaptrite=true;}
 	public boolean getasprite(){return this.asaptrite;}
 

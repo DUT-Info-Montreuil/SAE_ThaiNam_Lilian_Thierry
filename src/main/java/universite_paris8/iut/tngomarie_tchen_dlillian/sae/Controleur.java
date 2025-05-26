@@ -1,22 +1,22 @@
 package universite_paris8.iut.tngomarie_tchen_dlillian.sae;
 
-
+import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
-
+import javafx.scene.layout.StackPane;
 import javafx.fxml.Initializable;
-
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.input.KeyEvent;
-
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Entity;
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Fleche;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Npc.Npc;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Player;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Environnement;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.vueTerrain;
@@ -27,20 +27,23 @@ import java.util.ResourceBundle;
 public class Controleur implements Initializable{
     public static Environnement env;
     Timeline gameLoop = new Timeline();
-    private vueTerrain terrain;
-    private Player player;
+    //private vueTerrain = new vueTerrain();
+    private Player player ;//= new Player(128,32,10,env,60);
+    //private Npc npc = new Npc(140,50,10,env,100);
 
     @FXML
-    private TilePane panneauJeu;
+    private Pane panneauJeu;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.env=new Environnement(256*16,64*16);
-        this.player = new Player(128,32,1,env,60);
+        this.player= new Player(128,32,10,env,60);
+
         // mettre cela pour que les acteurs ne sortent pas visuellement du panneau de jeu en bas et a sroite...
 
         this.terrain =new vueTerrain(panneauJeu,env);
         this.env.addentities(player);
+        //this.env.addentities(npc);
 
         geréeSprite();//a supprimer
         initAnimation();
