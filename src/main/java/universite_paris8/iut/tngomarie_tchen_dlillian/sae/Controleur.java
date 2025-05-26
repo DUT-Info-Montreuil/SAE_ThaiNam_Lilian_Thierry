@@ -63,7 +63,7 @@ public class Controleur implements Initializable{
         slotsInventaire = Arrays.asList(slot1, slot2, slot3, slot4, slot5, slot6, slot7);
         this.env=new Environnement(256*16,64*16);
 
-        this.player = new Player(220,130,1,env,60);
+        this.player = new Player(220,-550,1,env,60);
         // mettre cela pour que les acteurs ne sortent pas visuellement du panneau de jeu en bas et a sroite...
 
         this.terrain =new vueTerrain(panneauJeu,env);
