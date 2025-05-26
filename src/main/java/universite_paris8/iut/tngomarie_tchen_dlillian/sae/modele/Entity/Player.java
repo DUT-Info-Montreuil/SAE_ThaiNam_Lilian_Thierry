@@ -7,7 +7,7 @@ import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.En
 
 public class Player extends Entity {
     private Inventaire inventaire;
-    private int direction = 1; // 1 = droite, -1 = gauche
+    private double direction = 1; // 1 = droite, -1 = gauche
     private boolean Droite = false;
     private boolean Gauche = false;
     private boolean afficherInv;
@@ -41,15 +41,17 @@ public class Player extends Entity {
         this.direction = dir;
     }
 
-    public int getDirection() {
+    public double getDirection() {
         return this.direction;
     }
 
 
     @Override
     public void agit() {
-        if (this.inventaire.objetEnMain() instanceof Arc){
-            Fleche f = new Fleche(this.getX(), this.getY(), 20 * this.direction, this.getEnv(), 1);
+        System.out.println("Direction actuelle : " + direction);
+
+        if (this.inventaire.objetEnMain() instanceof Arc) {
+            Fleche f = new Fleche(this.getX(), this.getY(), (int) (20 * this.direction), this.getEnv(), 1);
             this.env.addentities(f);
         }
 

@@ -4,8 +4,10 @@ import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Bloc.Bois
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredient.Baton;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredient.Fils;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredient.Ingredient;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredient.Tissu;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Arc;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Epee;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Sac;
 
 import java.util.ArrayList;
 
@@ -19,6 +21,9 @@ public class Inventaire {
     //different boolean pour le craft
     private boolean craftArc = false;
     private boolean craftEpee = false;
+    private boolean craftBaton = false;
+    private boolean craftTissu = false;
+    private boolean craftSac = false;
 
     public Inventaire(){
         this.Inventaire = new ArrayList<Objet>();
@@ -99,6 +104,64 @@ public class Inventaire {
                 this.ajoutObjet(new Epee(10,20,50,"Bois"));
             }
         }
+        else if (craftBaton) {
+            craftBaton = false;
+            Bois boisTrouve = null;
+            for (Objet obj : Inventaire) {
+                if (obj instanceof Bois && ((Bois) obj).getNbObjet() >= 2) {
+                    boisTrouve = (Bois) obj;
+                }
+            }
+            if (boisTrouve != null) {
+                supprimerIngredient(boisTrouve, 2);
+                boolean batonExiste = false;
+                for (Objet obj : Inventaire) {
+                    if (obj instanceof Baton) {
+                        ((Baton) obj).ajouterIngredient();
+                        batonExiste = true;
+                    }
+                }
+                if (!batonExiste) {
+                    this.ajoutObjet(new Baton());
+                }
+            }
+        }
+        else if (craftTissu) {
+            craftTissu = false;
+            Fils filsTrouve = null;
+            for (Objet obj : Inventaire) {
+                if (obj instanceof Fils && ((Fils) obj).getNbObjet() >= 2) {
+                    filsTrouve = (Fils) obj;
+                }
+            }
+            if (filsTrouve != null) {
+                supprimerIngredient(filsTrouve, 2);
+                boolean filsExiste = false;
+                for (Objet obj : Inventaire) {
+                    if (obj instanceof Fils) {
+                        ((Fils) obj).ajouterIngredient();
+                        filsExiste = true;
+                    }
+                }
+                if (!filsExiste) {
+                    this.ajoutObjet(new Fils());
+                }
+            }
+        }
+        else if (craftSac) {
+            craftSac=false;
+            Tissu tissuTrouve = null;
+            for(Objet obj : Inventaire){
+                if(obj instanceof Tissu && ((Tissu) obj).getNbObjet() >= 5) {
+                    tissuTrouve = (Tissu) obj;
+                }
+            }
+            if(tissuTrouve != null){
+                supprimerIngredient(tissuTrouve,5);
+                this.ajoutObjet(new Sac());
+            }
+        }
+
     }
 
 
@@ -109,6 +172,9 @@ public class Inventaire {
     public void setCraftEpee(){
         this.craftEpee=true;
     }
+    public void setCraftBaton(){this.craftBaton=true;}
+    public void setCraftTissu(){this.craftTissu=true;}
+    public void setCraftSac(){this.craftSac=true;}
 }
 
 
