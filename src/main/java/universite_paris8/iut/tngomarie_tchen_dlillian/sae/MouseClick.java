@@ -16,6 +16,9 @@ public class MouseClick implements EventHandler<MouseEvent> {
         if(mouseEvent.getButton() == MouseButton.PRIMARY){
             player.agit();
             System.out.println("click gauche");
+            System.out.println(this.player.getY());
+            System.out.println(this.player.getX());
+
         }
         else if(mouseEvent.getButton() == MouseButton.SECONDARY){
             System.out.println("click droit");
