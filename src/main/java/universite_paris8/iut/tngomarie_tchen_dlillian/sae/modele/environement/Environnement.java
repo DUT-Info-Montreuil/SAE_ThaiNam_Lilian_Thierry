@@ -9,14 +9,13 @@ import java.util.ArrayList;
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
-
 public class Environnement {
 
 	private int width,height;
 	public ArrayList<Entity> entities;
 	public int[][] map1 =new int[4][4];
 	public File file=new File("environnement.txt");
-	//bonjour
+	public HashMap<Integer,String> listeBlock;
 
 
 	public Environnement(int width, int height) {
@@ -24,10 +23,13 @@ public class Environnement {
 		this.width = width;
 		this.height = height;
 		this.entities=new ArrayList<Entity>();
-		map1= new int[][]{{0,0,0,0},
-						  {1,1,1,1},
-						  {2,2,2,2},
-						  {3,3,3,3}};
+	}
+
+	private void creerliste() {
+		listeBlock.put(0,"AIR");
+		listeBlock.put(1,"DIRT");
+		listeBlock.put(2,"STONE");
+		listeBlock.put(3,"GRASS");
 	}
 	public String getString(int id) {
 		return listeBlock.get(id);
@@ -79,6 +81,5 @@ public class Environnement {
 		return terrain;
 
 	}
-
 
 }
