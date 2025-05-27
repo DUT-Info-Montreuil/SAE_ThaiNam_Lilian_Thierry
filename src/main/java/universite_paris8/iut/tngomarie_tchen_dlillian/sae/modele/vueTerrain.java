@@ -42,11 +42,6 @@ public class vueTerrain {
 // largeur * taille tuile hauteur * nb tuiles pour pas que la fenetre quand on l'agrandit change
         decors.getChildren().clear(); // on clean le tilePane si jamais
 
-        try{
-            terrain = env.chargerMapFichier("src/main/java/universite_paris8/iut/tngomarie_tchen_dlillian/sae/modele/environement/environnement.txt");
-        } catch (IOException e){
-            e.printStackTrace();
-        }
         ImageView images ;
 
         for(int cases = 0; cases < terrain.length ; cases++) {

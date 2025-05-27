@@ -1,6 +1,7 @@
 package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement;
 
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Entity;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Block.Block;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -15,9 +16,8 @@ public class Environnement {
 
 	private int width,height;
 	public ArrayList<Entity> entities;
-	public int[][] map1 =new int[4][4];
-	public File file=new File("environnement.txt");
-	public HashMap<Integer,String> listeBlock;
+	public int[][] map1;
+	public HashMap<Integer, Block> listeBlock;
 
 
 	public Environnement(int width, int height) {
@@ -25,15 +25,22 @@ public class Environnement {
 		this.width = width;
 		this.height = height;
 		this.entities=new ArrayList<Entity>();
+		this.listeBlock=new HashMap<>();
+		creerliste();
+		try{
+			this.map1= chargerMapFichier("src/main/java/universite_paris8/iut/tngomarie_tchen_dlillian/sae/modele/environement/environnement.txt");
+		} catch (IOException e){
+			e.printStackTrace();
+		}
 	}
 
 	private void creerliste() {
-		listeBlock.put(0,"AIR");
-		listeBlock.put(1,"DIRT");
-		listeBlock.put(2,"STONE");
-		listeBlock.put(3,"GRASS");
+		listeBlock.put(0,new  Block(true,false,"AIR"));
+		listeBlock.put(1,new Block(false,true,"DIRT"));
+		listeBlock.put(2,new Block(false,true,"STONE"));
+		listeBlock.put(3,new Block(false,true,"GRASS"));
 	}
-	public String getString(int id) {
+	public Block getBlock(int id) {
 		return listeBlock.get(id);
 	}
 

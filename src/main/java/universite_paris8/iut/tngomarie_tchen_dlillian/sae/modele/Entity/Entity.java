@@ -3,9 +3,6 @@ package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Environnement;
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.traversable;
-
-import java.util.Random;
 
 
 public abstract class Entity {
@@ -100,22 +97,24 @@ public abstract class Entity {
 		double lastY=0;
 		if(this.y.getValue() == lastY){
 			this.gravite=0;
-		} else if (gravite>2) {
-			gravite=2;
+		} else if (gravite>4) {
+			gravite=4;
 		} else
 			this.gravite+=0.1;
 		lastY=this.y.getValue();
 	}
 	public void deceleration(){
-	this.v=this.v*0.99;
+	this.v=this.v*0.9;
 	}
-//	public void colision() {
-//		int futureX= Math.toIntExact(Math.round(this.getX() + this.getV()));
-//		int futureY= Math.toIntExact(Math.round(this.getX() + this.getV()));
-//		try {(traversable.valueOf(this.env.getString(this.env.getMap1()[futureX][futureY])))
-//		}
-//		catch ()
-//	}
+	public void colision() {
+		int futureX= Math.toIntExact(Math.round(this.getX() + this.getV()))/16;
+		int futureY= Math.toIntExact(Math.round(this.getY() + this.getGravite()))/16;
+		if(this.env.getBlock(this.env.getMap1()[futureX][futureY]).isTraversable()){
+			System.out.println(futureX+" "+futureY);
+			//this.v=0;
+			this.gravite=0;
+		}
+	}
 
 	public abstract void seDeplace();
 
