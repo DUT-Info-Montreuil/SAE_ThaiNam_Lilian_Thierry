@@ -3,6 +3,7 @@ package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Environnement;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.traversable;
 
 import java.util.Random;
 
@@ -108,9 +109,13 @@ public abstract class Entity {
 	public void deceleration(){
 	this.v=this.v*0.99;
 	}
-	public void frictiont(){
-
-	}
+//	public void colision() {
+//		int futureX= Math.toIntExact(Math.round(this.getX() + this.getV()));
+//		int futureY= Math.toIntExact(Math.round(this.getX() + this.getV()));
+//		try {(traversable.valueOf(this.env.getString(this.env.getMap1()[futureX][futureY])))
+//		}
+//		catch ()
+//	}
 
 	public abstract void seDeplace();
 

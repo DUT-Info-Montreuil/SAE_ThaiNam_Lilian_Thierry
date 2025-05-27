@@ -57,11 +57,6 @@ public class vueTerrain {
                     case 3 -> new ImageView(imageTerrain[3]);
                     default -> null;
                 };
-
-                images.setFitHeight(16);
-                images.setFitWidth(16);
-                images.setPreserveRatio(false);
-
                 decors.getChildren().add(images); //ajoute les images dans le tilePane
             }
         }
