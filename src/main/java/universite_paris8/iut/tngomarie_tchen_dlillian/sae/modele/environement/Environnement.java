@@ -71,8 +71,5 @@ public class Environnement {
 			terrain[i] = lignes.get(i);
 		}
 		return terrain;
-
 	}
-
-
 }

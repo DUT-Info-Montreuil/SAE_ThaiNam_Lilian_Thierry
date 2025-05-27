@@ -2,8 +2,8 @@ package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Bloc;
 
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Objet;
 
-public class Pierre extends Objet {
+public class Pierre extends BlocInv {
     public Pierre(){
-        super(1);
+        super(1,0);
     }
 }

@@ -8,13 +8,13 @@ public class Fleche extends Entity {
     private double dir;
     public Fleche(double x, double y, int v, Environnement env, int pv,double dir) {
         super(x, y, v, env, pv);
-        this.dir=dir;
+        this.dir = dir;
     }
 
     public void seDeplace() {
         gravité();
         this.setY(getY()+this.getGravite());
-        this.setX(getX()+this.getV()*dir);
+        this.setX(getX()+this.getV());
     }
 
     public void agit(){

@@ -100,11 +100,12 @@ public class Controleur implements Initializable{
                 // ils ont le meme identifiant
 
                 r.setId(e.getId());
-                r.setTranslateX(e.getX());
-                r.setTranslateY(e.getY());
+//                r.setTranslateX(e.getX());
+//                r.setTranslateY(e.getY());
                 panneauJeu.getChildren().add(r);
                 r.translateXProperty().bind(e.getXProperty());
                 r.translateYProperty().bind(e.getYProperty());
+                System.out.println("-----");
             }
         }
     }
