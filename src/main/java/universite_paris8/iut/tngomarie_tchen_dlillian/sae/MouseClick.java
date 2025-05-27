@@ -12,15 +12,21 @@ public class MouseClick implements EventHandler<MouseEvent> {
         this.player = p;
     }
 
+    @Override
     public void handle(MouseEvent mouseEvent) {
-        if(mouseEvent.getButton() == MouseButton.PRIMARY){
+        double sourisX = mouseEvent.getX();
+        double joueurX = player.getX();
+
+        if (mouseEvent.getButton() == MouseButton.PRIMARY) {
+            if (sourisX > joueurX) {
+                player.setDirection(1);
+            } else {
+                player.setDirection(-1);
+            }
             player.agit();
             System.out.println("click gauche");
-            System.out.println(this.player.getY());
-            System.out.println(this.player.getX());
-
-        }
-        else if(mouseEvent.getButton() == MouseButton.SECONDARY){
+            System.out.println("Joueur X : " + joueurX + ", Souris X : " + sourisX);
+        } else if (mouseEvent.getButton() == MouseButton.SECONDARY) {
             System.out.println("click droit");
         }
     }

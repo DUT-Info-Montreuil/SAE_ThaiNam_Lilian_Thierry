@@ -8,6 +8,7 @@ import javafx.scene.layout.Pane;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Player;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Arc;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Epee;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.FlecheObjet;
 
 
 public class KeyPressed implements EventHandler<KeyEvent>{
@@ -68,6 +69,23 @@ public class KeyPressed implements EventHandler<KeyEvent>{
                 player.getInventaire().ajoutObjet(new Epee(0,20,50,"bois"));
                 System.out.println("keypresed objet");
                 break;
+            case B:
+                boolean fleche=false;
+                for(int i=0 ; i<player.getInventaire().getInventaire().size() ; i++){
+                    if(player.getInventaire().getInventaire().get(i) instanceof FlecheObjet){
+                        for(int j = 0;j<20;j++){  //pour avoir 20 flech d'un coup
+                            ((FlecheObjet) player.getInventaire().getInventaire().get(i)).ajouterIngredient();
+                        }
+                        System.out.println("20 fleches ajouté");
+                        fleche=true;
+                    }
+                }
+                if(!fleche){
+                    System.out.println("fleche ajouté");
+                    player.getInventaire().ajoutObjet(new FlecheObjet());
+                }
+                break;
+
             case P:
                 player.getInventaire().changerObjet(player.getInventaire().getEnMain()+1);
                 System.out.println("changer objet ++");

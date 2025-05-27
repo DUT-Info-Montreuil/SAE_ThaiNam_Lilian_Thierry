@@ -3,6 +3,7 @@ package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Arc;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Epee;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Inventaire;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.FlecheObjet;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Environnement;
 
 import java.util.ArrayList;
@@ -53,8 +54,13 @@ public class Player extends Entity {
         System.out.println("Direction actuelle : " + direction);
 
         if (this.inventaire.objetEnMain() instanceof Arc) {
-            Fleche f = new Fleche(this.getX(), this.getY(), (int) (20 * this.direction), this.getEnv(), 1,this.direction);
-            this.env.addentities(f);
+            for(int i = 0 ; i<this.inventaire.getInventaire().size() ; i++) {
+                if (this.inventaire.getInventaire().get(i) instanceof FlecheObjet && ((FlecheObjet) this.inventaire.getInventaire().get(i)).getNbObjet() >= 1) {
+                    Fleche f = new Fleche(this.getX(), this.getY(), (int) (20 * this.direction), this.getEnv(), 1,this.direction);
+                    this.env.addentities(f);
+                    ((FlecheObjet) this.inventaire.getInventaire().get(i)).decrementIngredient(1);
+                }
+            }
         }
 
         else if(this.inventaire.objetEnMain() instanceof Epee){

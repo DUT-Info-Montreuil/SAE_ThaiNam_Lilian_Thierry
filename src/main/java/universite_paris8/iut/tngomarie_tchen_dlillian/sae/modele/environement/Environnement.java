@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
+
 public class Environnement {
 
 	private int width,height;
@@ -38,6 +40,7 @@ public class Environnement {
 	public void addentities(Entity e){
 		this.entities.add(e);
 	}
+	public ArrayList<Entity> getEntities(){return this.entities;}
 	public int getWidth() {
 		return width;
 	}
@@ -50,10 +53,6 @@ public class Environnement {
 
 	public boolean dansTerrain(double x, double y){
 		return (0 <= x && x<this.width && 0<=y && y< this.height);
-	}
-
-	public ArrayList<Entity> getEntities() {
-		return this.entities;
 	}
 
 	public int[][] chargerMapFichier(String chemin) throws IOException {
@@ -79,7 +78,6 @@ public class Environnement {
 			terrain[i] = lignes.get(i);
 		}
 		return terrain;
-
 	}
 
 }

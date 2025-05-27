@@ -1,5 +1,6 @@
 package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet;
 
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Bloc.BlocInv;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Bloc.Bois;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredient.Baton;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredient.Fils;
@@ -15,8 +16,7 @@ public class Inventaire {
     private ArrayList<Objet> Inventaire;
     private int enMain;
     private int caseVide;
-    private Ingredient Objet1;
-    private Ingredient Objet2;
+
 
     //different boolean pour le craft
     private boolean craftArc = false;
@@ -33,6 +33,10 @@ public class Inventaire {
 
     public Objet objetEnMain(){
         return Inventaire.get(enMain);
+    }
+
+    public ArrayList<Objet> getInventaire(){
+        return this.Inventaire;
     }
 
     public void changerObjet(int num){
@@ -61,6 +65,19 @@ public class Inventaire {
                 else{
                     ingredient.decrementIngredient(ingredient.getNbObjet());
                     supprimerObjet(ingredient);
+                }
+            }
+        }
+    }
+    public void supprimerBloc(BlocInv bloc, int quantité){
+        for(int i = 0 ; i<this.Inventaire.size() ; i++){
+            if(this.Inventaire.get(i).getIdObjet()==bloc.getIdObjet()){
+                if(bloc.getNbBloc()>quantité){
+                    bloc.decrementBloc(quantité);
+                }
+                else{
+                    bloc.decrementBloc(bloc.getNbBloc());
+                    supprimerObjet(bloc);
                 }
             }
         }
@@ -94,13 +111,13 @@ public class Inventaire {
                 if(obj instanceof Baton && ((Baton) obj).getNbObjet() >= 1) {
                     batonTrouve = (Baton) obj;
                 }
-                if (obj instanceof Bois && ((Bois) obj).getNbObjet() >= 2) {
+                if (obj instanceof Bois && ((Bois) obj).getNbBloc() >= 2) {
                     boisTrouve = (Bois) obj;
                 }
             }
             if(batonTrouve != null && boisTrouve != null){
                 supprimerIngredient(batonTrouve,1);
-                supprimerIngredient(boisTrouve,2);
+                supprimerBloc(boisTrouve,2);
                 this.ajoutObjet(new Epee(10,20,50,"Bois"));
             }
         }
@@ -108,12 +125,12 @@ public class Inventaire {
             craftBaton = false;
             Bois boisTrouve = null;
             for (Objet obj : Inventaire) {
-                if (obj instanceof Bois && ((Bois) obj).getNbObjet() >= 2) {
+                if (obj instanceof Bois && ((Bois) obj).getNbBloc() >= 2) {
                     boisTrouve = (Bois) obj;
                 }
             }
             if (boisTrouve != null) {
-                supprimerIngredient(boisTrouve, 2);
+                supprimerBloc(boisTrouve, 2);
                 boolean batonExiste = false;
                 for (Objet obj : Inventaire) {
                     if (obj instanceof Baton) {
