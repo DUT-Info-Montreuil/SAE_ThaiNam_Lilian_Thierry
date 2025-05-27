@@ -104,12 +104,12 @@ public abstract class Entity {
 		lastY=this.y.getValue();
 	}
 	public void deceleration(){
-	this.v=this.v*0.9;
+	this.v=this.v*0.95;
 	}
 	public void colision() {
 		int futureX= Math.toIntExact(Math.round(this.getX() + this.getV()))/16;
 		int futureY= Math.toIntExact(Math.round(this.getY() + this.getGravite()))/16;
-		if(this.env.getBlock(this.env.getMap1()[futureX][futureY]).isTraversable()){
+		if(this.env.getBlock(this.env.getMap1()[futureY][futureX]).isTraversable()){
 			System.out.println(futureX+" "+futureY);
 			//this.v=0;
 			this.gravite=0;
