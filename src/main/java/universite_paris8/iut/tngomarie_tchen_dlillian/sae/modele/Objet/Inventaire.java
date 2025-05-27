@@ -117,7 +117,7 @@ public class Inventaire {
             }
             if(batonTrouve != null && boisTrouve != null){
                 supprimerIngredient(batonTrouve,1);
-                supprimerIngredient(boisTrouve,2);
+                supprimerBloc(boisTrouve,2);
                 this.ajoutObjet(new Epee(10,20,50,"Bois"));
             }
         }
