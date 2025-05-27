@@ -19,6 +19,7 @@ import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Entity;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Player;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.*;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Environnement;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.vueTerrain;
 
@@ -58,18 +59,20 @@ public class Controleur implements Initializable{
 
     private List<Pane> slotsInventaire;
 
+    @FXML
+    private Pane panneauEntity;
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         slotsInventaire = Arrays.asList(slot1, slot2, slot3, slot4, slot5, slot6, slot7);
-        this.env=new Environnement(256*16,64*16);
-
-        this.player = new Player(220,-550,1,env,60);
+        this.env = new Environnement(256*16,64*16);
+        this.player = new Player(220,100,1,env,60);
         // mettre cela pour que les acteurs ne sortent pas visuellement du panneau de jeu en bas et a sroite...
 
-        this.terrain =new vueTerrain(panneauJeu,env);
+        this.terrain = new vueTerrain(panneauJeu,env);
 
         this.env.addentities(player);
-
         creerSprite();//a supprimer
         initAnimation();
         // demarre l'animation
@@ -80,12 +83,12 @@ public class Controleur implements Initializable{
         MouseClick mouseClick = new MouseClick(player);
         panneauJeu.addEventHandler(KeyEvent.KEY_PRESSED, keyPressed);
         panneauJeu.addEventHandler(KeyEvent.KEY_RELEASED, keyReleased);
-        panneauJeu.setOnMouseClicked(mouseClick);
+        panneauEntity.setOnMouseClicked(mouseClick);
 
     }
 
     private void creerSprite() {
-        for(Entity e :env.entities) {
+        for(Entity e : env.entities) {
             //System.out.println("ajouter sprite");
             Circle r;
             if (!e.getasprite()){
@@ -102,7 +105,7 @@ public class Controleur implements Initializable{
                 r.setId(e.getId());
                 r.setTranslateX(e.getX());
                 r.setTranslateY(e.getY());
-                panneauJeu.getChildren().add(r);
+                panneauEntity.getChildren().add(r);
                 r.translateXProperty().bind(e.getXProperty());
                 r.translateYProperty().bind(e.getYProperty());
             }
@@ -130,14 +133,8 @@ public class Controleur implements Initializable{
         }
     }
 
-    public void afficherInv(){
-        paneInv.setVisible(true);
-    }
-    public void deactiverInv() {
-        paneInv.setVisible(false);
-
-
-    }
+    public void afficherInv(){paneInv.setVisible(true);}
+    public void deactiverInv() {paneInv.setVisible(false);}
 
     public void afficherCaseInv(Pane paneau){
         slotsInventaire.forEach(p -> p.setVisible(p == paneau));

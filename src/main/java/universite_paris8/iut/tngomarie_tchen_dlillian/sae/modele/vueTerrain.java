@@ -38,11 +38,11 @@ public class vueTerrain {
 
     public void dessinerTerrain (int[][] terrain) {
 
-        decors.setMaxSize(256*16, 64*16); // largeur * taille tuile hauteur * nb tuiles pour pas que la fenetre quand on l'agrandit change
+        decors.setPrefSize(256*16, 64*16); // largeur * taille tuile hauteur * nb tuiles pour pas que la fenetre quand on l'agrandit change
         decors.getChildren().clear(); // on clean le tilePane si jamais
 
         try{
-            terrain = env.chargerMapFichier("src/main/java/universite_paris8/iut/tngomarie_tchen_dlillian/sae/modele/environement/environement.txt");
+            terrain = env.chargerMapFichier("src/main/java/universite_paris8/iut/tngomarie_tchen_dlillian/sae/modele/environement/environnement.txt");
         } catch (IOException e){
             e.printStackTrace();
         }
@@ -57,12 +57,15 @@ public class vueTerrain {
                     case 3 -> new ImageView(imageTerrain[3]);
                     default -> null;
                 };
+
+                images.setFitHeight(16);
+                images.setFitWidth(16);
+                images.setPreserveRatio(false);
+
                 decors.getChildren().add(images); //ajoute les images dans le tilePane
             }
         }
     }
-
-
 
 //    public void changementTuileMinage(int numeroTuile , Environnement env, int blocChanger) {
 //        if(env.getMap1()[numeroTuile] == blocChanger) {
