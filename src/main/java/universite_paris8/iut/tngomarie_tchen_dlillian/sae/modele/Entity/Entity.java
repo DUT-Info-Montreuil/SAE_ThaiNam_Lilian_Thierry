@@ -97,19 +97,20 @@ public abstract class Entity {
 		double lastY=0;
 		if(this.y.getValue() == lastY){
 			this.gravite=0;
-		} else if (gravite>4) {
-			gravite=4;
+
+		} else if (gravite>5) {
+			gravite=5;
 		} else
 			this.gravite+=0.1;
 		lastY=this.y.getValue();
 	}
-	public void deceleration(){
-	this.v=this.v*0.95;
+	public void deceleration(double d){
+	this.v=this.v*d;
 	}
 	public void colision() {
 		int futureX= Math.toIntExact(Math.round(this.getX() + this.getV()))/16;
 		int futureY= Math.toIntExact(Math.round(this.getY() + this.getGravite()))/16;
-		if(this.env.getBlock(this.env.getMap1()[futureY][futureX]).isTraversable()){
+		if(!this.env.getBlock(this.env.getMap1()[futureY][futureX]).isTraversable()){
 			System.out.println(futureX+" "+futureY);
 			//this.v=0;
 			this.gravite=0;

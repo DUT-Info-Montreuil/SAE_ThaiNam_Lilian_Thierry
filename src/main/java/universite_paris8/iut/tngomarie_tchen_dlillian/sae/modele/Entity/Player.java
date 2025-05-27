@@ -25,7 +25,7 @@ public class Player extends Entity {
      */
     public void seDeplace() {
         gravité();
-        deceleration();
+        deceleration(0.975);
         aDroite();
         aGauche();
         colision();

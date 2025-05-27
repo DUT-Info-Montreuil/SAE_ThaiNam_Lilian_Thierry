@@ -13,8 +13,8 @@ public class Fleche extends Entity {
 
     public void seDeplace() {
         gravité();
-        deceleration();
-        colision();
+        deceleration(0.99);
+//        colision();
         this.setY(getY()+this.getGravite());
         this.setX(getX()+this.getV());
     }
