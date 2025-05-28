@@ -6,6 +6,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Player;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Bloc.Bois;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredient.Baton;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredient.Fils;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Arc;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Epee;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.FlecheObjet;
@@ -85,7 +88,46 @@ public class KeyPressed implements EventHandler<KeyEvent>{
                     player.getInventaire().ajoutObjet(new FlecheObjet());
                 }
                 break;
+            case W:
+                boolean baton=false;
+                for(int i=0 ; i<player.getInventaire().getInventaire().size() ; i++){
+                    if(player.getInventaire().getInventaire().get(i) instanceof Baton){
+                        for(int j = 0;j<20;j++){  //pour avoir 20 bois d'un coup
+                            ((Baton) player.getInventaire().getInventaire().get(i)).ajouterIngredient();
+                        }
+                        System.out.println("20 baton ajouté");
+                        baton=true;
+                    }
+                }
+                if(!baton){
+                    System.out.println("baton ajouté");
+                    player.getInventaire().ajoutObjet(new Baton());
+                }
+                break;
+            case X:
+                boolean fils=false;
+                for(int i=0 ; i<player.getInventaire().getInventaire().size() ; i++){
+                    if(player.getInventaire().getInventaire().get(i) instanceof Fils){
+                        for(int j = 0;j<20;j++){  //pour avoir 20 bois d'un coup
+                            ((Fils) player.getInventaire().getInventaire().get(i)).ajouterIngredient();
+                        }
+                        System.out.println("20 fils ajouté");
+                        fils=true;
+                    }
+                }
+                if(!fils){
+                    System.out.println("fils ajouté");
+                    player.getInventaire().ajoutObjet(new Fils());
+                }
+                break;
 
+            case C:
+                this.player.getInventaire().setCraftArc();
+                System.out.println("setcraftarc");
+                break;
+            case V:
+                this.player.getInventaire().craft();
+                break;
             case P:
                 player.getInventaire().changerObjet(player.getInventaire().getEnMain()+1);
                 System.out.println("changer objet ++");

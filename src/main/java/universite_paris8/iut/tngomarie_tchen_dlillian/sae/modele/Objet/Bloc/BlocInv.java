@@ -10,9 +10,7 @@ public class BlocInv extends Objet {
         this.nbBloc = nb;
     }
 
-    public void ajouterBloc(){
-        this.nbBloc++;
-    }
+    public void ajouterBloc(){this.nbBloc++;}
 
     public void decrementBloc(int quantite){
         this.nbBloc= this.nbBloc-quantite;

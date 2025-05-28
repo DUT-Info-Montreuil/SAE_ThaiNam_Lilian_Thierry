@@ -15,10 +15,12 @@ public abstract class Entity {
 	public static int compteur=0;
 	private String id;
 	private int pv;
+	private int maxPv;
 	private double gravite;
 	private boolean asaptrite;
-	public Entity(double x, double y, double v, Environnement env,int pv) {
-		this.pv=pv;
+	public Entity(double x, double y, double v, Environnement env,int maxPv) {
+		this.maxPv = maxPv;
+		this.pv=maxPv;
 		this.x= new SimpleDoubleProperty(x);
 		this.y = new SimpleDoubleProperty(y);
 		this.v = v;
@@ -70,16 +72,29 @@ public abstract class Entity {
 	public String getId() {
 		return id;
 	}
-	public void decrementerPv(int n) {
-		this.pv-=n;	
+	public void decrementerPv(int degat){
+		if(this.pv - degat > 0){
+			this.pv = this.pv-degat;
+		}
+		else{
+			this.meurt();
+		}
 	}
-	public void incrementerPv(int n) {
-		this.pv+=n;	
+	public void incrementerPv(int soin){
+		if(this.pv + soin < this.maxPv){
+			this.pv = this.pv +soin;
+		}
+		else{
+			this.pv = this.maxPv;
+		}
 	}
 	public double getV() {return this.v;}
 	public void setV(double n){this.v=n;}
 	public double getGravite() {return gravite;}
 	public void setGravité(double n){this.gravite=n;}
+
+
+
 
 	public boolean estVivant() {
 		return this.pv>0;

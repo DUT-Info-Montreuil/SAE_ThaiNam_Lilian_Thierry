@@ -85,15 +85,20 @@ public class Inventaire {
     //la fonction craft est appeler avec un bouton dans l'inventaire selon le booleen qui est active aussi dans l'inventaire selon le craft selectionner
     public void craft() {
         if (craftArc) {
+            System.out.println("debut craft");
             craftArc = false;
             Baton batonTrouve = null;
             Fils filsTrouve = null;
             // Recherche dans l'inventaire
             for (Objet obj : Inventaire) {
+                System.out.println("debut for");
                 if (obj instanceof Baton && ((Baton) obj).getNbObjet() >= 3) {
+                    System.out.println("baton trouver");
                     batonTrouve = (Baton) obj;
+
                 }
                 if (obj instanceof Fils && ((Fils) obj).getNbObjet() >= 3) {
+                    System.out.println("fils trouve");
                     filsTrouve = (Fils) obj;
                 }
             }
@@ -101,6 +106,7 @@ public class Inventaire {
             if (batonTrouve != null && filsTrouve != null) {
                 supprimerIngredient(batonTrouve, 3);
                 supprimerIngredient(filsTrouve, 3);
+                System.out.println("arc craft");
                 this.ajoutObjet(new Arc(8));
             }}
         else if (craftEpee) {
@@ -185,6 +191,7 @@ public class Inventaire {
     //differente fonction booleen;
     public void setCraftArc(){
         this.craftArc=true;
+        System.out.println("setcraftarc reussi");
     }
     public void setCraftEpee(){
         this.craftEpee=true;
