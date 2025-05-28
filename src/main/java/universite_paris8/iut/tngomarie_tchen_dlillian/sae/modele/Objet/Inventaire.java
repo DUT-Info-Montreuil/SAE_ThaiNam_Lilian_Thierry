@@ -2,10 +2,7 @@ package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet;
 
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Bloc.BlocInv;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Bloc.Bois;
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredient.Baton;
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredient.Fils;
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredient.Ingredient;
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredient.Tissu;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredient.*;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Arc;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Epee;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Sac;
@@ -24,6 +21,7 @@ public class Inventaire {
     private boolean craftBaton = false;
     private boolean craftTissu = false;
     private boolean craftSac = false;
+    private boolean craftFils = false;
 
     public Inventaire(){
         this.Inventaire = new ArrayList<Objet>();
@@ -153,15 +151,15 @@ public class Inventaire {
             }
             if (filsTrouve != null) {
                 supprimerIngredient(filsTrouve, 2);
-                boolean filsExiste = false;
+                boolean tissuExiste = false;
                 for (Objet obj : Inventaire) {
-                    if (obj instanceof Fils) {
+                    if (obj instanceof Tissu) {
                         ((Fils) obj).ajouterIngredient();
-                        filsExiste = true;
+                        tissuExiste = true;
                     }
                 }
-                if (!filsExiste) {
-                    this.ajoutObjet(new Fils());
+                if (!tissuExiste) {
+                    this.ajoutObjet(new Tissu());
                 }
             }
         }
@@ -178,20 +176,39 @@ public class Inventaire {
                 this.ajoutObjet(new Sac());
             }
         }
+        else if (craftFils) {
+            craftFils=false;
+            Plante planteTrouve = null;
+            for(Objet obj : Inventaire){
+                if(obj instanceof Plante && ((Plante) obj).getNbObjet()>=2){
+                    planteTrouve = (Plante) obj;
+                }
+            }
+            if(planteTrouve != null){
+                supprimerIngredient(planteTrouve,2);
+                boolean filsExiste = false;
+                for (Objet obj : Inventaire) {
+                    if (obj instanceof Fils) {
+                        ((Fils) obj).ajouterIngredient();
+                        filsExiste = true;
+                    }
+                }
+                if (!filsExiste) {
+                    this.ajoutObjet(new Fils());
+                }
+            }
+        }
 
     }
 
 
     //differente fonction booleen;
-    public void setCraftArc(){
-        this.craftArc=true;
-    }
-    public void setCraftEpee(){
-        this.craftEpee=true;
-    }
+    public void setCraftArc(){this.craftArc=true;}
+    public void setCraftEpee(){this.craftEpee=true;}
     public void setCraftBaton(){this.craftBaton=true;}
     public void setCraftTissu(){this.craftTissu=true;}
     public void setCraftSac(){this.craftSac=true;}
+    public void setCraftFils(){this.craftFils=true;}
 }
 
 
