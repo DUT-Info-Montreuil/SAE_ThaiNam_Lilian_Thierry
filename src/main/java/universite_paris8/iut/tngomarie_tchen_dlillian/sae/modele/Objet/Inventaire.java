@@ -2,12 +2,10 @@ package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet;
 
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Bloc.BlocInv;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Bloc.Bois;
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredient.Baton;
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredient.Fils;
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredient.Ingredient;
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredient.Tissu;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Bloc.Météorite;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredient.*;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Arc;
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Epee;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Epee.*;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Sac;
 
 import java.util.ArrayList;
@@ -20,7 +18,10 @@ public class Inventaire {
 
     //different boolean pour le craft
     private boolean craftArc = false;
-    private boolean craftEpee = false;
+    private boolean craftEpeeBois = false;
+    private boolean craftEpeeFer = false;
+    private boolean craftEpeeOr =false;
+    private boolean craftEpeeMeteore = false;
     private boolean craftBaton = false;
     private boolean craftTissu = false;
     private boolean craftSac = false;
@@ -109,8 +110,8 @@ public class Inventaire {
                 System.out.println("arc craft");
                 this.ajoutObjet(new Arc(8));
             }}
-        else if (craftEpee) {
-            craftEpee=false;
+        else if (craftEpeeBois) {
+            craftEpeeBois=false;
             Baton batonTrouve = null;
             Bois boisTrouve = null;
             for(Objet obj : Inventaire){
@@ -124,7 +125,61 @@ public class Inventaire {
             if(batonTrouve != null && boisTrouve != null){
                 supprimerIngredient(batonTrouve,1);
                 supprimerBloc(boisTrouve,2);
-                this.ajoutObjet(new Epee(10,20,50,"Bois"));
+                this.ajoutObjet(new EpeeBois());
+            }
+        }
+        else if (craftEpeeFer) {
+            craftEpeeFer=false;
+            Baton batonTrouve = null;
+            Fer ferTrouve = null;
+            for(Objet obj : Inventaire){
+                if(obj instanceof Baton && ((Baton) obj).getNbObjet() >= 1) {
+                    batonTrouve = (Baton) obj;
+                }
+                if (obj instanceof Fer && ((Fer) obj).getNbObjet() >= 2) {
+                    ferTrouve = (Fer) obj;
+                }
+            }
+            if(batonTrouve != null && ferTrouve != null){
+                supprimerIngredient(batonTrouve,1);
+                supprimerIngredient(ferTrouve,2);
+                this.ajoutObjet(new EpeeFer());
+            }
+        }
+        else if (craftEpeeOr) {
+            craftEpeeOr=false;
+            Baton batonTrouve = null;
+            Or orTrouve = null;
+            for(Objet obj : Inventaire){
+                if(obj instanceof Baton && ((Baton) obj).getNbObjet() >= 1) {
+                    batonTrouve = (Baton) obj;
+                }
+                if (obj instanceof Or && ((Or) obj).getNbObjet() >= 2) {
+                    orTrouve = (Or) obj;
+                }
+            }
+            if(batonTrouve != null && orTrouve != null){
+                supprimerIngredient(batonTrouve,1);
+                supprimerIngredient(orTrouve,2);
+                this.ajoutObjet(new EpeeOr());
+            }
+        }
+        else if (craftEpeeMeteore) {
+            craftEpeeMeteore=false;
+            Baton batonTrouve = null;
+            Météorite meteoriteTrouve = null;
+            for(Objet obj : Inventaire){
+                if(obj instanceof Baton && ((Baton) obj).getNbObjet() >= 1) {
+                    batonTrouve = (Baton) obj;
+                }
+                if (obj instanceof Météorite && ((Météorite) obj).getNbBloc() >= 2) {
+                    meteoriteTrouve = (Météorite) obj;
+                }
+            }
+            if(batonTrouve != null && meteoriteTrouve != null){
+                supprimerIngredient(batonTrouve,1);
+                supprimerBloc(meteoriteTrouve,2);
+                this.ajoutObjet(new EpeeMeteorite());
             }
         }
         else if (craftBaton) {
@@ -193,9 +248,12 @@ public class Inventaire {
         this.craftArc=true;
         System.out.println("setcraftarc reussi");
     }
-    public void setCraftEpee(){
-        this.craftEpee=true;
+    public void setCraftEpeeBois(){
+        this.craftEpeeBois=true;
     }
+    public void setCraftEpeeFer(){this.craftEpeeFer=true;}
+    public void setCraftEpeeOr(){this.craftEpeeOr=true;}
+    public void setCraftEpeeMeteore(){this.craftEpeeMeteore=true;}
     public void setCraftBaton(){this.craftBaton=true;}
     public void setCraftTissu(){this.craftTissu=true;}
     public void setCraftSac(){this.craftSac=true;}
