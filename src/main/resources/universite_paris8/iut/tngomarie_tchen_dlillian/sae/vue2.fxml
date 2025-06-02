@@ -7,7 +7,7 @@
 <StackPane focusTraversable="true" styleClass="background" stylesheets="@dark.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.tngomarie_tchen_dlillian.sae.Controleur">
     <children>
         <Pane fx:id="background" style="-fx-background-color: #b8fbff;" />
-        <TilePane fx:id="panneauJeu" focusTraversable="true" maxHeight="4096" maxWidth="1024" minHeight="-Infinity" minWidth="-Infinity" prefHeight="4096.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" BorderPane.alignment="CENTER" StackPane.alignment="CENTER"> </TilePane>
+        <TilePane fx:id="panneauJeu" focusTraversable="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="4096.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" BorderPane.alignment="CENTER" StackPane.alignment="CENTER"> </TilePane>
       <Pane fx:id="panneauEntity" focusTraversable="true" prefHeight="200.0" prefWidth="200.0" />
         <GridPane fx:id="paneInv" focusTraversable="true" gridLinesVisible="true" layoutX="50.0" maxHeight="200.0" maxWidth="550.0" opacity="0.33" prefHeight="60.0" prefWidth="50.0" scaleShape="false" style="-fx-border-color: white;" visible="false" StackPane.alignment="TOP_LEFT">
             <children>
