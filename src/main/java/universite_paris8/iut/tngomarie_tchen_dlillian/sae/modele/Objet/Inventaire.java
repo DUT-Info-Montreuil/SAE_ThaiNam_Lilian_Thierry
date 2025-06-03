@@ -2,6 +2,7 @@ package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet;
 
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Bloc.BlocInv;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Bloc.Bois;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Bloc.Météorite;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredient.Baton;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredient.Fils;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredient.Ingredient;
@@ -9,10 +10,12 @@ import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredien
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Arc;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Epee.*;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Sac;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredient.*;
 
 import java.util.ArrayList;
 
 public class Inventaire {
+
     private ArrayList<Objet> Inventaire;
     private int enMain;
     private int caseVide;

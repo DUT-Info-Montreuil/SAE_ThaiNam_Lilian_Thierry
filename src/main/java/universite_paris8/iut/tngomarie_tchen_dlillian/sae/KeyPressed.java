@@ -15,7 +15,7 @@ import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Fle
 public class KeyPressed implements EventHandler<KeyEvent>{
     private Player player;
     private Controleur c;
-    private boolean activerInv = false;
+    private boolean activerPane = false;
     @FXML
     private Pane slot1;
     @FXML
@@ -56,16 +56,19 @@ public class KeyPressed implements EventHandler<KeyEvent>{
                 player.saute();
                 break;
             case E:
-                activerInv = !activerInv;
-                if(!activerInv){
-                    c.deactiverInv();
+                activerPane = !activerPane;
+                if(!activerPane){
+                    c.dissimilerInv();
+                    c.dissimilerCraft();
                 }
                 else{
                     c.afficherInv();
+                    c.afficherCraft();
                 }
                 break;
             case N:
                 player.getInventaire().ajoutObjet(new Arc(0));
+                c.mettreObjetVue();
 
                 player.getInventaire().ajoutObjet(new Epee(0,20,50,"bois"));
                 System.out.println("keypresed objet");
@@ -136,8 +139,9 @@ public class KeyPressed implements EventHandler<KeyEvent>{
                 break;
 
             case NUMPAD1:
-                System.out.println("& ou 1");
+                System.out.println("1");
                 c.afficherCaseInv(slot1);
+
                 break;
             case NUMPAD2:
                 System.out.println("2");

@@ -32,6 +32,7 @@ public class Main1 extends Application {
     public void start(Stage stage) throws IOException {
 
         stage.setTitle("jeu");
+        stage.sizeToScene();
         stage.setScene(scene);
         stage.show();
 

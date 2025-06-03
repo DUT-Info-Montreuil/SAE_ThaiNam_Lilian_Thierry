@@ -12,7 +12,7 @@ public class Player extends Entity {
     private boolean Droite = false;
     private boolean Gauche = false;
     private boolean afficherInv;
-    public Player(double x, double y, int v, Environnement env, int pv) {
+    public Player(double x, double y, double v, Environnement env, int pv) {
         super(x, y, v, env, pv);
         this.inventaire = new Inventaire();
     }
@@ -23,7 +23,7 @@ public class Player extends Entity {
      */
     public void seDeplace() {
         gravité();
-        deceleration(0.975);
+        deceleration(0.9675);
         aDroite();
         aGauche();
         colision();
