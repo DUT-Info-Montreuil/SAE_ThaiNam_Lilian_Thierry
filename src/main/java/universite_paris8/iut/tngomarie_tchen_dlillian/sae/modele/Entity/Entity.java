@@ -123,11 +123,15 @@ public abstract class Entity {
 	this.v=this.v*d;
 	}
 	public void colision() {
+		int x =Math.toIntExact(Math.round(this.getX()))/16;
+		int y =Math.toIntExact(Math.round(this.getY()))/16;
 		int futureX= Math.toIntExact(Math.round(this.getX() + this.getV()))/16;
 		int futureY= Math.toIntExact(Math.round(this.getY() + this.getGravite()))/16;
-		if(!this.env.getBlock(this.env.getMap1()[futureY][futureX]).isTraversable()){
-			System.out.println(futureX+" "+futureY);
-			//this.v=0;
+
+		if(!this.env.getBlock(this.env.getMap1()[y][futureX]).isTraversable()){
+			this.v=0;
+		}
+		if(!this.env.getBlock(this.env.getMap1()[futureY][x]).isTraversable()){
 			this.gravite=0;
 		}
 	}
