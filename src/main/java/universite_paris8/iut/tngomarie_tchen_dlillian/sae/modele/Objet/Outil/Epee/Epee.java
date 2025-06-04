@@ -1,6 +1,10 @@
 package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Epee;
 
+import javafx.scene.image.Image;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Objet;
+
+import javafx.scene.image.ImageView;
+
 
 public class Epee extends Objet {
     private int degat;
@@ -12,6 +16,12 @@ public class Epee extends Objet {
         this.degat = d;
         this.durabilité = dur;
         this.type = type;
+    }
+
+    public ImageView getimage(){
+        Image image = new Image("EpeeBois.png");
+        ImageView imageView = new ImageView(image);
+        return imageView;
     }
 
     public void baisseDurabilite(Epee epee){

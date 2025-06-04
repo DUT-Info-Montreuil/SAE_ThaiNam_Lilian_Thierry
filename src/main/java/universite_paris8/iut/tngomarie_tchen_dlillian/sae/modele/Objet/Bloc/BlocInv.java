@@ -1,5 +1,6 @@
 package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Bloc;
 
+import javafx.scene.image.ImageView;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Objet;
 
 public class BlocInv extends Objet {
@@ -18,5 +19,10 @@ public class BlocInv extends Objet {
 
     public int getNbBloc(){
         return this.nbBloc;
+    }
+
+    @Override
+    public ImageView getimage() {
+        return null;
     }
 }
