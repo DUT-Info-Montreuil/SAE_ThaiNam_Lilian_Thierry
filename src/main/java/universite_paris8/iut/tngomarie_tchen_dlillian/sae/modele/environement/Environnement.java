@@ -1,5 +1,6 @@
 package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement;
 
+import javafx.collections.ObservableList;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Entity;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Block.Block;
 
@@ -7,15 +8,13 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.io.File;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Scanner;
 
 public class Environnement {
 
 	private int width,height;
-	public ArrayList<Entity> entities;
+	public ObservableList<Entity> entities;
 	public int[][] map1;
 	public HashMap<Integer, Block> listeBlock;
 
@@ -24,7 +23,7 @@ public class Environnement {
 		super();
 		this.width = width;
 		this.height = height;
-		this.entities=new ArrayList<Entity>();
+		this.entities= new ObservableList<Entity>();
 		this.listeBlock=new HashMap<>();
 		creerliste();
 		try{
@@ -47,7 +46,7 @@ public class Environnement {
 	public void addentities(Entity e){
 		this.entities.add(e);
 	}
-	public ArrayList<Entity> getEntities(){return this.entities;}
+	public ObservableList<Entity> getEntities(){return this.entities;}
 	public int getWidth() {
 		return width;
 	}

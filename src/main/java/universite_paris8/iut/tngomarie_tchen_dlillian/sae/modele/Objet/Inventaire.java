@@ -1,5 +1,7 @@
 package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet;
 
+import javafx.collections.ObservableArray;
+import javafx.collections.ObservableList;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Bloc.BlocInv;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Bloc.Bois;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Bloc.Météorite;
@@ -14,7 +16,7 @@ import java.util.ArrayList;
 
 public class Inventaire {
 
-    private ArrayList<Objet> Inventaire;
+    private ObservableList<Objet> Inventaire;
     private int enMain;
     private int caseVide;
 
@@ -31,7 +33,7 @@ public class Inventaire {
     private boolean craftFils = false;
 
     public Inventaire(){
-        this.Inventaire = new ArrayList<Objet>();
+        this.Inventaire = new ObservableList<Objet>();
         this.enMain = 0;
         this.caseVide =0;
     }
@@ -40,7 +42,7 @@ public class Inventaire {
         return Inventaire.get(enMain);
     }
 
-    public ArrayList<Objet> getInventaire(){
+    public ObservableList<Objet> getInventaire(){
         return this.Inventaire;
     }
 
