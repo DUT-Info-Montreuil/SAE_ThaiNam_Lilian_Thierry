@@ -18,6 +18,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Entity;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Npc.Npc;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Player;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.*;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Environnement;
@@ -35,6 +36,7 @@ public class Controleur implements Initializable{
     Timeline gameLoop = new Timeline();
     private vueTerrain terrain;
     private Player player;
+    private Npc npc;
 
     @FXML
     private TilePane panneauJeu;
@@ -69,7 +71,8 @@ public class Controleur implements Initializable{
         this.env = new Environnement(256*16,64*16);
         this.player = new Player(220,100,1,env,60);
         // mettre cela pour que les acteurs ne sortent pas visuellement du panneau de jeu en bas et a sroite...
-
+        this.npc = new Npc(100,100,5,env,30);
+        env.entities.add(npc);
         this.terrain = new vueTerrain(panneauJeu,env);
 
         this.env.addentities(player);

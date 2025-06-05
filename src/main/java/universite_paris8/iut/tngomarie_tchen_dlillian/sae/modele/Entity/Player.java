@@ -19,7 +19,7 @@ public class Player extends Entity {
 
     @Override
     /**
-     *gere la physqiue du joueur
+     *gere la physique du joueur
      */
     public void seDeplace() {
         gravité();
@@ -27,7 +27,7 @@ public class Player extends Entity {
         aDroite();
         aGauche();
         colision();
-        System.out.println(this.getGravite());
+        //System.out.println(this.getGravite());
         this.setY(getY()+this.getGravite());
         this.setX(getX()+this.getV());
     }

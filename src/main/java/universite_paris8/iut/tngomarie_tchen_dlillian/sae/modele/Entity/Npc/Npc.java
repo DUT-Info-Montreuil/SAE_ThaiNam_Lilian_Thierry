@@ -9,12 +9,13 @@ public class Npc extends Entity {
     public Npc(double x, double y, int v, Environnement env, int pv) {
         super(x, y, v, env, pv);
     }
-
+    double co = this.getX();
     @Override
     public void seDeplace() {
         gravité();
+        colision();
         setY(getY()+this.getGravite());
-        double co = this.getX();
+
         int rand = (int)(Math.random() * 3);
         switch (rand) {
             case 0:

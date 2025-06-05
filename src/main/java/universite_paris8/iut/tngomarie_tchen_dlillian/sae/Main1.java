@@ -30,7 +30,6 @@ public class Main1 extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-
         stage.setTitle("jeu");
         stage.setScene(scene);
         stage.show();
