@@ -13,6 +13,7 @@ public class Npc extends Entity {
     @Override
     public void seDeplace() {
         gravité();
+        colision();
         setY(getY()+this.getGravite());
         double co = this.getX();
         int rand = (int)(Math.random() * 3);

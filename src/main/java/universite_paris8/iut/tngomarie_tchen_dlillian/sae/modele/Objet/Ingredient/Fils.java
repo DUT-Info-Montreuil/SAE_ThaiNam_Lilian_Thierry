@@ -6,8 +6,8 @@ import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Objet;
 
 public class Fils extends Ingredient {
 
-    public Fils(){
-        super(32,0);
+    public Fils(int nb){
+        super(32,nb);
     }
 
     @Override

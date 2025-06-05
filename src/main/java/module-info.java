@@ -17,4 +17,6 @@ module universite_paris8.iut.tngomarie.loupmouton24 {
     opens universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet to javafx.fxml;
     exports universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil;
     opens universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil to javafx.fxml;
+    exports universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Interface;
+    opens universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Interface to javafx.fxml;
 }

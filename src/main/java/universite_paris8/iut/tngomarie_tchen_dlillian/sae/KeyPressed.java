@@ -68,8 +68,7 @@ public class KeyPressed implements EventHandler<KeyEvent>{
                 }
                 break;
             case N:
-                player.getInventaire().ajoutObjet(new Arc(0));
-
+                player.getInventaire().ajoutObjet(new Arc());
 
                 player.getInventaire().ajoutObjet(new Epee(0,20,50,"bois"));
                 System.out.println("keypresed objet");

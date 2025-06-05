@@ -4,7 +4,7 @@ import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredien
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Objet;
 
 public class Bois extends BlocInv   {
-    public Bois(){
-        super(0,0);
+    public Bois(int nb){
+        super(0,nb);
     }
 }

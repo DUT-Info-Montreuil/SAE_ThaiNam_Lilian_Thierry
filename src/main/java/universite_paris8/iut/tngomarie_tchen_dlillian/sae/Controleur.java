@@ -25,6 +25,7 @@ import javafx.util.Duration;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Entity;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Player;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.*;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Interface.ListRecipe;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Inventaire;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Objet;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Environnement;
@@ -146,7 +147,7 @@ public class Controleur implements Initializable{
     public void update() {
         creerSprite();
         this.player.getInventaire().affiche();
-        for(Entity e :env.entities) {
+         for(Entity e :env.entities) {
             e.seDeplace();
         }
     }
@@ -179,14 +180,14 @@ public class Controleur implements Initializable{
     }
 
     public int verifInvPaneCase(Inventaire inv){
-        // Vérifie dans les slots secondaires (index 0 → 6)
+        // Vérifie dans les slots secondaires (index 1 → 7)
         for (int i = 0; i < slotsInventairePrimaire.size(); i++) {
             if (slotsInventairePrimaire.get(i).getChildren().isEmpty()) {
                 return i + 1;
             }
         }
 
-        // Vérifie dans les slots secondaires (index 6 → 13)
+        // Vérifie dans les slots secondaires (index 8 → 21)
         for (int i = 0; i < slotsInvSecondaire.size(); i++) {
             if (slotsInvSecondaire.get(i).getChildren().isEmpty()) {
                 return i + 8;
