@@ -4,14 +4,10 @@ import javafx.scene.image.ImageView;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Player;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Objet;
 
-public class Sac extends Outil {
-    public Sac(){
-        super(27,1);
-    }
+public class Outil extends Objet {
 
-    @Override
-    public int getIdObjet() {
-        return super.getIdObjet();
+    public Outil(int id, int nb) {
+        super(id, nb);
     }
 
     @Override
@@ -21,5 +17,6 @@ public class Sac extends Outil {
 
     @Override
     public void agit(Player player) {
+
     }
 }

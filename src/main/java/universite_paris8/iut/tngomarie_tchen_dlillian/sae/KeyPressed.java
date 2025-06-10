@@ -7,6 +7,7 @@ import javafx.scene.layout.Pane;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Player;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredient.Baton;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredient.Fils;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Inventaire;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Arc;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Epee.Epee;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.FlecheObjet;
@@ -31,7 +32,7 @@ public class KeyPressed implements EventHandler<KeyEvent>{
     @FXML
     private Pane slot7;
 
-    public KeyPressed(Player player,Controleur c, Pane slot1, Pane slot2, Pane slot3, Pane slot4, Pane slot5, Pane slot6, Pane slot7) {
+    public KeyPressed(Player player, Controleur c, Pane slot1, Pane slot2, Pane slot3, Pane slot4, Pane slot5, Pane slot6, Pane slot7) {
         this.player = player;
         this.c = c;
         this.slot1 = slot1;
@@ -67,8 +68,7 @@ public class KeyPressed implements EventHandler<KeyEvent>{
                 }
                 break;
             case N:
-                player.getInventaire().ajoutObjet(new Arc(0));
-                c.mettreObjetVue();
+                player.getInventaire().ajoutObjet(new Arc());
 
                 player.getInventaire().ajoutObjet(new Epee(0,20,50,"bois"));
                 System.out.println("keypresed objet");
@@ -129,43 +129,47 @@ public class KeyPressed implements EventHandler<KeyEvent>{
             case V:
                 this.player.getInventaire().craft();
                 break;
-            case P:
-                player.getInventaire().changerObjet(player.getInventaire().getEnMain()+1);
-                System.out.println("changer objet ++");
-                break;
-            case O:
-                player.getInventaire().changerObjet(player.getInventaire().getEnMain()-1);
-                System.out.println("changer objet --");
-                break;
-
             case NUMPAD1:
                 System.out.println("1");
                 c.afficherCaseInv(slot1);
-
+                player.getInventaire().changerObjet(0);
+                c.mettreObjetVue();
                 break;
             case NUMPAD2:
                 System.out.println("2");
                 c.afficherCaseInv(slot2);
+                player.getInventaire().changerObjet(1);
+                c.mettreObjetVue();
                 break;
             case NUMPAD3:
                 System.out.println("3");
                 c.afficherCaseInv(slot3);
+                player.getInventaire().changerObjet(2);
+                c.mettreObjetVue();
                 break;
             case NUMPAD4:
                 System.out.println("4");
                 c.afficherCaseInv(slot4);
+                player.getInventaire().changerObjet(3);
+                c.mettreObjetVue();
                 break;
             case NUMPAD5:
                 System.out.println("5");
                 c.afficherCaseInv(slot5);
+                player.getInventaire().changerObjet(4);
+                c.mettreObjetVue();
                 break;
             case NUMPAD6:
                 System.out.println("6");
                 c.afficherCaseInv(slot6);
+                player.getInventaire().changerObjet(5);
+                c.mettreObjetVue();
                 break;
             case NUMPAD7:
                 System.out.println("7");
                 c.afficherCaseInv(slot7);
+                player.getInventaire().changerObjet(6);
+                c.mettreObjetVue();
                 break;
         }
     }

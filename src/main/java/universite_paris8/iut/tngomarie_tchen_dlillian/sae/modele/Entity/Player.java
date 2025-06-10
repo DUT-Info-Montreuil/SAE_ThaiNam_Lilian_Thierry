@@ -51,31 +51,7 @@ public class Player extends Entity {
 
     @Override
     public void agit() {
-        System.out.println("Direction actuelle : " + direction);
-
-        if (this.inventaire.objetEnMain() instanceof Arc) {
-            for(int i = 0 ; i<this.inventaire.getInventaire().size() ; i++) {
-                if (this.inventaire.getInventaire().get(i) instanceof FlecheObjet && ((FlecheObjet) this.inventaire.getInventaire().get(i)).getNbObjet() >= 1) {
-                    Fleche f = new Fleche(this.getX(), this.getY(), (int) (20 * this.direction), this.getEnv(), 1,this.direction);
-                    this.env.addentities(f);
-                    ((FlecheObjet) this.inventaire.getInventaire().get(i)).decrementIngredient(1);
-                }
-            }
-        }
-
-        else if(this.inventaire.objetEnMain() instanceof Epee){
-            Epee epee = (Epee) this.inventaire.objetEnMain();
-            System.out.println("utiliser epee");
-            for(Entity mob : env.getEntities()){
-                if(mob.getX() - this.getX() < 20 && mob.getY() - this.getX() <20){
-                    mob.decrementerPv(((Epee) this.inventaire.objetEnMain()).getDegat(epee));
-                }
-            }
-        }
-        else{
-            System.out.println("rien dans la main");
-        }
-
+        this.getInventaire().objetEnMain().agit(this);
     }
 
     public void activeDroite(){

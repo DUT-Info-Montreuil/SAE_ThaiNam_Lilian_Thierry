@@ -2,7 +2,7 @@ package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredie
 
 public class Plante extends Ingredient{
 
-    public Plante(){
-        super(7,0);
+    public Plante(int nb){
+        super(7,nb);
     }
 }

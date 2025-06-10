@@ -3,7 +3,7 @@ package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredie
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Objet;
 
 public class Or extends Ingredient {
-    public Or(){
-        super(3,0);
+    public Or(int nb){
+        super(3,nb);
     }
 }

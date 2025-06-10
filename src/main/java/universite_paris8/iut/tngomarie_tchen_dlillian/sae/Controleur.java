@@ -25,7 +25,9 @@ import javafx.util.Duration;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Entity;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Player;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.*;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Interface.ListRecipe;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Inventaire;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Objet;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Environnement;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.vueTerrain;
 
@@ -41,7 +43,6 @@ public class Controleur implements Initializable{
     Timeline gameLoop = new Timeline();
     private vueTerrain terrain;
     private Player player;
-    private Inventaire inventaire;
 
     @FXML private TilePane panneauJeu;
     @FXML private Pane panneauEntity;
@@ -145,7 +146,8 @@ public class Controleur implements Initializable{
     }
     public void update() {
         creerSprite();
-        for(Entity e :env.entities) {
+        this.player.getInventaire().affiche();
+         for(Entity e :env.entities) {
             e.seDeplace();
         }
     }
@@ -157,15 +159,18 @@ public class Controleur implements Initializable{
     public void dissimilerCraft(){craftPane.setVisible(false);}
 
     public void afficherCaseInv(Pane paneau){
-        slotsInventairePrimaire.forEach(p -> p.setVisible(p == paneau));
-        slotsInventairePrimaire.forEach(pane -> paneau.setStyle("-fx-border-color: red; -fx-border-width: 3; -fx-background-color: gray;"));
-
+        for (Pane slot : slotsInventairePrimaire) {
+            if (slot == paneau) {
+                slot.setStyle("-fx-border-color: red; -fx-border-width: 3; -fx-background-color: gray;");
+            } else {
+                slot.setStyle("-fx-border-color: transparent; -fx-border-width: 1; -fx-background-color: gray;");
+            }
+        }
     }
 
     public void mettreObjetVue(){
-        Image image = new Image("Arc Bois.png");
-        ImageView imageView = new ImageView(image);
-        Pane slotVide = getSlotDepuisIndice(verifInvPaneCase(this.inventaire));
+        ImageView imageView = this.player.getInventaire().objetEnMain().getimage();
+        Pane slotVide = getSlotDepuisIndice(verifInvPaneCase(this.player.getInventaire()));
         imageView.setLayoutX(12);
         imageView.setLayoutY(5);
         imageView.setFitHeight(50);
@@ -175,13 +180,14 @@ public class Controleur implements Initializable{
     }
 
     public int verifInvPaneCase(Inventaire inv){
+        // Vérifie dans les slots secondaires (index 1 → 7)
         for (int i = 0; i < slotsInventairePrimaire.size(); i++) {
             if (slotsInventairePrimaire.get(i).getChildren().isEmpty()) {
-                return i+1;
+                return i + 1;
             }
         }
 
-        // Vérifie dans les slots secondaires (index 0 → 13)
+        // Vérifie dans les slots secondaires (index 8 → 21)
         for (int i = 0; i < slotsInvSecondaire.size(); i++) {
             if (slotsInvSecondaire.get(i).getChildren().isEmpty()) {
                 return i + 8;
@@ -193,11 +199,11 @@ public class Controleur implements Initializable{
 
     public Pane getSlotDepuisIndice(int indice) {
         if (indice >= 1 && indice <= 7) {
-            return slotsInventairePrimaire.get(indice - 1); // car index commence à 1
+            return slotsInventairePrimaire.get(indice - 1);
         } else if (indice >= 8 && indice <= 21) {
-            return slotsInvSecondaire.get(indice - 8); // car secondaires commencent à 8
+            return slotsInvSecondaire.get(indice - 8);
         } else {
-            return null; // ou lever une exception si nécessaire
+            return null;
         }
     }
 }

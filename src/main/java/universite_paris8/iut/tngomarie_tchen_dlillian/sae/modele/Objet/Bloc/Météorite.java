@@ -4,7 +4,7 @@ import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredien
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Objet;
 
 public class Météorite extends BlocInv {
-    public Météorite(){
-        super(5,0);
+    public Météorite(int nb){
+        super(5,nb);
     }
 }
