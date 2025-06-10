@@ -1,48 +1,34 @@
 package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet;
 
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Interface.ListRecipe;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Bloc.BlocInv;
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Bloc.Bois;
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Bloc.Météorite;
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Bloc.Météorite;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredient.*;
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Arc;
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Epee.*;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Outil;
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Sac;
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredient.*;
-
-import java.util.ArrayList;
 
 public class Inventaire {
 
-    private ArrayList<Objet> Inventaire;
+    private ObservableList<Objet> Inventaire;
     private int enMain;
     private int caseVide;
 
-
-    //different boolean pour le craft
-    private boolean craftArc = false;
-    private boolean craftEpeeBois = false;
-    private boolean craftEpeeFer = false;
-    private boolean craftEpeeOr =false;
-    private boolean craftEpeeMeteore = false;
-    private boolean craftBaton = false;
-    private boolean craftTissu = false;
-    private boolean craftSac = false;
-    private boolean craftFils = false;
-
     public Inventaire(){
-        this.Inventaire = new ArrayList<Objet>();
+        this.Inventaire = new ObservableList<>();
         this.enMain = 0;
         this.caseVide =0;
+        this.Inventaire.addListener(new ListChangeListener() {
+            @Override
+            public void onChanged(Change change) {
+
+            }
+        });
     }
 
     public Objet objetEnMain(){
         return Inventaire.get(enMain);
     }
 
-    public ArrayList<Objet> getInventaire(){
+    public ObservableList<Objet> getInventaire(){
         return this.Inventaire;
     }
 
@@ -98,7 +84,7 @@ public class Inventaire {
                     bloc.decrementBloc(quantité);
                 }
                 else{
-                    bloc.decrementBloc(bloc.getNbBloc());
+                    bloc.decrementBloc(0- objetEnMain().getNb());
                     supprimerObjet(bloc);
                 }
             }

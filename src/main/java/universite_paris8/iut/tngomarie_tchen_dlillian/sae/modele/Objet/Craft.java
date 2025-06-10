@@ -17,7 +17,7 @@ public class Craft {
         if(verif(clef)){
             for (int i = 0; i != this.listRecipe.getList(clef).getResulat().length ; i++) {
                 for (int j = 0; j !=this.listRecipe.getList(clef).getResulat()[i][1] ; j++) {
-                    this.inventaire.ajouterObjet2(ListObjet.getitem(this.listRecipe.getList(clef).getResulat()[i][0])){
+                    this.inventaire.ajouterObjet2(ListObjet.getitem(this.listRecipe.getList(clef).getResulat()[i][0]));
                 }
             }
 

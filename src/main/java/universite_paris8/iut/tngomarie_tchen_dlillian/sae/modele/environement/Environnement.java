@@ -1,5 +1,6 @@
 package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement;
 
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Entity;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Block.Block;
@@ -26,6 +27,12 @@ public class Environnement {
 		this.entities= new ObservableList<Entity>();
 		this.listeBlock=new HashMap<>();
 		creerliste();
+		this.entities.addListener(new ListChangeListener() {
+			@Override
+			public void onChanged(Change change) {
+
+			}
+		});
 		try{
 			this.map1= chargerMapFichier("src/main/java/universite_paris8/iut/tngomarie_tchen_dlillian/sae/modele/environement/environnement.txt");
 		} catch (IOException e){
