@@ -6,9 +6,6 @@ import javafx.fxml.FXML;
 
 import javafx.fxml.Initializable;
 
-import javafx.scene.Node;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 
@@ -22,19 +19,17 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.listeneur.KeyPressed;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.listeneur.KeyReleased;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.listeneur.MouseClick;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Entity;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Player;
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.*;
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Interface.ListRecipe;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Inventaire;
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Objet;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Environnement;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.vueTerrain;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.vue.VueObjet;
 
-import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
