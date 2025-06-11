@@ -1,10 +1,12 @@
 package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Bloc.BlocInv;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredient.*;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Outil;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.vue.VueObjet;
 
 public class Inventaire {
 
@@ -13,13 +15,13 @@ public class Inventaire {
     private int caseVide;
 
     public Inventaire(){
-        this.Inventaire = new ObservableList<>();
         this.enMain = 0;
         this.caseVide =0;
+        this.Inventaire = FXCollections.observableArrayList();
         this.Inventaire.addListener(new ListChangeListener() {
             @Override
             public void onChanged(Change change) {
-
+//                VueObjet
             }
         });
     }
@@ -77,20 +79,20 @@ public class Inventaire {
             }
         }
     }
-    public void supprimerBloc(BlocInv bloc, int quantité){
-        for(int i = 0 ; i<this.Inventaire.size() ; i++){
-            if(this.Inventaire.get(i).getIdObjet()==bloc.getIdObjet()){
-                if(bloc.getNbBloc()>quantité){
-                    bloc.decrementBloc(quantité);
-                }
-                else{
-                    bloc.decrementBloc(0- objetEnMain().getNb());
-                    supprimerObjet(bloc);
-                }
-            }
-        }
-
-    }
+//    public void supprimerBloc(BlocInv bloc, int quantité){
+//        for(int i = 0 ; i<this.Inventaire.size() ; i++){
+//            if(this.Inventaire.get(i).getIdObjet()==bloc.getIdObjet()){
+//                if(bloc.getNbBloc()>quantité){
+//                    bloc.decrementBloc(quantité);
+//                }
+//                else{
+//                    bloc.decrementBloc(0- objetEnMain().getNb());
+//                    supprimerObjet(bloc);
+//                }
+//            }
+//        }
+//
+//    }
 //    //la fonction craft est appeler avec un bouton dans l'inventaire selon le booleen qui est active aussi dans l'inventaire selon le craft selectionner
 //    public void craft() {
 //    }

@@ -11,38 +11,19 @@ import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Inventair
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Arc;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Epee.Epee;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.FlecheObjet;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.vue.VueObjet;
 
 
 public class KeyPressed implements EventHandler<KeyEvent>{
     private Player player;
     private Controleur c;
+    private VueObjet vueObjet;
     private boolean activerPane = false;
-    @FXML
-    private Pane slot1;
-    @FXML
-    private Pane slot2;
-    @FXML
-    private Pane slot3;
-    @FXML
-    private Pane slot4;
-    @FXML
-    private Pane slot5;
-    @FXML
-    private Pane slot6;
-    @FXML
-    private Pane slot7;
 
-    public KeyPressed(Player player, Controleur c, Pane slot1, Pane slot2, Pane slot3, Pane slot4, Pane slot5, Pane slot6, Pane slot7) {
+    public KeyPressed(Player player, Controleur c, VueObjet vue) {
         this.player = player;
         this.c = c;
-        this.slot1 = slot1;
-        this.slot2 = slot2;
-        this.slot3 = slot3;
-        this.slot4 = slot4;
-        this.slot5 = slot5;
-        this.slot6 = slot6;
-        this.slot7 = slot7;
-
+        this.vueObjet = vue;
     }
 
     public void handle(KeyEvent event) {
@@ -59,11 +40,11 @@ public class KeyPressed implements EventHandler<KeyEvent>{
             case E:
                 activerPane = !activerPane;
                 if(!activerPane){
-                    c.dissimilerInv();
+                    vueObjet.dissimilerInv();
                     c.dissimilerCraft();
                 }
                 else{
-                    c.afficherInv();
+                    vueObjet.afficherInv();
                     c.afficherCraft();
                 }
                 break;
@@ -86,11 +67,12 @@ public class KeyPressed implements EventHandler<KeyEvent>{
                 }
                 if(!fleche){
                     System.out.println("fleche ajouté");
-                    player.getInventaire().ajoutObjet(new FlecheObjet());
+                    player.getInventaire().ajoutObjet(new FlecheObjet(1));
                 }
                 break;
             case W:
                 boolean baton=false;
+                vueObjet.getFullImage();
                 for(int i=0 ; i<player.getInventaire().getInventaire().size() ; i++){
                     if(player.getInventaire().getInventaire().get(i) instanceof Baton){
                         for(int j = 0;j<20;j++){  //pour avoir 20 bois d'un coup
@@ -102,7 +84,7 @@ public class KeyPressed implements EventHandler<KeyEvent>{
                 }
                 if(!baton){
                     System.out.println("baton ajouté");
-                    player.getInventaire().ajoutObjet(new Baton());
+                    player.getInventaire().ajoutObjet(new Baton(1));
                 }
                 break;
             case X:
@@ -118,58 +100,51 @@ public class KeyPressed implements EventHandler<KeyEvent>{
                 }
                 if(!fils){
                     System.out.println("fils ajouté");
-                    player.getInventaire().ajoutObjet(new Fils());
+                    player.getInventaire().ajoutObjet(new Fils(1));
                 }
                 break;
 
             case C:
-                this.player.getInventaire().setCraftArc();
+//                this.player.getInventaire().setCraftArc();
                 System.out.println("setcraftarc");
                 break;
             case V:
-                this.player.getInventaire().craft();
+//                this.player.getInventaire().craft();
                 break;
             case NUMPAD1:
                 System.out.println("1");
-                c.afficherCaseInv(slot1);
+                vueObjet.getIndexPane(1);
                 player.getInventaire().changerObjet(0);
-                c.mettreObjetVue();
                 break;
             case NUMPAD2:
                 System.out.println("2");
-                c.afficherCaseInv(slot2);
+                vueObjet.getIndexPane(2);
                 player.getInventaire().changerObjet(1);
-                c.mettreObjetVue();
                 break;
             case NUMPAD3:
                 System.out.println("3");
-                c.afficherCaseInv(slot3);
+                vueObjet.getIndexPane(3);
                 player.getInventaire().changerObjet(2);
-                c.mettreObjetVue();
                 break;
             case NUMPAD4:
                 System.out.println("4");
-                c.afficherCaseInv(slot4);
+                vueObjet.getIndexPane(4);
                 player.getInventaire().changerObjet(3);
-                c.mettreObjetVue();
                 break;
             case NUMPAD5:
                 System.out.println("5");
-                c.afficherCaseInv(slot5);
+                vueObjet.getIndexPane(5);
                 player.getInventaire().changerObjet(4);
-                c.mettreObjetVue();
                 break;
             case NUMPAD6:
                 System.out.println("6");
-                c.afficherCaseInv(slot6);
+                vueObjet.getIndexPane(6);
                 player.getInventaire().changerObjet(5);
-                c.mettreObjetVue();
                 break;
             case NUMPAD7:
                 System.out.println("7");
-                c.afficherCaseInv(slot7);
+                vueObjet.getIndexPane(7);
                 player.getInventaire().changerObjet(6);
-                c.mettreObjetVue();
                 break;
         }
     }
