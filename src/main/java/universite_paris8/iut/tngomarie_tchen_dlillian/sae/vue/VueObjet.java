@@ -78,6 +78,8 @@ public class VueObjet {
                 Objet objet = objets.get(i);
                 if (objet != null) {
                     mettreObjetVue(slotsInventairePrimaire.get(i), objet);
+                }else{
+                    slotsInventairePrimaire.get(i).getChildren().clear();
                 }
             }
         }
@@ -88,6 +90,8 @@ public class VueObjet {
                 Objet objet = objets.get(indexInventaire);
                 if (objet != null) {
                     mettreObjetVue(slotsInvSecondaire.get(i), objet);
+                }else{
+                    slotsInvSecondaire.get(i).getChildren().clear();
                 }
             }
         }

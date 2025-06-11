@@ -48,6 +48,9 @@ public class KeyPressed implements EventHandler<KeyEvent>{
                     c.afficherCraft();
                 }
                 break;
+            case R:
+                vueObjet.getFullImage();
+                break;
             case N:
                 player.getInventaire().ajoutObjet(new Arc());
 
@@ -72,7 +75,7 @@ public class KeyPressed implements EventHandler<KeyEvent>{
                 break;
             case W:
                 boolean baton=false;
-                vueObjet.getFullImage();
+
                 for(int i=0 ; i<player.getInventaire().getInventaire().size() ; i++){
                     if(player.getInventaire().getInventaire().get(i) instanceof Baton){
                         for(int j = 0;j<20;j++){  //pour avoir 20 bois d'un coup
@@ -86,6 +89,7 @@ public class KeyPressed implements EventHandler<KeyEvent>{
                     System.out.println("baton ajouté");
                     player.getInventaire().ajoutObjet(new Baton(1));
                 }
+                vueObjet.getFullImage();
                 break;
             case X:
                 boolean fils=false;
