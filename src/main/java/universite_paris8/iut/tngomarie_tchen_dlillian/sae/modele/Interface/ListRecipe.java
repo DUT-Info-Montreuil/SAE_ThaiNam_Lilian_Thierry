@@ -8,6 +8,10 @@ public class ListRecipe {
         créeRecipe();
     }
 
+    public Recipe getList(int i) {
+        return list.get(i);
+    }
+
     private void créeRecipe() {
     //Arc
         int[][] n1 = new int[][] {{28,32},{3,3}};
@@ -40,7 +44,5 @@ public class ListRecipe {
     //
     }
 
-    public Recipe getList(int i) {
-        return list.get(i);
-    }
+
 }

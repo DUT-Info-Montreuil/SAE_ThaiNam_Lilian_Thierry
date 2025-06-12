@@ -1,6 +1,5 @@
 package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Entity;
@@ -25,8 +24,8 @@ public class Environnement {
 		super();
 		this.width = width;
 		this.height = height;
-		this.entities = FXCollections.observableArrayList();
-		this.listeBlock =new HashMap<>();
+		this.entities= new ObservableList<Entity>();
+		this.listeBlock=new HashMap<>();
 		creerliste();
 		this.entities.addListener(new ListChangeListener() {
 			@Override

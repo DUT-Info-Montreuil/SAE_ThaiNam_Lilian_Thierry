@@ -24,7 +24,9 @@ import universite_paris8.iut.tngomarie_tchen_dlillian.sae.listeneur.KeyReleased;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.listeneur.MouseClick;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Entity;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Player;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Interface.ListRecipe;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Inventaire;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.ListObjet;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Environnement;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.vueTerrain;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.vue.VueObjet;
@@ -39,11 +41,16 @@ public class Controleur implements Initializable{
     Timeline gameLoop = new Timeline();
     private vueTerrain terrain;
     private Player player;
-    private VueObjet objet;
 
     @FXML private TilePane panneauJeu;
     @FXML private Pane panneauEntity;
+
     @FXML private GridPane paneInv;
+
+    @FXML private ScrollPane craftPane;
+
+    @FXML
+    private AnchorPane craftScrolling;
 
     @FXML private Pane slot1;
     @FXML private Pane slot2;
@@ -68,40 +75,36 @@ public class Controleur implements Initializable{
     @FXML private Pane slotS13;
     @FXML private Pane slotS14;
 
-    @FXML private ScrollPane craftPane;
-
-    @FXML private AnchorPane craftScrolling;
-
+    private List<Pane> slotsInventairePrimaire;
+    private List<Pane> slotsInvSecondaire;
+    private ListObjet   listObjet;
+    private ListRecipe ListRecipe;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-        this.env = new Environnement(256*16,64*16);
-        this.player = new Player(220,100,1,env,60);
-        // mettre cela pour que les acteurs ne sortent pas visuellement du panneau de jeu en bas et a sroite...
-        this.objet = new VueObjet(paneInv,this.player);
-        objet.setSlotsInventairePrimaire(Arrays.asList(
-                slot1, slot2, slot3, slot4, slot5, slot6, slot7
-        ));
-        objet.setSlotsInvSecondaire(Arrays.asList(
-                slotS1, slotS2, slotS3, slotS4, slotS5, slotS6, slotS7,
-                slotS8, slotS9, slotS10, slotS11, slotS12, slotS13, slotS14
-        ));
-        this.terrain = new vueTerrain(panneauJeu,env);
-
-//        panneauJeu.translateXProperty().bind(this.player.getXProperty().multiply(-1));
-//        panneauJeu.translateYProperty().bind(this.player.getYProperty().multiply(-1));
-        this.env.addentities(player);
-        creerSprite();//a supprimer
-        initAnimation();
-        // demarre l'animation
-        gameLoop.play();
-
-        KeyPressed keyPressed = new KeyPressed(player, this, objet);
+        slotsInventairePrimaire = Arrays.asList(slot1, slot2, slot3, slot4, slot5, slot6, slot7);
+        slotsInvSecondaire = Arrays.asList(slotS1,slotS2,slotS3,slotS4,slotS5,slotS6,slotS7,slotS8,slotS9,slotS10,slotS11,slotS12,slotS13,slotS14);
+        KeyPressed keyPressed = new KeyPressed(player, this, );
         KeyReleased keyReleased = new KeyReleased(player);
         MouseClick mouseClick = new MouseClick(player);
         panneauJeu.addEventHandler(KeyEvent.KEY_PRESSED, keyPressed);
         panneauJeu.addEventHandler(KeyEvent.KEY_RELEASED, keyReleased);
         panneauEntity.setOnMouseClicked(mouseClick);
+        panneauJeu.translateXProperty().bind(this.player.getXProperty());
+        panneauJeu.translateXProperty().bind(this.player.getXProperty());
+        panneauEntity.translateXProperty().bind(this.player.getXProperty());
+        panneauEntity.translateXProperty().bind(this.player.getXProperty());
+        // mettre cela pour que les acteurs ne sortent pas visuellement du panneau de jeu en bas et a sroite...
+        this.env = new Environnement(256*16,64*16);
+        this.terrain = new vueTerrain(panneauJeu,env);
+
+        this.player = new Player(220,100,1,env,60);
+        this.env.addentities(player);
+
+        // demarre l'animation
+        initAnimation();
+        gameLoop.play();
+
+
 
     }
 
@@ -152,7 +155,58 @@ public class Controleur implements Initializable{
         }
     }
 
+    public void afficherInv(){paneInv.setVisible(true);}
+    public void dissimilerInv() {paneInv.setVisible(false);}
+
     public void afficherCraft(){craftPane.setVisible(true);}
     public void dissimilerCraft(){craftPane.setVisible(false);}
 
+    public void afficherCaseInv(Pane paneau){
+        for (Pane slot : slotsInventairePrimaire) {
+            if (slot == paneau) {
+                slot.setStyle("-fx-border-color: red; -fx-border-width: 3; -fx-background-color: gray;");
+            } else {
+                slot.setStyle("-fx-border-color: transparent; -fx-border-width: 1; -fx-background-color: gray;");
+            }
+        }
+    }
+
+    public void mettreObjetVue(){
+        ImageView imageView = this.player.getInventaire().objetEnMain().getimage();
+        Pane slotVide = getSlotDepuisIndice(verifInvPaneCase(this.player.getInventaire()));
+        imageView.setLayoutX(12);
+        imageView.setLayoutY(5);
+        imageView.setFitHeight(50);
+        imageView.setFitWidth(50);
+
+        slotVide.getChildren().add(imageView);
+    }
+
+    public int verifInvPaneCase(Inventaire inv){
+        // Vérifie dans les slots secondaires (index 1 → 7)
+        for (int i = 0; i < slotsInventairePrimaire.size(); i++) {
+            if (slotsInventairePrimaire.get(i).getChildren().isEmpty()) {
+                return i + 1;
+            }
+        }
+
+        // Vérifie dans les slots secondaires (index 8 → 21)
+        for (int i = 0; i < slotsInvSecondaire.size(); i++) {
+            if (slotsInvSecondaire.get(i).getChildren().isEmpty()) {
+                return i + 8;
+            }
+        }
+
+        return -1;
+    }
+
+    public Pane getSlotDepuisIndice(int indice) {
+        if (indice >= 1 && indice <= 7) {
+            return slotsInventairePrimaire.get(indice - 1);
+        } else if (indice >= 8 && indice <= 21) {
+            return slotsInvSecondaire.get(indice - 8);
+        } else {
+            return null;
+        }
+    }
 }

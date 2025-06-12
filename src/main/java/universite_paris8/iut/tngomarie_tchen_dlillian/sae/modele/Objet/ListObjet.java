@@ -19,10 +19,14 @@ import java.util.HashMap;
 public class ListObjet {
     HashMap<Integer, Objet> list = new HashMap<Integer, Objet>();
     public ListObjet(){
-        créeRecipe();
+        créeList();
     }
 
-    private void créeRecipe() {
+    public Objet getitem(int i) {
+        return list.get(i);
+    }
+
+    public void créeList() {
         //Arc
 
         list.put(0, new Bois(1));
@@ -57,9 +61,5 @@ public class ListObjet {
         list.put(17, new Arc());
         list.put(18, new FlecheObjet(1));
         list.put(19, new Sac());
-    }
-
-    public Objet getItem(int i) {
-        return list.get(i);
     }
 }
