@@ -118,36 +118,43 @@ public class KeyPressed implements EventHandler<KeyEvent>{
             case NUMPAD1:
                 System.out.println("1");
                 vueObjet.getIndexPane(1);
+                vueObjet.afficherCaseInv(vueObjet.getSlotDepuisIndice(1));
                 player.getInventaire().changerObjet(0);
                 break;
             case NUMPAD2:
                 System.out.println("2");
                 vueObjet.getIndexPane(2);
+                vueObjet.afficherCaseInv(vueObjet.getSlotDepuisIndice(2));
                 player.getInventaire().changerObjet(1);
                 break;
             case NUMPAD3:
                 System.out.println("3");
                 vueObjet.getIndexPane(3);
+                vueObjet.afficherCaseInv(vueObjet.getSlotDepuisIndice(3));
                 player.getInventaire().changerObjet(2);
                 break;
             case NUMPAD4:
                 System.out.println("4");
                 vueObjet.getIndexPane(4);
+                vueObjet.afficherCaseInv(vueObjet.getSlotDepuisIndice(4));
                 player.getInventaire().changerObjet(3);
                 break;
             case NUMPAD5:
                 System.out.println("5");
                 vueObjet.getIndexPane(5);
+                vueObjet.afficherCaseInv(vueObjet.getSlotDepuisIndice(5));
                 player.getInventaire().changerObjet(4);
                 break;
             case NUMPAD6:
                 System.out.println("6");
                 vueObjet.getIndexPane(6);
+                vueObjet.afficherCaseInv(vueObjet.getSlotDepuisIndice(6));
                 player.getInventaire().changerObjet(5);
                 break;
             case NUMPAD7:
                 System.out.println("7");
                 vueObjet.getIndexPane(7);
+                vueObjet.afficherCaseInv(vueObjet.getSlotDepuisIndice(7));
                 player.getInventaire().changerObjet(6);
                 break;
         }
