@@ -2,6 +2,7 @@ package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Npc;
 
 
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Entity;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Player;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Environnement;
 
 public class Npc extends Entity {
@@ -16,22 +17,29 @@ public class Npc extends Entity {
         colision();
         setY(getY()+this.getGravite());
         double co = this.getX();
-        int rand = (int)(Math.random() * 3);
-        switch (rand) {
-            case 0:
-                if(this.getX()>co - 20 && this.getX()<co + 20){
-                    this.setX(getV()+5);
-                }
-                break;
-            case 1:
-                if(this.getX()>co - 20 && this.getX()<co + 20){
-                    this.setX(getV()-5);
-                }
-                break;
-            case 2:
-                this.setX(getV());
-                break;
-        };
+        Player player = null;
+        for(int i=0 ; i<this.env.entities.size() ; i++){
+            if(this.env.entities.get(i) instanceof Player){
+                player = (Player) this.env.entities.get(i);
+            }
+        }
+        if (this.getX() < co-50){
+            this.setX(getX()+this.getV()+0.5);
+        }
+        else{
+            this.setX(getX()+this.getV()-0.5);
+        }
+        if((this.getX() - player.getX())< 50 || (this.getX() - player.getX())> -50){
+            System.out.println("joueur");
+            int direction;
+            if(this.getX() < player.getX()){
+                direction = -1;
+            }
+            else{
+                direction = 1;
+            }
+            this.setX(getX()+this.getV()+(0.5*direction));
+        }
     }
 
     @Override
