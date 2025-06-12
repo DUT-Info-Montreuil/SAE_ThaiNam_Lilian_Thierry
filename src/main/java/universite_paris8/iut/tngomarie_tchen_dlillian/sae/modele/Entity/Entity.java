@@ -127,13 +127,15 @@ public abstract class Entity {
 		int y =Math.toIntExact(Math.round(this.getY()))/16;
 		int futureX= Math.toIntExact(Math.round(this.getX() + this.getV()))/16;
 		int futureY= Math.toIntExact(Math.round(this.getY() + this.getGravite()))/16;
-
+//		if (futureX<1){futureX=1;}
+//		if (futureX>255){futureX=255;}
 		if(!this.env.getBlock(this.env.getMap1()[y][futureX]).isTraversable()){
 			this.v=0;
 		}
 		if(!this.env.getBlock(this.env.getMap1()[futureY][x]).isTraversable()){
 			this.gravite=0;
 		}
+		System.out.println(x+":"+y);
 	}
 
 	public abstract void seDeplace();

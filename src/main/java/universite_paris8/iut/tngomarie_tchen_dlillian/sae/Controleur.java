@@ -78,20 +78,19 @@ public class Controleur implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
 
         this.env = new Environnement(256*16,64*16);
+        this.player = new Player(500,460,1,env,60);
+        this.env.addentities(player);
         this.terrain = new vueTerrain(panneauJeu,env);
         KeyPressed keyPressed = new KeyPressed(player, this, objet);
         KeyReleased keyReleased = new KeyReleased(player);
         MouseClick mouseClick = new MouseClick(player);
-        panneauJeu.addEventHandler(KeyEvent.KEY_PRESSED, keyPressed);
-        panneauJeu.addEventHandler(KeyEvent.KEY_RELEASED, keyReleased);
+        panneauEntity.addEventHandler(KeyEvent.KEY_PRESSED, keyPressed);
+        panneauEntity.addEventHandler(KeyEvent.KEY_RELEASED, keyReleased);
         panneauEntity.setOnMouseClicked(mouseClick);
-        panneauJeu.translateXProperty().bind(this.player.getXProperty().multiply(-1));
-        panneauJeu.translateXProperty().bind(this.player.getXProperty().multiply(-1));
-        panneauEntity.translateXProperty().bind(this.player.getXProperty().multiply(-1));
-        panneauEntity.translateXProperty().bind(this.player.getXProperty().multiply(-1));
+        panneauEntity.translateXProperty().bind(this.player.getXProperty().multiply(-1).add(300));
+        panneauEntity.translateYProperty().bind(this.player.getYProperty().multiply(-1).add(300));
 
-        this.player = new Player(220,100,1,env,60);
-        this.env.addentities(player);
+
 
 
         this.objet = new VueObjet(paneInv,this.player);
