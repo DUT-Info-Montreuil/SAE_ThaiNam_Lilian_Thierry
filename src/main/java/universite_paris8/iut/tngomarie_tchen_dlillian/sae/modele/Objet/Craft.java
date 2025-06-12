@@ -13,7 +13,7 @@ public class Craft {
         this.inventaire = inventaire;
     }
 
-    public void crafting(int clef){
+    /*public void crafting(int clef){
         if(verif(clef)){
             for (int i = 0; i != this.listRecipe.getList(clef).getResulat().length ; i++) {
                 for (int j = 0; j !=this.listRecipe.getList(clef).getResulat()[i][1] ; j++) {
@@ -25,7 +25,7 @@ public class Craft {
         }
 
 
-    }
+    }*/
     private boolean verif(int i) {
         int valid = 0;
         int nbingredient = listRecipe.getList(i).getRecette().length;

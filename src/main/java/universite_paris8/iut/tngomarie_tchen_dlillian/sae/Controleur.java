@@ -78,8 +78,22 @@ public class Controleur implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
 
         this.env = new Environnement(256*16,64*16);
+        this.terrain = new vueTerrain(panneauJeu,env);
+        KeyPressed keyPressed = new KeyPressed(player, this, objet);
+        KeyReleased keyReleased = new KeyReleased(player);
+        MouseClick mouseClick = new MouseClick(player);
+        panneauJeu.addEventHandler(KeyEvent.KEY_PRESSED, keyPressed);
+        panneauJeu.addEventHandler(KeyEvent.KEY_RELEASED, keyReleased);
+        panneauEntity.setOnMouseClicked(mouseClick);
+        panneauJeu.translateXProperty().bind(this.player.getXProperty().multiply(-1));
+        panneauJeu.translateXProperty().bind(this.player.getXProperty().multiply(-1));
+        panneauEntity.translateXProperty().bind(this.player.getXProperty().multiply(-1));
+        panneauEntity.translateXProperty().bind(this.player.getXProperty().multiply(-1));
+
         this.player = new Player(220,100,1,env,60);
-        // mettre cela pour que les acteurs ne sortent pas visuellement du panneau de jeu en bas et a sroite...
+        this.env.addentities(player);
+
+
         this.objet = new VueObjet(paneInv,this.player);
         objet.setSlotsInventairePrimaire(Arrays.asList(
                 slot1, slot2, slot3, slot4, slot5, slot6, slot7
@@ -88,25 +102,14 @@ public class Controleur implements Initializable{
                 slotS1, slotS2, slotS3, slotS4, slotS5, slotS6, slotS7,
                 slotS8, slotS9, slotS10, slotS11, slotS12, slotS13, slotS14
         ));
-        this.terrain = new vueTerrain(panneauJeu,env);
 
-        this.env.addentities(player);
-        creerSprite();//a supprimer
-        initAnimation();
+
+
         // demarre l'animation
+        initAnimation();
         gameLoop.play();
 
-        KeyPressed keyPressed = new KeyPressed(player, this, objet);
-        KeyReleased keyReleased = new KeyReleased(player);
-        MouseClick mouseClick = new MouseClick(player);
-        panneauJeu.addEventHandler(KeyEvent.KEY_PRESSED, keyPressed);
-        panneauJeu.addEventHandler(KeyEvent.KEY_RELEASED, keyReleased);
-        panneauEntity.setOnMouseClicked(mouseClick);
 
-        panneauJeu.translateXProperty().bind(this.player.getXProperty());
-        panneauJeu.translateXProperty().bind(this.player.getXProperty());
-        panneauEntity.translateXProperty().bind(this.player.getXProperty());
-        panneauEntity.translateXProperty().bind(this.player.getXProperty());
 
     }
 
