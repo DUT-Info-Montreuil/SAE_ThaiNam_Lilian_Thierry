@@ -103,6 +103,11 @@ public class Controleur implements Initializable{
         panneauJeu.addEventHandler(KeyEvent.KEY_RELEASED, keyReleased);
         panneauEntity.setOnMouseClicked(mouseClick);
 
+        panneauJeu.translateXProperty().bind(this.player.getXProperty());
+        panneauJeu.translateXProperty().bind(this.player.getXProperty());
+        panneauEntity.translateXProperty().bind(this.player.getXProperty());
+        panneauEntity.translateXProperty().bind(this.player.getXProperty());
+
     }
 
     private void creerSprite() {
