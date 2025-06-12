@@ -23,6 +23,7 @@ import universite_paris8.iut.tngomarie_tchen_dlillian.sae.listeneur.KeyPressed;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.listeneur.KeyReleased;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.listeneur.MouseClick;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Entity;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Npc.Npc;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Player;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Inventaire;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Environnement;
@@ -77,6 +78,8 @@ public class Controleur implements Initializable{
 
         this.env = new Environnement(256*16,64*16);
         this.player = new Player(220,100,1,env,60);
+        Npc test = new Npc(50,100,2,env,10);
+        this.env.entities.add(test);
         // mettre cela pour que les acteurs ne sortent pas visuellement du panneau de jeu en bas et a sroite...
         this.objet = new VueObjet(paneInv,this.player);
         objet.setSlotsInventairePrimaire(Arrays.asList(
