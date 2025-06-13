@@ -51,7 +51,7 @@ public class Player extends Entity {
 
     @Override
     public void agit() {
-        this.getInventaire().objetEnMain().agit(this);
+        if(this.getInventaire().objetEnMain()!=null){this.getInventaire().objetEnMain().agit(this);}
     }
 
     public void activeDroite(){
