@@ -28,20 +28,19 @@ public class Npc extends Entity {
                 break;
             }
         }
-        if (joueur == null) return; // Si pas de joueur trouvé, on arrête la méthode
 
-        int tailleTuile = 32; // Taille d'une case/tuile en pixels
+        int tailleTuile = 32; // Taille d'un bloc
 
         // Limite horizontale de la zone de déplacement (en pixels)
-        double minX = (co - 50) * tailleTuile; // Limite gauche (50 blocs avant la position initiale)
-        double maxX = (co + 50) * tailleTuile; // Limite droite (50 blocs après la position initiale)
+        double minX = (co - 50) * tailleTuile; // Limite gauche (50 blocs
+        double maxX = (co + 50) * tailleTuile; // Limite droite (50 blocs
 
-        // Si on est trop à gauche, on déplace vers la droite pour rester dans la zone
+        // Si trop à gauche, on déplace vers la droite pour rester dans la zone
         if (getX() < minX) {
             setX(getX() + getV() + 0.5);
             return;
         }
-        // Si on est trop à droite, on déplace vers la gauche pour rester dans la zone
+        // Si trop à droite, on déplace vers la gauche
         else if (getX() > maxX) {
             setX(getX() + getV() - 0.5);
             return;
@@ -55,7 +54,7 @@ public class Npc extends Entity {
         int joueurX = (int) (joueur.getX() / tailleTuile);
         int joueurY = (int) (joueur.getY() / tailleTuile);
 
-        // Largeur et hauteur du terrain (en cases)
+        // Largeur et hauteur du terrain
         int largeur = env.getWidth();
         int hauteur = env.getHeight();
 
@@ -63,19 +62,19 @@ public class Npc extends Entity {
         int[][] distance = new int[hauteur][largeur];
         for (int i = 0; i < hauteur; i++) {
             for (int j = 0; j < largeur; j++) {
-                distance[i][j] = -1; // Initialisation à -1 (case pas encore visitée)
+                distance[i][j] = -1; // Initialisation à -1
             }
         }
 
-        // File pour gérer les cases à visiter pendant le BFS
+        // File pour les cases à visiter pendant le BFS
         java.util.Queue<int[]> file = new java.util.LinkedList<>();
         file.add(new int[]{joueurX, joueurY}); // On part du joueur
         distance[joueurY][joueurX] = 0;         // Distance 0 au point de départ (joueur)
 
-        // Les 4 directions possibles (droite, gauche, bas, haut)
+        // Les 4 directions possibles
         int[][] directions = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
 
-        // BFS : on explore la grille à partir du joueur pour calculer la distance à chaque case
+        // BFS a partir du player
         while (!file.isEmpty()) {
             int[] actuel = file.poll(); // Case actuelle
 
@@ -83,19 +82,18 @@ public class Npc extends Entity {
                 int nx = actuel[0] + dir[0]; // Coordonnée X voisine
                 int ny = actuel[1] + dir[1]; // Coordonnée Y voisine
 
-                // On limite le BFS pour ne pas sortir de la zone de 100 cases autour de co
+                // limite du BFS pourpas sortir de la zone
                 if (nx < (co - 50) || nx > (co + 50)) continue;
 
-                // Vérifie que la case voisine est dans le terrain, marchable, et pas encore visitée
-                if (nx >= 0 && ny >= 0 && nx < largeur && ny < hauteur &&
-                        env.isWalkable(nx, ny) && distance[ny][nx] == -1) {
+                // Vérifie que la case voisine rempli condition pour marcher
+                if (nx >= 0 && ny >= 0 && nx < largeur && ny < hauteur && env.isWalkable(nx, ny) && distance[ny][nx] == -1) {
                     distance[ny][nx] = distance[actuel[1]][actuel[0]] + 1; // Met à jour la distance
-                    file.add(new int[]{nx, ny}); // Ajoute la case à la file pour continuer l'exploration
+                    file.add(new int[]{nx, ny}); // Ajoute la case à la file pour apres
                 }
             }
         }
 
-        // Maintenant on cherche la meilleure case voisine vers laquelle se déplacer pour se rapprocher du joueur
+        //on cherche la meilleure casepour laquelle se déplacer pour se rapprocher du joueur
         int cibleX = npcX; // Coordonnée X de la case cible (par défaut la case actuelle)
         int cibleY = npcY; // Coordonnée Y de la case cible (par défaut la case actuelle)
         int minDist = distance[npcY][npcX]; // Distance actuelle du NPC au joueur
