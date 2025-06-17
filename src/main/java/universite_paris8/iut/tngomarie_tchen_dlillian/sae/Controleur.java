@@ -77,7 +77,7 @@ public class Controleur implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        this.env = new Environnement(256*16,64*16);
+        this.env = new Environnement(Param.width*Param.scale,Param.height*Param.scale);
         this.player = new Player(500,460,1,env,60);
         this.env.addentities(player);
         this.terrain = new vueTerrain(panneauJeu,env);
@@ -102,8 +102,8 @@ public class Controleur implements Initializable{
         panneauEntity.addEventHandler(KeyEvent.KEY_PRESSED, keyPressed);
         panneauEntity.addEventHandler(KeyEvent.KEY_RELEASED, keyReleased);
         panneauEntity.setOnMouseClicked(mouseClick);
-        panneauEntity.translateXProperty().bind(this.player.getXProperty().multiply(-1).add(300));
-        panneauEntity.translateYProperty().bind(this.player.getYProperty().multiply(-1).add(300));
+        panneauEntity.translateXProperty().bind(this.player.getXProperty().multiply(-1).add((Param.width*Param.scale)/2));
+        panneauEntity.translateYProperty().bind(this.player.getYProperty().multiply(-1).add((Param.height*Param.scale)/2));
 
 
 

@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" styleClass="background" stylesheets="@dark.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.tngomarie_tchen_dlillian.sae.Controleur">
+<StackPane focusTraversable="true" styleClass="background" stylesheets="@dark.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.tngomarie_tchen_dlillian.sae.Controleur">
     <children>
         <Pane fx:id="background" style="-fx-background-color: #b8fbff;" />
-      <Pane fx:id="panneauEntity" focusTraversable="true" prefHeight="4096.0" prefWidth="1024.0">
+      <Pane fx:id="panneauEntity" focusTraversable="true" prefHeight="1024.0" prefWidth="4096.0">
          <children>
-              <TilePane fx:id="panneauJeu" focusTraversable="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="4096.0" prefWidth="1024.0"> </TilePane>
+              <TilePane fx:id="panneauJeu" focusTraversable="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="4096.0"> </TilePane>
          </children>
       </Pane>
         <GridPane fx:id="paneInv" focusTraversable="true" gridLinesVisible="true" layoutX="50.0" maxHeight="200.0" maxWidth="550.0" prefHeight="60.0" prefWidth="500.0" scaleShape="false" style="-fx-border-color: white;" visible="false" StackPane.alignment="TOP_LEFT">
