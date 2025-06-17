@@ -1,5 +1,6 @@
 package universite_paris8.iut.tngomarie_tchen_dlillian.sae.listeneur;
 
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyEvent;
@@ -44,9 +45,12 @@ public class KeyPressed implements EventHandler<KeyEvent>{
                     c.dissimilerCraft();
                 }
                 else{
+
                     vueObjet.afficherInv();
                     c.afficherCraft();
+
                 }
+                Platform.runLater(() -> c.getPanneauEntity().requestFocus() );
                 break;
             case R:
                 vueObjet.getFullImage();

@@ -9,11 +9,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.TilePane;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.*;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.AnchorPane;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -29,6 +27,7 @@ import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Inventair
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.ListObjet;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Environnement;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.vueTerrain;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.vue.VueCraft;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.vue.VueObjet;
 
 import java.net.URL;
@@ -42,6 +41,7 @@ public class Controleur implements Initializable{
     private vueTerrain terrain;
     private Player player;
     private VueObjet objet;
+    private VueCraft craft;
 
     @FXML private TilePane panneauJeu;
     @FXML private Pane panneauEntity;
@@ -71,8 +71,8 @@ public class Controleur implements Initializable{
     @FXML private Pane slotS14;
 
     @FXML private ScrollPane craftPane;
-
     @FXML private AnchorPane craftScrolling;
+    @FXML private VBox craftList;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -80,6 +80,7 @@ public class Controleur implements Initializable{
         this.env = new Environnement(256*16,64*16);
         this.player = new Player(500,460,1,env,60);
         this.env.addentities(player);
+        this.terrain = new vueTerrain(panneauJeu,env);
         this.objet = new VueObjet(paneInv,this.player);
         objet.setSlotsInventairePrimaire(Arrays.asList(
                 slot1, slot2, slot3, slot4, slot5, slot6, slot7
@@ -88,7 +89,13 @@ public class Controleur implements Initializable{
                 slotS1, slotS2, slotS3, slotS4, slotS5, slotS6, slotS7,
                 slotS8, slotS9, slotS10, slotS11, slotS12, slotS13, slotS14
         ));
-        this.terrain = new vueTerrain(panneauJeu,env);
+        this.craft = new VueCraft(craftPane, craftScrolling);
+        craft.ajouteListe(craftList);
+        craftPane.addEventFilter(MouseEvent.MOUSE_PRESSED, event -> {
+            if( event.getTarget() == craftScrolling){
+                event.consume();
+            }
+        });
         KeyPressed keyPressed = new KeyPressed(player, this, objet);
         KeyReleased keyReleased = new KeyReleased(player);
         MouseClick mouseClick = new MouseClick(player);
@@ -157,6 +164,10 @@ public class Controleur implements Initializable{
          for(Entity e :env.entities) {
             e.seDeplace();
         }
+    }
+
+    public Pane getPanneauEntity() {
+        return panneauEntity;
     }
 
     public void afficherCraft(){craftPane.setVisible(true);}

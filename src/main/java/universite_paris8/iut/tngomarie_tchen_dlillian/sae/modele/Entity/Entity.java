@@ -122,6 +122,7 @@ public abstract class Entity {
 	public void deceleration(double d){
 	this.v=this.v*d;
 	}
+
 	public void colision() {
 		int x =Math.toIntExact(Math.round(this.getX()))/16;
 		int y =Math.toIntExact(Math.round(this.getY()))/16;
