@@ -52,9 +52,8 @@ public class KeyPressed implements EventHandler<KeyEvent>{
                 vueObjet.getFullImage();
                 break;
             case N:
-                player.getInventaire().ajoutObjet(new Arc());
-
                 player.getInventaire().ajoutObjet(new Epee(0,20,50,"bois"));
+                player.getInventaire().ajoutObjet(new Arc());
                 System.out.println("keypresed objet");
                 break;
             case B:

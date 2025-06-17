@@ -98,7 +98,12 @@ public abstract class Entity {
 		return this.pv>0;
 	}
 	public void meurt(){
-		this.pv=0;
+		if(this instanceof Player){
+			System.out.println("mort");
+		}
+		else{
+			this.env.entities.remove(this);
+		}
 	}
 
 

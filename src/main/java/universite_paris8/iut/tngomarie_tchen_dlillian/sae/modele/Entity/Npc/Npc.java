@@ -32,8 +32,8 @@ public class Npc extends Entity {
         int tailleTuile = 32; // Taille d'un bloc
 
         // Limite horizontale de la zone de déplacement (en pixels)
-        double minX = (co - 50) * tailleTuile; // Limite gauche (50 blocs
-        double maxX = (co + 50) * tailleTuile; // Limite droite (50 blocs
+        double minX = (co - 20) * tailleTuile; // Limite gauche (50 blocs
+        double maxX = (co + 20) * tailleTuile; // Limite droite (50 blocs
 
         // Si trop à gauche, on déplace vers la droite pour rester dans la zone
         if (getX() < minX) {
@@ -45,7 +45,8 @@ public class Npc extends Entity {
             setX(getX() + getV() - 0.5);
             return;
         }
-
+        //si a coter on suit le joueur
+        else if (getX()- joueur.getX() < 15 || getX()- joueur.getX() > -15){
         // Coordonnées du NPC dans la grille (en cases)
         int npcX = (int) (getX() / tailleTuile);
         int npcY = (int) (getY() / tailleTuile);
@@ -83,19 +84,21 @@ public class Npc extends Entity {
                 int ny = actuel[1] + dir[1]; // Coordonnée Y voisine
 
                 // limite du BFS pourpas sortir de la zone
-                if (nx < (co - 50) || nx > (co + 50)) continue;
+                if (nx < (co - 20) || nx > (co + 20)) {
 
-                // Vérifie que la case voisine rempli condition pour marcher
-                if (nx >= 0 && ny >= 0 && nx < largeur && ny < hauteur && env.isWalkable(nx, ny) && distance[ny][nx] == -1) {
-                    distance[ny][nx] = distance[actuel[1]][actuel[0]] + 1; // Met à jour la distance
-                    file.add(new int[]{nx, ny}); // Ajoute la case à la file pour apres
+
+                    // Vérifie que la case voisine rempli condition pour marcher
+                    if (nx >= 0 && ny >= 0 && nx < largeur && ny < hauteur && env.isWalkable(nx, ny) && distance[ny][nx] == -1) {
+                        distance[ny][nx] = distance[actuel[1]][actuel[0]] + 1; // Met à jour la distance
+                        file.add(new int[]{nx, ny}); // Ajoute la case à la file pour apres
+                    }
                 }
             }
         }
 
         //on cherche la meilleure casepour laquelle se déplacer pour se rapprocher du joueur
-        int cibleX = npcX; // Coordonnée X de la case cible (par défaut la case actuelle)
-        int cibleY = npcY; // Coordonnée Y de la case cible (par défaut la case actuelle)
+        int cibleX = npcX; // Coordonnée X de la case cible
+        int cibleY = npcY; // Coordonnée Y de la case cible
         int minDist = distance[npcY][npcX]; // Distance actuelle du NPC au joueur
 
         for (int[] dir : directions) {
@@ -103,28 +106,28 @@ public class Npc extends Entity {
             int ny = npcY + dir[1];
 
             // On choisit la case voisine avec la plus petite distance (plus proche du joueur)
-            if (nx >= 0 && ny >= 0 && nx < largeur && ny < hauteur &&
-                    distance[ny][nx] != -1 && distance[ny][nx] < minDist) {
+            if (nx >= 0 && ny >= 0 && nx < largeur && ny < hauteur && distance[ny][nx] != -1 && distance[ny][nx] < minDist) {
                 cibleX = nx;
                 cibleY = ny;
                 minDist = distance[ny][nx];
             }
         }
 
-        // Calcul de la position exacte (en pixels) de la case cible
+        // Calcul de la position de la case cible
         double px = cibleX * tailleTuile + tailleTuile / 2.0;
         double py = cibleY * tailleTuile + tailleTuile / 2.0;
 
-        // Calcul du vecteur déplacement du NPC vers cette case
+        // Calcul du vecteur déplacement
         double dx = px - getX();
         double dy = py - getY();
         double dist = Math.sqrt(dx * dx + dy * dy);
 
-        // Si la distance est significative, on avance vers la case cible à la vitesse du NPC
+        //on avance vers la case cible à la vitesse du NPC
         if (dist > 0.5) {
             double v = getV(); // Vitesse du NPC
             setX(getX() + (dx / dist) * v);
             setY(getY() + (dy / dist) * v);
+        }
         }
     }
 
