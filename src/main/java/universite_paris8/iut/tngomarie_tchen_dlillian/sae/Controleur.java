@@ -69,7 +69,7 @@ public class Controleur implements Initializable{
     @FXML private Pane slotS12;
     @FXML private Pane slotS13;
     @FXML private Pane slotS14;
-
+    @FXML private Pane panneauInterface;
     @FXML private ScrollPane craftPane;
     @FXML private AnchorPane craftScrolling;
     @FXML private VBox craftList;
@@ -102,9 +102,10 @@ public class Controleur implements Initializable{
         panneauEntity.addEventHandler(KeyEvent.KEY_PRESSED, keyPressed);
         panneauEntity.addEventHandler(KeyEvent.KEY_RELEASED, keyReleased);
         panneauEntity.setOnMouseClicked(mouseClick);
-        panneauEntity.translateXProperty().bind(this.player.getXProperty().multiply(-1).add((Param.width*Param.scale)/2));
-        panneauEntity.translateYProperty().bind(this.player.getYProperty().multiply(-1).add((Param.height*Param.scale)/2));
-
+        panneauEntity.translateXProperty().bind(this.player.getXProperty().multiply(-1).add(Param.scaledWidth/2));
+        panneauEntity.translateYProperty().bind(this.player.getYProperty().multiply(-1).add(Param.scaledHeight/2));
+        panneauInterface.translateXProperty().bind(this.player.getXProperty().multiply(1).add(Param.scaledWidth/4));
+        panneauInterface.translateYProperty().bind(this.player.getYProperty().multiply(1).add(-Param.scaledHeight/4));
 
 
 
