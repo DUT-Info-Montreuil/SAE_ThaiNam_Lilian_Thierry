@@ -6,6 +6,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.TilePane;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.Param;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Environnement;
 
 import javax.sound.sampled.Control;
@@ -39,7 +40,7 @@ public class vueTerrain {
 
     public void dessinerTerrain (int[][] terrain) {
 
-        decors.setPrefSize(4096, 1024); // largeur * taille tuile hauteur * nb tuiles pour pas que la fenetre quand on l'agrandit change
+        decors.setPrefSize(Param.scaledWidth, Param.scaledHeight); // largeur * taille tuile hauteur * nb tuiles pour pas que la fenetre quand on l'agrandit change
 // largeur * taille tuile hauteur * nb tuiles pour pas que la fenetre quand on l'agrandit change
         decors.getChildren().clear(); // on clean le tilePane si jamais
 
@@ -59,11 +60,9 @@ public class vueTerrain {
         }
     }
 
-//    public void changementTuileMinage(int numeroTuile , Environnement env, int blocChanger) {
-//        if(env.getMap1()[numeroTuile] == blocChanger) {
-//            ImageView img = new ImageView();
-//            img.setImage(imageTerrain[blocChanger]); // utilisation des images qui sont dans le tableua créer une seul fois plus haut
-//            decors.getChildren().set(numeroTuile, img); // on change l'image a la position souhaiter par la nouvelle
-//        }
-//    }
+    public void changementTuileMinage(int x, int y , int blocChanger) {
+            ImageView img = new ImageView();
+           img.setImage(imageTerrain[blocChanger]); // utilisation des images qui sont dans le tableua créer une seul fois plus haut
+            decors.getChildren().set((y*Param.width)+x, img); // on change l'image a la position souhaiter par la nouvelle
+    }
 }

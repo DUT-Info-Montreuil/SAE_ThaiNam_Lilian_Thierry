@@ -15,6 +15,7 @@ public class MouseClick implements EventHandler<MouseEvent> {
     @Override
     public void handle(MouseEvent mouseEvent) {
         double sourisX = mouseEvent.getX();
+        double sourisY = mouseEvent.getY();
         double joueurX = player.getX();
 
         if (mouseEvent.getButton() == MouseButton.PRIMARY) {
@@ -23,7 +24,7 @@ public class MouseClick implements EventHandler<MouseEvent> {
             } else {
                 player.setDirection(-1);
             }
-            player.agit();
+            player.agit(sourisX,sourisY);
             System.out.println("click gauche");
             System.out.println("Joueur X : " + joueurX + ", Souris X : " + sourisX);
         } else if (mouseEvent.getButton() == MouseButton.SECONDARY) {

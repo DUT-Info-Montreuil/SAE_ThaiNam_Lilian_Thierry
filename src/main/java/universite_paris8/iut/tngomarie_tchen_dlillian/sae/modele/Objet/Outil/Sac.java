@@ -20,6 +20,6 @@ public class Sac extends Outil {
     }
 
     @Override
-    public void agit(Player player) {
+    public void agit(Player player,double SourisX, double SourisY) {
     }
 }

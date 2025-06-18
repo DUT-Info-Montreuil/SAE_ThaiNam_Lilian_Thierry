@@ -18,7 +18,7 @@ public class FlecheObjet extends Ingredient {
     }
 
     @Override
-    public void agit(Player player) {
+    public void agit(Player player,double SourisX, double SourisY) {
 
     }
 

@@ -3,6 +3,7 @@ package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.Param;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Entity;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Block.Block;
 
@@ -49,6 +50,9 @@ public class Environnement {
 	}
 	public Block getBlock(int id) {
 		return listeBlock.get(id);
+	}
+	public void changeBlock(int x, int y, int block) {
+		this.map1[x][y]=block;
 	}
 
 	public void addentities(Entity e){

@@ -114,7 +114,7 @@ public class Inventaire {
 //    public void setCraftSac(){this.craftSac=true;}
 //    public void setCraftFils(){this.craftFils=true;}
 
-    public void affiche(){System.out.println(this.Inventaire);}
+    public void affiche(){/*System.out.println(this.Inventaire);*/}
 }
 
 

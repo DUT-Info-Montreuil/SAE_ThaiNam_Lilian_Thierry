@@ -19,7 +19,7 @@ public class Arc extends Outil {
         return imageView;
     }
 
-    public void agit(Player player){
+    public void agit(Player player,double SourisX, double SourisY){
         for(int i = 0 ; i < player.getInventaire().getInventaire().size(); i++) {
             if (player.getInventaire().getInventaire().get(i) instanceof FlecheObjet && ((FlecheObjet) player.getInventaire().getInventaire().get(i)).getNbObjet() >= 1) {
                 Fleche f = new Fleche(player.getX(), player.getY(), (int) (20 * player.getDirection()), player.getEnv(), 1,player.getDirection());

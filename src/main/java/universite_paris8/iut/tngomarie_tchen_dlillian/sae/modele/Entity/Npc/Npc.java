@@ -43,6 +43,6 @@ public class Npc extends Entity {
     }
 
     @Override
-    public void agit() {
+    public void agit(double souriX, double souriY) {
     }
 }

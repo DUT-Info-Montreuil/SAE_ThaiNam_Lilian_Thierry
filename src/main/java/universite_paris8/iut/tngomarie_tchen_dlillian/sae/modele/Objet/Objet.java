@@ -28,5 +28,5 @@ public abstract class Objet{
 
     abstract public ImageView getimage();
 
-    abstract public void agit(Player player);
+    abstract public void agit(Player player,double sourisX,double sourisY);
 }

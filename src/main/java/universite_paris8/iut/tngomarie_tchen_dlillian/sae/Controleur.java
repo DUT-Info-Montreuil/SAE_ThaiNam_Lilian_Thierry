@@ -106,12 +106,14 @@ public class Controleur implements Initializable{
         KeyPressed keyPressed = new KeyPressed(player, this, objet);
         KeyReleased keyReleased = new KeyReleased(player);
         MouseClick mouseClick = new MouseClick(player);
+        pvBar.progressProperty().bind(this.player.getpvPropProperty());
         panneauEntity.addEventHandler(KeyEvent.KEY_PRESSED, keyPressed);
         panneauEntity.addEventHandler(KeyEvent.KEY_RELEASED, keyReleased);
         panneauEntity.setOnMouseClicked(mouseClick);
-        panneauEntity.translateXProperty().bind(this.player.getXProperty().multiply(-1).add((Param.width*Param.scale)/4));
-        panneauEntity.translateYProperty().bind(this.player.getYProperty().multiply(-1).add((Param.height*Param.scale)/2));
-
+        panneauEntity.translateXProperty().bind(this.player.getXProperty().multiply(-1).add(Param.scaledWidth/4));
+        panneauEntity.translateYProperty().bind(this.player.getYProperty().multiply(-1).add(Param.scaledHeight/2));
+        panneauInterface.translateXProperty().bind(this.player.getXProperty().multiply(1).add(Param.scaledWidth/4));
+        panneauInterface.translateYProperty().bind(this.player.getYProperty().multiply(1).add(-Param.scaledHeight/4));
 
 
 
@@ -126,17 +128,18 @@ public class Controleur implements Initializable{
 
     }
 
-    private void creerSprite() {
+    private void gererSprite() {
         for(Entity e : env.entities) {
             //System.out.println("ajouter sprite");
             Circle r;
+            if(e.getPv()>0){
             if (!e.getasprite()){
                 if(e instanceof Player){
                     r =new Circle(4, Color.RED);
                     e.gotasprite();
                     System.out.println("player");
                 }else
-                    r =new Circle(3,Color.WHITE);
+                    r =new Circle(3,Color.BLACK);
                 e.gotasprite();
                 System.out.println(e.getId());
                 // ils ont le meme identifiant
@@ -148,6 +151,8 @@ public class Controleur implements Initializable{
                 r.translateXProperty().bind(e.getXProperty());
                 r.translateYProperty().bind(e.getYProperty());
             }
+        }//else
+            //for(int i = 0; panneauEntity.getChildren().get(i).getId() ==e.getId(); i++){panneauEntity.getChildren().get(i).remove(i)}
         }
     }
     private void initAnimation() {
@@ -166,7 +171,8 @@ public class Controleur implements Initializable{
         gameLoop.getKeyFrames().add(kf);
     }
     public void update() {
-        creerSprite();
+        //System.out.println(pvBar.progressProperty());
+        gererSprite();
         this.player.getInventaire().affiche();
          for(Entity e :env.entities) {
             e.seDeplace();
