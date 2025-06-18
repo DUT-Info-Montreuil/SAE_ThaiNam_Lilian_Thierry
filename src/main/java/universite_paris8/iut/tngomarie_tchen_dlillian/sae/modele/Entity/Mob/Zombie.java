@@ -13,15 +13,16 @@ public class Zombie extends Mobs{
     }
 
     @Override
-    public void agit() {}
+    public void agit(double SourisX, double SourisY) {}
+
 
     public ImageView getimage(){
         Image image = new Image("zombie.png");
         ImageView imageView = new ImageView(image);
         imageView.setFitHeight(30);
         imageView.setFitWidth(30);
-        imageView.setLayoutY(-30);
+        imageView.setLayoutY(-29);
+        imageView.setLayoutX(-19);
         return imageView;
     }
-
 }

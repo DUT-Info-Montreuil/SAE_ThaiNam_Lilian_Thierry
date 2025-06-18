@@ -105,7 +105,7 @@ public class Player extends Entity {
         ImageView imageView = new ImageView(image);
         imageView.setFitHeight(50);
         imageView.setFitWidth(50);
-        imageView.setLayoutY(-317);
+        imageView.setLayoutY(-37);
         imageView.setLayoutX(-25);
         return imageView;
     }

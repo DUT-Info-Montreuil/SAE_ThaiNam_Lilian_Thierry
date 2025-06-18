@@ -17,10 +17,10 @@ public abstract class Mobs extends Entity {
 
 
     @Override
-    public void agit(){
+    public void agit(double sourisX, double sourisY){
         for(Entity mob : this.env.getEntities()){
             if(mob instanceof Player){
-                if(mob.getX()-this.getX() < 5 && mob.getY()-this.getY() < 5 || mob.getX()-this.getX() < -5 && mob.getY()-this.getY() < 5){
+                if(mob.getX()-this.getX() < 10 && mob.getY()-this.getY() < 5 && mob.getY()-this.getY() < -5|| mob.getX()-this.getX() < -10 && mob.getY()-this.getY() < 5 && mob.getY()-this.getY() < -5){
                     mob.decrementerPv(this.degat);
                 }
             }

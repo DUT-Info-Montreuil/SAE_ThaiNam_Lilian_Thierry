@@ -13,6 +13,7 @@ import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.ListObjet
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Arc;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Epee.Epee;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.FlecheObjet;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Pioche.PiocheEnBois;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.vue.VueObjet;
 
 
@@ -51,14 +52,13 @@ public class KeyPressed implements EventHandler<KeyEvent>{
                     c.afficherCraft();
                 }
                 break;
-            case R:
-                vueObjet.getFullImage();
-                break;
             case N:
                 player.getInventaire().ajoutObjet(new Arc());
                 player.getInventaire().ajoutObjet(new Pierre(1));
                 player.getInventaire().ajoutObjet(new Epee(0,20,50,"bois"));
+                player.getInventaire().ajoutObjet(new PiocheEnBois());
                 System.out.println("keypresed objet");
+                vueObjet.getFullImage();
                 break;
             case B:
                 boolean fleche=false;

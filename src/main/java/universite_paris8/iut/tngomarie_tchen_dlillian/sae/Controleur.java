@@ -6,10 +6,11 @@ import javafx.fxml.FXML;
 
 import javafx.fxml.Initializable;
 
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 
-import javafx.scene.input.MouseEvent;
+
 import javafx.scene.layout.*;
 import javafx.scene.control.ScrollPane;
 
@@ -22,10 +23,10 @@ import universite_paris8.iut.tngomarie_tchen_dlillian.sae.listeneur.KeyReleased;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.listeneur.MouseClick;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Entity;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Mob.Zombie;
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Npc.Npc;
+
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Player;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Interface.ListRecipe;
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Inventaire;
+
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.ListObjet;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Environnement;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.vueTerrain;
@@ -34,7 +35,6 @@ import universite_paris8.iut.tngomarie_tchen_dlillian.sae.vue.VueObjet;
 
 import java.net.URL;
 import java.util.Arrays;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class Controleur implements Initializable{
@@ -76,23 +76,24 @@ public class Controleur implements Initializable{
     @FXML private Pane slotS14;
 
     @FXML private ScrollPane craftPane;
-
+    @FXML private ProgressBar pvBar;
     @FXML private AnchorPane craftScrolling;
     @FXML private VBox craftList;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        this.env = new Environnement(256*16,64*16);
-        this.player = new Player(220,100,1,env,60);
-        Zombie test = new Zombie(50,env);
-        this.env.entities.add(test);
+
+
 
         // mettre cela pour que les acteurs ne sortent pas visuellement du panneau de jeu en bas et a sroite...
         this.env = new Environnement(Param.width*Param.scale,Param.height*Param.scale);
-        this.player = new Player(500,460,1,env,60);
-        this.env.addentities(player);
         this.terrain = new vueTerrain(panneauJeu,env);
+        this.player = new Player(500,460,1,env,this.terrain,100);
+        this.env.addentities(player);
+        Zombie test = new Zombie(50,env);
+        this.env.entities.add(test);
+
         this.objet = new VueObjet(paneInv,this.player);
         objet.setSlotsInventairePrimaire(Arrays.asList(
                 slot1, slot2, slot3, slot4, slot5, slot6, slot7
@@ -121,8 +122,6 @@ public class Controleur implements Initializable{
         panneauEntity.setOnMouseClicked(mouseClick);
         panneauEntity.translateXProperty().bind(this.player.getXProperty().multiply(-1).add(Param.scaledWidth/4));
         panneauEntity.translateYProperty().bind(this.player.getYProperty().multiply(-1).add(Param.scaledHeight/2));
-        panneauInterface.translateXProperty().bind(this.player.getXProperty().multiply(1).add(Param.scaledWidth/4));
-        panneauInterface.translateYProperty().bind(this.player.getYProperty().multiply(1).add(-Param.scaledHeight/4));
 
 
 
@@ -137,20 +136,14 @@ public class Controleur implements Initializable{
 
     }
 
-    private void creerSprite() {
+    private void gererSprite() {
         for(Entity e : env.entities) {
-            Circle r;
+            Circle r = null;
+            if(e.getPv()>0){
             if (!e.getasprite()){
                 if (e instanceof Player) {
-                    Circle r = new Circle(4, Color.RED);
-                    r.setId(e.getId());
-                    r.setTranslateX(e.getX());
-                    r.setTranslateY(e.getY());
-                    panneauEntity.getChildren().add(r);
-                    r.translateXProperty().bind(e.getXProperty());
-                    r.translateYProperty().bind(e.getYProperty());
+
                     e.gotasprite();
-                    System.out.println("player");
 
                     Player p = (Player) e;
                     ImageView joueurImage = p.getimage();
@@ -175,8 +168,11 @@ public class Controleur implements Initializable{
                     zombieImage.translateYProperty().bind(z.getYProperty());
 
                     z.gotasprite();
-                }else
-                    r =new Circle(3,Color.BLACK);
+                }
+                else
+
+                r =new Circle(3,Color.BLACK);
+                r.setId(e.getId());
                 e.gotasprite();
                 System.out.println(e.getId());
                 // ils ont le meme identifiant
@@ -188,6 +184,7 @@ public class Controleur implements Initializable{
                 r.translateXProperty().bind(e.getXProperty());
                 r.translateYProperty().bind(e.getYProperty());
             }
+            }else{panneauEntity.getChildren().remove(e);}
         }
     }
     private void initAnimation() {

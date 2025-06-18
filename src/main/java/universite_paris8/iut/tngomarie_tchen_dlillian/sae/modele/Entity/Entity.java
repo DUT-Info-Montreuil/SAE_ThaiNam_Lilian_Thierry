@@ -144,7 +144,7 @@ public abstract class Entity {
 		if(!this.env.getBlock(this.env.getMap1()[futureY][x]).isTraversable()){
 			this.gravite=0;
 		}
-		System.out.println(x+":"+y);
+		//System.out.println(x+":"+y);
 	}
 
 	public abstract void seDeplace();

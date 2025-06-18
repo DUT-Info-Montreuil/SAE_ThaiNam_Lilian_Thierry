@@ -2,13 +2,10 @@
 
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.geometry.*?>
-<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane focusTraversable="true" styleClass="background" stylesheets="@dark.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.tngomarie_tchen_dlillian.sae.Controleur">
+<StackPane focusTraversable="true" styleClass="background" stylesheets="@dark.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.tngomarie_tchen_dlillian.sae.Controleur">
     <children>
         <Pane fx:id="background" style="-fx-background-color: #b8fbff;" />
       <Pane fx:id="panneauEntity" focusTraversable="true" prefHeight="1024.0" prefWidth="4096.0">
@@ -16,7 +13,20 @@
               <TilePane fx:id="panneauJeu" focusTraversable="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="4096.0"> </TilePane>
          </children>
       </Pane>
-        <GridPane fx:id="paneInv" focusTraversable="false" gridLinesVisible="true" layoutX="50.0" maxHeight="200.0" maxWidth="550.0" prefHeight="60.0" prefWidth="500.0" scaleShape="false" style="-fx-border-color: white;" visible="false" StackPane.alignment="TOP_LEFT">
+      <ScrollPane fx:id="craftPane" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" opacity="0.8" prefHeight="300.0" prefWidth="200.0" visible="false" StackPane.alignment="TOP_RIGHT">
+        <content>
+          <AnchorPane fx:id="craftScrolling" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="900.0" prefWidth="182.0">
+               <children>
+                  <VBox fx:id="craftList" disable="false" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="900.0" prefWidth="182.0" spacing="10" />
+               </children>
+            </AnchorPane>
+        </content>
+         <StackPane.margin>
+            <Insets bottom="50.0" left="50.0" right="25.0" top="40.0" />
+         </StackPane.margin>
+      </ScrollPane>
+      <ProgressBar fx:id="pvBar" nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="300.0" progress="1.0" StackPane.alignment="TOP_RIGHT" />
+        <GridPane fx:id="paneInv" focusTraversable="false" gridLinesVisible="true" maxHeight="200.0" maxWidth="550.0" prefHeight="60.0" prefWidth="500.0" scaleShape="false" style="-fx-border-color: white;" visible="false" StackPane.alignment="TOP_LEFT">
             <children>
 
                 <Pane fx:id="slot1" focusTraversable="false" prefWidth="100" style="-fx-background-color: gray;" GridPane.columnIndex="0" GridPane.rowIndex="0" />
@@ -59,17 +69,5 @@
                 <RowConstraints maxHeight="100.0" minHeight="0.0" prefHeight="50.0" vgrow="SOMETIMES" />
             </rowConstraints>
         </GridPane>
-      <ScrollPane fx:id="craftPane" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" opacity="0.8" prefHeight="300.0" prefWidth="200.0" visible="false" StackPane.alignment="TOP_RIGHT">
-        <content>
-          <AnchorPane fx:id="craftScrolling" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="900.0" prefWidth="182.0">
-               <children>
-                  <VBox fx:id="craftList" disable="false" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="900.0" prefWidth="182.0" spacing="10" />
-               </children></AnchorPane>
-        </content>
-         <StackPane.margin>
-            <Insets top="30.0" />
-         </StackPane.margin>
-      </ScrollPane>
-      <ProgressBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="300.0" progress="1.0" StackPane.alignment="TOP_RIGHT" />
     </children>
 </StackPane>
