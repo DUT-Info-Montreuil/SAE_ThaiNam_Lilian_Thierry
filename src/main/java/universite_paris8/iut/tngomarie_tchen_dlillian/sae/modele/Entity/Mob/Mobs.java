@@ -5,8 +5,6 @@ import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Player;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Environnement;
 
 public abstract class Mobs extends Entity {
-    private int limiteZone;
-    private int detectionJ;
     private double co;
     private int degat;
 
@@ -16,9 +14,7 @@ public abstract class Mobs extends Entity {
         this.degat = degat;
     }
 
-    public int getDegat(){
-        return this.degat;
-    }
+
 
     @Override
     public void agit(){
@@ -67,7 +63,7 @@ public abstract class Mobs extends Entity {
         }
 
         // Si le joueur est à portée horizontale
-        if (Math.abs(getX() - joueur.getX()) < detectionJ * tailleTuile) {
+        if (Math.abs(getX() - joueur.getX()) < 15 * tailleTuile) {
             // Coordonnées du mob dans la grille
             int mobX = (int) (getX() / tailleTuile);
             int mobY = (int) (getY() / tailleTuile);

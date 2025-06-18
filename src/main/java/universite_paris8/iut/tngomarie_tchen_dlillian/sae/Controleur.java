@@ -81,6 +81,7 @@ public class Controleur implements Initializable{
         this.player = new Player(220,100,1,env,60);
         Zombie test = new Zombie(50,env);
         this.env.entities.add(test);
+
         // mettre cela pour que les acteurs ne sortent pas visuellement du panneau de jeu en bas et a sroite...
         this.objet = new VueObjet(paneInv,this.player);
         objet.setSlotsInventairePrimaire(Arrays.asList(
@@ -110,26 +111,53 @@ public class Controleur implements Initializable{
     }
 
     private void creerSprite() {
-        for(Entity e : env.entities) {
-            //System.out.println("ajouter sprite");
-            Circle r;
-            if (!e.getasprite()){
-                if(e instanceof Player){
-                    r =new Circle(4, Color.RED);
+        for (Entity e : env.entities) {
+            if (!e.getasprite()) {
+                if (e instanceof Player) {
+                    Circle r = new Circle(4, Color.RED);
+                    r.setId(e.getId());
+                    r.setTranslateX(e.getX());
+                    r.setTranslateY(e.getY());
+                    panneauEntity.getChildren().add(r);
+                    r.translateXProperty().bind(e.getXProperty());
+                    r.translateYProperty().bind(e.getYProperty());
                     e.gotasprite();
                     System.out.println("player");
-                }else
-                    r =new Circle(3,Color.WHITE);
-                e.gotasprite();
-                System.out.println(e.getId());
-                // ils ont le meme identifiant
 
-                r.setId(e.getId());
-                r.setTranslateX(e.getX());
-                r.setTranslateY(e.getY());
-                panneauEntity.getChildren().add(r);
-                r.translateXProperty().bind(e.getXProperty());
-                r.translateYProperty().bind(e.getYProperty());
+                    Player p = (Player) e;
+                    ImageView joueurImage = p.getimage();
+                    joueurImage.setId(p.getId());
+                    joueurImage.setTranslateX(p.getX());
+                    joueurImage.setTranslateY(p.getY());
+                    panneauEntity.getChildren().add(joueurImage);
+
+                    joueurImage.translateXProperty().bind(p.getXProperty());
+                    joueurImage.translateYProperty().bind(p.getYProperty());
+
+                    p.gotasprite();
+                } else if (e instanceof Zombie) {
+                    Zombie z = (Zombie) e;
+                    ImageView zombieImage = z.getimage();
+                    zombieImage.setId(z.getId());
+                    zombieImage.setTranslateX(z.getX());
+                    zombieImage.setTranslateY(z.getY());
+                    panneauEntity.getChildren().add(zombieImage);
+
+                    zombieImage.translateXProperty().bind(z.getXProperty());
+                    zombieImage.translateYProperty().bind(z.getYProperty());
+
+                    z.gotasprite();
+                } else {
+                    Circle r = new Circle(3, Color.WHITE);
+                    r.setId(e.getId());
+                    r.setTranslateX(e.getX());
+                    r.setTranslateY(e.getY());
+                    panneauEntity.getChildren().add(r);
+                    r.translateXProperty().bind(e.getXProperty());
+                    r.translateYProperty().bind(e.getYProperty());
+                    e.gotasprite();
+                    System.out.println("autre entité");
+                }
             }
         }
     }
@@ -153,8 +181,8 @@ public class Controleur implements Initializable{
         this.player.getInventaire().affiche();
          for(Entity e :env.entities) {
              e.seDeplace();
-             if(e instanceof Player){}
-             else {e.agit();}
+             //if(e instanceof Player){}
+             //else {e.agit();}
         }
     }
 

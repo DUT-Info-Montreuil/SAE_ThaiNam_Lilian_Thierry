@@ -1,5 +1,7 @@
 package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Arc;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Epee.Epee;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Inventaire;
@@ -80,4 +82,14 @@ public class Player extends Entity {
     }
 
     public void saute() { this.setGravité(-3);}
+
+    public ImageView getimage(){
+        Image image = new Image("joueur.png");
+        ImageView imageView = new ImageView(image);
+        imageView.setFitHeight(50);
+        imageView.setFitWidth(50);
+        imageView.setLayoutY(-317);
+        imageView.setLayoutX(-25);
+        return imageView;
+    }
  }
