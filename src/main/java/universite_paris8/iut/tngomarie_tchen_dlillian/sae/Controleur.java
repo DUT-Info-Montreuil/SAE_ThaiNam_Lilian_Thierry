@@ -43,6 +43,9 @@ public class Controleur implements Initializable{
     private VueObjet objet;
     private VueCraft craft;
 
+    private ListRecipe listRecipe = new ListRecipe();
+    private ListObjet listObjet = new ListObjet();
+
     @FXML private TilePane panneauJeu;
     @FXML private Pane panneauEntity;
     @FXML private GridPane paneInv;
@@ -89,20 +92,24 @@ public class Controleur implements Initializable{
                 slotS1, slotS2, slotS3, slotS4, slotS5, slotS6, slotS7,
                 slotS8, slotS9, slotS10, slotS11, slotS12, slotS13, slotS14
         ));
-        this.craft = new VueCraft(craftPane, craftScrolling);
-        craft.ajouteListe(craftList);
-        craftPane.addEventFilter(MouseEvent.MOUSE_PRESSED, event -> {
-            if( event.getTarget() == craftScrolling){
-                event.consume();
-            }
+        this.craft = new VueCraft(craftPane, craftScrolling, this);
+        craft.ajoutListe(craftList, listRecipe, listObjet);
+
+        craftScrolling.setOnMouseClicked(e -> {
+            panneauEntity.requestFocus();
         });
+
+        craftPane.setOnKeyPressed(e -> {
+            e.consume();
+        });
+
         KeyPressed keyPressed = new KeyPressed(player, this, objet);
         KeyReleased keyReleased = new KeyReleased(player);
         MouseClick mouseClick = new MouseClick(player);
         panneauEntity.addEventHandler(KeyEvent.KEY_PRESSED, keyPressed);
         panneauEntity.addEventHandler(KeyEvent.KEY_RELEASED, keyReleased);
         panneauEntity.setOnMouseClicked(mouseClick);
-        panneauEntity.translateXProperty().bind(this.player.getXProperty().multiply(-1).add((Param.width*Param.scale)/2));
+        panneauEntity.translateXProperty().bind(this.player.getXProperty().multiply(-1).add((Param.width*Param.scale)/4));
         panneauEntity.translateYProperty().bind(this.player.getYProperty().multiply(-1).add((Param.height*Param.scale)/2));
 
 

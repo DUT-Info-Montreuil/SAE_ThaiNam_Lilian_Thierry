@@ -45,10 +45,8 @@ public class KeyPressed implements EventHandler<KeyEvent>{
                     c.dissimilerCraft();
                 }
                 else{
-
                     vueObjet.afficherInv();
                     c.afficherCraft();
-
                 }
                 Platform.runLater(() -> c.getPanneauEntity().requestFocus() );
                 break;

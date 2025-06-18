@@ -24,7 +24,6 @@ public class Craft {
             }
         }
 
-
     }*/
     private boolean verif(int i) {
         int valid = 0;
