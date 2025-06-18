@@ -1,6 +1,5 @@
 package universite_paris8.iut.tngomarie_tchen_dlillian.sae.listeneur;
 
-import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyEvent;
@@ -10,6 +9,7 @@ import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Player;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Bloc.Pierre;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredient.Baton;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredient.Fils;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.ListObjet;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Arc;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Epee.Epee;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.FlecheObjet;
@@ -20,6 +20,7 @@ public class KeyPressed implements EventHandler<KeyEvent>{
     private Player player;
     private Controleur c;
     private VueObjet vueObjet;
+    private ListObjet listObjet;
     private boolean activerPane = false;
 
     public KeyPressed(Player player, Controleur c, VueObjet vue) {
@@ -46,12 +47,9 @@ public class KeyPressed implements EventHandler<KeyEvent>{
                     c.dissimilerCraft();
                 }
                 else{
-
                     vueObjet.afficherInv();
                     c.afficherCraft();
-
                 }
-                Platform.runLater(() -> c.getPanneauEntity().requestFocus() );
                 break;
             case R:
                 vueObjet.getFullImage();
@@ -114,8 +112,8 @@ public class KeyPressed implements EventHandler<KeyEvent>{
                 break;
 
             case C:
-                this.player.degatjoueur(10);
-                System.out.println("degat au joueur"+this.player.getpvPropProperty()+"::::"+this.player.getPv());
+//                this.player.getInventaire().setCraftArc();
+                System.out.println("setcraftarc");
                 break;
             case V:
 //                this.player.getInventaire().craft();

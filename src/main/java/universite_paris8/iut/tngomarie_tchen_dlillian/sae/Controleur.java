@@ -106,7 +106,7 @@ public class Controleur implements Initializable{
         panneauEntity.addEventHandler(KeyEvent.KEY_PRESSED, keyPressed);
         panneauEntity.addEventHandler(KeyEvent.KEY_RELEASED, keyReleased);
         panneauEntity.setOnMouseClicked(mouseClick);
-        panneauEntity.translateXProperty().bind(this.player.getXProperty().multiply(-1).add(Param.scaledWidth/2));
+        panneauEntity.translateXProperty().bind(this.player.getXProperty().multiply(-1).add(Param.scaledWidth/4));
         panneauEntity.translateYProperty().bind(this.player.getYProperty().multiply(-1).add(Param.scaledHeight/2));
         panneauInterface.translateXProperty().bind(this.player.getXProperty().multiply(1).add(Param.scaledWidth/4));
         panneauInterface.translateYProperty().bind(this.player.getYProperty().multiply(1).add(-Param.scaledHeight/4));
@@ -135,7 +135,7 @@ public class Controleur implements Initializable{
                     e.gotasprite();
                     System.out.println("player");
                 }else
-                    r =new Circle(3,Color.WHITE);
+                    r =new Circle(3,Color.BLACK);
                 e.gotasprite();
                 System.out.println(e.getId());
                 // ils ont le meme identifiant
