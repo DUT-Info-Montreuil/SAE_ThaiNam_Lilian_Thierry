@@ -21,6 +21,8 @@ import universite_paris8.iut.tngomarie_tchen_dlillian.sae.listeneur.KeyPressed;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.listeneur.KeyReleased;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.listeneur.MouseClick;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Entity;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Mob.Zombie;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Npc.Npc;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Player;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Interface.ListRecipe;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Inventaire;
@@ -74,12 +76,19 @@ public class Controleur implements Initializable{
     @FXML private Pane slotS14;
 
     @FXML private ScrollPane craftPane;
+
     @FXML private AnchorPane craftScrolling;
     @FXML private VBox craftList;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        this.env = new Environnement(256*16,64*16);
+        this.player = new Player(220,100,1,env,60);
+        Zombie test = new Zombie(50,env);
+        this.env.entities.add(test);
+
+        // mettre cela pour que les acteurs ne sortent pas visuellement du panneau de jeu en bas et a sroite...
         this.env = new Environnement(Param.width*Param.scale,Param.height*Param.scale);
         this.player = new Player(500,460,1,env,60);
         this.env.addentities(player);
@@ -128,16 +137,44 @@ public class Controleur implements Initializable{
 
     }
 
-    private void gererSprite() {
+    private void creerSprite() {
         for(Entity e : env.entities) {
-            //System.out.println("ajouter sprite");
             Circle r;
-            if(e.getPv()>0){
             if (!e.getasprite()){
-                if(e instanceof Player){
-                    r =new Circle(4, Color.RED);
+                if (e instanceof Player) {
+                    Circle r = new Circle(4, Color.RED);
+                    r.setId(e.getId());
+                    r.setTranslateX(e.getX());
+                    r.setTranslateY(e.getY());
+                    panneauEntity.getChildren().add(r);
+                    r.translateXProperty().bind(e.getXProperty());
+                    r.translateYProperty().bind(e.getYProperty());
                     e.gotasprite();
                     System.out.println("player");
+
+                    Player p = (Player) e;
+                    ImageView joueurImage = p.getimage();
+                    joueurImage.setId(p.getId());
+                    joueurImage.setTranslateX(p.getX());
+                    joueurImage.setTranslateY(p.getY());
+                    panneauEntity.getChildren().add(joueurImage);
+
+                    joueurImage.translateXProperty().bind(p.getXProperty());
+                    joueurImage.translateYProperty().bind(p.getYProperty());
+
+                    p.gotasprite();
+                } else if (e instanceof Zombie) {
+                    Zombie z = (Zombie) e;
+                    ImageView zombieImage = z.getimage();
+                    zombieImage.setId(z.getId());
+                    zombieImage.setTranslateX(z.getX());
+                    zombieImage.setTranslateY(z.getY());
+                    panneauEntity.getChildren().add(zombieImage);
+
+                    zombieImage.translateXProperty().bind(z.getXProperty());
+                    zombieImage.translateYProperty().bind(z.getYProperty());
+
+                    z.gotasprite();
                 }else
                     r =new Circle(3,Color.BLACK);
                 e.gotasprite();
@@ -151,8 +188,6 @@ public class Controleur implements Initializable{
                 r.translateXProperty().bind(e.getXProperty());
                 r.translateYProperty().bind(e.getYProperty());
             }
-        }//else
-            //for(int i = 0; panneauEntity.getChildren().get(i).getId() ==e.getId(); i++){panneauEntity.getChildren().get(i).remove(i)}
         }
     }
     private void initAnimation() {
@@ -185,4 +220,5 @@ public class Controleur implements Initializable{
 
     public void afficherCraft(){craftPane.setVisible(true);}
     public void dissimilerCraft(){craftPane.setVisible(false);}
+
 }

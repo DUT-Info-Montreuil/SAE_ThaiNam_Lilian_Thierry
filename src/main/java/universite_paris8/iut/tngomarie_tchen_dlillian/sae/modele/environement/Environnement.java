@@ -97,5 +97,15 @@ public class Environnement {
 		}
 		return terrain;
 	}
+	// AJOUT : pour savoir si une case est marchable (utile au BFS)
+	public boolean isWalkable(int x, int y) {
+		if (y < 0 || y >= map1.length || x < 0 || x >= map1[0].length) {
+			return false;
+		}
+		int blockId = map1[y][x];
+		Block b = getBlock(blockId);
+		return b != null && b.getName().equals("AIR");// ou !b.isSolide(), selon ta logique
+	}
+
 
 }
