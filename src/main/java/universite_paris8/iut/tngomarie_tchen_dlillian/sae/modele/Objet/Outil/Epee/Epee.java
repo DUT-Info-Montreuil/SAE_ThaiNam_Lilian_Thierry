@@ -29,7 +29,7 @@ public class Epee extends Outil {
     }
 
     @Override
-    public void agit(Player player) {
+    public void agit(Player player ,double SourisX, double SourisY) {
         for(Entity mob : player.getEnv().getEntities()){
             if(mob.getX() - player.getX() < 20 && mob.getY() - player.getX() <20){
                 mob.decrementerPv(this.degat);

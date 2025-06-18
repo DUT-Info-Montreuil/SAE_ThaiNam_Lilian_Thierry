@@ -1,22 +1,38 @@
 package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity;
 
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Arc;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Epee.Epee;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Inventaire;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.FlecheObjet;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Environnement;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.vueTerrain;
 
 public class Player extends Entity {
     private Inventaire inventaire;
+    private vueTerrain vueTerrain;
+    private DoubleProperty pvProp;
     private double direction = 1; // 1 = droite, -1 = gauche
     private boolean Droite = false;
     private boolean Gauche = false;
     private boolean afficherInv;
-    public Player(double x, double y, double v, Environnement env, int pv) {
+    public Player(double x, double y, double v, Environnement env,vueTerrain vue, int pv) {
         super(x, y, v, env, pv);
+        double temp=pv/100;
+        this.pvProp = new SimpleDoubleProperty(temp);
         this.inventaire = new Inventaire();
+        this.vueTerrain = vue;
     }
+    public DoubleProperty getpvPropProperty() {return this.pvProp;}
+    public void degatjoueur(int i){
+        decrementerPv(i);
+        double temp=this.getPv()/100;
+        this.pvProp.setValue(temp);
 
+    }
     @Override
     /**
      *gere la physqiue du joueur
@@ -27,7 +43,6 @@ public class Player extends Entity {
         aDroite();
         aGauche();
         colision();
-        System.out.println(this.getGravite());
         this.setY(getY()+this.getGravite());
         this.setX(getX()+this.getV());
     }
@@ -39,6 +54,7 @@ public class Player extends Entity {
     public Environnement getEnv(){
         return this.env;
     }
+    public vueTerrain getVueTerrain() {return this.vueTerrain;}
 
     public void setDirection(int dir) {
         this.direction = dir;
@@ -50,8 +66,8 @@ public class Player extends Entity {
 
 
     @Override
-    public void agit() {
-        if(this.getInventaire().objetEnMain()!=null){this.getInventaire().objetEnMain().agit(this);}
+    public void agit(double sourisX,double sourisY) {
+        if(this.getInventaire().objetEnMain()!=null){this.getInventaire().objetEnMain().agit(this,sourisX,sourisY);}
     }
 
     public void activeDroite(){

@@ -7,6 +7,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.Controleur;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Player;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Bloc.Pierre;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredient.Baton;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredient.Fils;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Arc;
@@ -57,7 +58,7 @@ public class KeyPressed implements EventHandler<KeyEvent>{
                 break;
             case N:
                 player.getInventaire().ajoutObjet(new Arc());
-
+                player.getInventaire().ajoutObjet(new Pierre(1));
                 player.getInventaire().ajoutObjet(new Epee(0,20,50,"bois"));
                 System.out.println("keypresed objet");
                 break;
@@ -113,8 +114,8 @@ public class KeyPressed implements EventHandler<KeyEvent>{
                 break;
 
             case C:
-//                this.player.getInventaire().setCraftArc();
-                System.out.println("setcraftarc");
+                this.player.degatjoueur(10);
+                System.out.println("degat au joueur"+this.player.getpvPropProperty()+"::::"+this.player.getPv());
                 break;
             case V:
 //                this.player.getInventaire().craft();

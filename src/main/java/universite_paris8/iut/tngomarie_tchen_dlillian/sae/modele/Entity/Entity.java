@@ -70,6 +70,7 @@ public abstract class Entity {
 	public String getId() {
 		return id;
 	}
+	public int getPv() {return pv;}
 	public void decrementerPv(int degat){
 		if(this.pv - degat > 0){
 			this.pv = this.pv-degat;
@@ -130,19 +131,19 @@ public abstract class Entity {
 		int futureY= Math.toIntExact(Math.round(this.getY() + this.getGravite()))/16;
 		if (futureX<1){futureX=1;this.v=0;}
 		if (futureX>255){futureX=255;this.v=0;}
+//		if (futureY>1){futureY=1;this.v=0;}
+//		if (futureY>63){futureY=63;this.v=0;}
 		if(!this.env.getBlock(this.env.getMap1()[y][futureX]).isTraversable()){
 			this.v=0;
 		}
 		if(!this.env.getBlock(this.env.getMap1()[futureY][x]).isTraversable()){
 			this.gravite=0;
 		}
-		System.out.println(x+":"+y);
 	}
-
 	public abstract void seDeplace();
 
 
-    public abstract void agit();
+    public abstract void agit(double SourisX, double SourisY);
 
 	@Override
 	public String toString() {

@@ -62,7 +62,7 @@
                         </AnchorPane>
                     </content>
                   </ScrollPane>
-                  <ProgressBar layoutX="338.0" layoutY="1.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="300.0" progress="1.0" />
+                  <ProgressBar fx:id="pvBar" focusTraversable="false" layoutX="338.0" layoutY="1.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" prefWidth="300.0" progress="1.0" />
                </children>
             </Pane>
               <TilePane fx:id="panneauJeu" focusTraversable="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="4096.0"> </TilePane>

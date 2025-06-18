@@ -19,7 +19,7 @@ public class Fleche extends Entity {
         this.setX(getX()+this.getV());
     }
 
-    public void agit(){
+    public void agit(double SourisX, double SourisY){
 
     }
 

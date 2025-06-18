@@ -29,7 +29,7 @@ public class Ingredient extends Objet {
         return this.nbObjet;
     }
 
-    public void agit(Player player){for(Entity mob : player.getEnv().getEntities()){
+    public void agit(Player player,double SourisX, double SourisY){for(Entity mob : player.getEnv().getEntities()){
         if(mob.getX() - player.getX() < 20 && mob.getY() - player.getX() <20){
             mob.decrementerPv(1);
         }

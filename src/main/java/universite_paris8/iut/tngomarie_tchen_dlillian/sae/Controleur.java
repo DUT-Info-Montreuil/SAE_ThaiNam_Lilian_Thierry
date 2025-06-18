@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 
 import javafx.fxml.Initializable;
 
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 
@@ -73,14 +74,16 @@ public class Controleur implements Initializable{
     @FXML private ScrollPane craftPane;
     @FXML private AnchorPane craftScrolling;
     @FXML private VBox craftList;
+    @FXML private ProgressBar pvBar;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         this.env = new Environnement(Param.width*Param.scale,Param.height*Param.scale);
-        this.player = new Player(500,460,1,env,60);
-        this.env.addentities(player);
         this.terrain = new vueTerrain(panneauJeu,env);
+        this.player = new Player(500,460,1,env,this.terrain,100);
+        this.env.addentities(player);
+
         this.objet = new VueObjet(paneInv,this.player);
         objet.setSlotsInventairePrimaire(Arrays.asList(
                 slot1, slot2, slot3, slot4, slot5, slot6, slot7
@@ -99,6 +102,7 @@ public class Controleur implements Initializable{
         KeyPressed keyPressed = new KeyPressed(player, this, objet);
         KeyReleased keyReleased = new KeyReleased(player);
         MouseClick mouseClick = new MouseClick(player);
+        pvBar.progressProperty().bind(this.player.getpvPropProperty());
         panneauEntity.addEventHandler(KeyEvent.KEY_PRESSED, keyPressed);
         panneauEntity.addEventHandler(KeyEvent.KEY_RELEASED, keyReleased);
         panneauEntity.setOnMouseClicked(mouseClick);
@@ -120,10 +124,11 @@ public class Controleur implements Initializable{
 
     }
 
-    private void creerSprite() {
+    private void gererSprite() {
         for(Entity e : env.entities) {
             //System.out.println("ajouter sprite");
             Circle r;
+            if(e.getPv()>0){
             if (!e.getasprite()){
                 if(e instanceof Player){
                     r =new Circle(4, Color.RED);
@@ -142,6 +147,8 @@ public class Controleur implements Initializable{
                 r.translateXProperty().bind(e.getXProperty());
                 r.translateYProperty().bind(e.getYProperty());
             }
+        }//else
+            //for(int i = 0; panneauEntity.getChildren().get(i).getId() ==e.getId(); i++){panneauEntity.getChildren().get(i).remove(i)}
         }
     }
     private void initAnimation() {
@@ -160,7 +167,8 @@ public class Controleur implements Initializable{
         gameLoop.getKeyFrames().add(kf);
     }
     public void update() {
-        creerSprite();
+        //System.out.println(pvBar.progressProperty());
+        gererSprite();
         this.player.getInventaire().affiche();
          for(Entity e :env.entities) {
             e.seDeplace();
