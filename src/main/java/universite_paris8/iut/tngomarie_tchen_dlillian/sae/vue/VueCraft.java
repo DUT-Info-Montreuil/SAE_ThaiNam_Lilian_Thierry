@@ -99,4 +99,7 @@ public class VueCraft {
 
     }
 
+    public void afficherCraft(){scrollPane.setVisible(true);}
+    public void dissimilerCraft(){scrollPane.setVisible(false);}
+
 }

@@ -7,18 +7,20 @@ module universite_paris8.iut.tngomarie.loupmouton24 {
 
     opens universite_paris8.iut.tngomarie_tchen_dlillian.sae to javafx.fxml;
     exports universite_paris8.iut.tngomarie_tchen_dlillian.sae;
-    exports universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele;
     opens universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele to javafx.fxml;
-    exports universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity;
+    exports universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele;
     opens universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity to javafx.fxml;
-    exports universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement;
+    exports universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity;
     opens universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement to javafx.fxml;
-    exports universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet;
+    exports universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement;
     opens universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet to javafx.fxml;
-    exports universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil;
+    exports universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet;
     opens universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil to javafx.fxml;
-    exports universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Interface;
+    exports universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil;
     opens universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Interface to javafx.fxml;
-    exports universite_paris8.iut.tngomarie_tchen_dlillian.sae.listeneur;
+    exports universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Interface;
     opens universite_paris8.iut.tngomarie_tchen_dlillian.sae.listeneur to javafx.fxml;
+    exports universite_paris8.iut.tngomarie_tchen_dlillian.sae.listeneur;
+    opens universite_paris8.iut.tngomarie_tchen_dlillian.sae.vue to javafx.fxml;
+    exports universite_paris8.iut.tngomarie_tchen_dlillian.sae.vue;
 }

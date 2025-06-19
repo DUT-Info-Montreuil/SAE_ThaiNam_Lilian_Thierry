@@ -1,16 +1,12 @@
 
-package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele;
+package universite_paris8.iut.tngomarie_tchen_dlillian.sae.vue;
 
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.TilePane;
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.Param;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Param;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Environnement;
-
-import javax.sound.sampled.Control;
-import java.io.IOException;
 
 public class vueTerrain {
     private TilePane decors;

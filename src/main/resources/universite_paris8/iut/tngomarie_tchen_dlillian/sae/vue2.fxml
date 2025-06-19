@@ -69,5 +69,10 @@
                 <RowConstraints maxHeight="100.0" minHeight="0.0" prefHeight="50.0" vgrow="SOMETIMES" />
             </rowConstraints>
         </GridPane>
+      <Pane fx:id="paneMenu" style="-fx-background-color: white;">
+         <children>
+            <Button fx:id="boutonMenu" alignment="CENTER" layoutX="750.0" layoutY="512.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Jouer" />
+         </children>
+      </Pane>
     </children>
 </StackPane>

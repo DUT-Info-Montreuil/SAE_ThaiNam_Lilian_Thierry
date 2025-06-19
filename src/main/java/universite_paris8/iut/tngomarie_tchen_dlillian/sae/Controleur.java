@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 
 import javafx.fxml.Initializable;
 
+import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -28,8 +29,9 @@ import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Player;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Interface.ListRecipe;
 
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.ListObjet;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Param;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Environnement;
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.vueTerrain;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.vue.vueTerrain;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.vue.VueCraft;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.vue.VueObjet;
 
@@ -80,12 +82,14 @@ public class Controleur implements Initializable{
     @FXML private AnchorPane craftScrolling;
     @FXML private VBox craftList;
 
+    @FXML private Pane paneMenu;
+    @FXML private Button boutonMenu;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-
-
-
+        boutonMenu.setOnAction(e -> {
+                    paneMenu.setVisible(false);
+                    boutonMenu.setVisible(false);
         // mettre cela pour que les acteurs ne sortent pas visuellement du panneau de jeu en bas et a sroite...
         this.env = new Environnement(Param.width*Param.scale,Param.height*Param.scale);
         this.terrain = new vueTerrain(panneauJeu,env);
@@ -105,15 +109,15 @@ public class Controleur implements Initializable{
         this.craft = new VueCraft(craftPane, craftScrolling, this);
         craft.ajoutListe(craftList, listRecipe, listObjet);
 
-        craftScrolling.setOnMouseClicked(e -> {
+        craftScrolling.setOnMouseClicked(ev -> {
             panneauEntity.requestFocus();
         });
 
-        craftPane.setOnKeyPressed(e -> {
+        craftPane.setOnKeyPressed(ev -> {
             e.consume();
         });
 
-        KeyPressed keyPressed = new KeyPressed(player, this, objet);
+        KeyPressed keyPressed = new KeyPressed(player, this, objet, craft);
         KeyReleased keyReleased = new KeyReleased(player);
         MouseClick mouseClick = new MouseClick(player);
         pvBar.progressProperty().bind(this.player.getpvPropProperty());
@@ -123,17 +127,10 @@ public class Controleur implements Initializable{
         panneauEntity.translateXProperty().bind(this.player.getXProperty().multiply(-1).add(Param.scaledWidth/4));
         panneauEntity.translateYProperty().bind(this.player.getYProperty().multiply(-1).add(Param.scaledHeight/2));
 
-
-
-
-
-
         // demarre l'animation
         initAnimation();
         gameLoop.play();
-
-
-
+        });
     }
 
     private void gererSprite() {
@@ -215,7 +212,11 @@ public class Controleur implements Initializable{
         return panneauEntity;
     }
 
-    public void afficherCraft(){craftPane.setVisible(true);}
-    public void dissimilerCraft(){craftPane.setVisible(false);}
+    public void lancer(Button button){
+        button.setOnAction(e -> {
+            paneMenu.setVisible(false);
+            boutonMenu.setVisible(false);
+        });
+    }
 
 }

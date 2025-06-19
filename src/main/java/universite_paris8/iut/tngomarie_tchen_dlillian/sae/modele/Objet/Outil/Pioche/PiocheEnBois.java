@@ -1,8 +1,7 @@
 package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Pioche;
 
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.Param;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Param;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Player;
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Epee.Epee;
 
 public class PiocheEnBois extends Pioche {
 

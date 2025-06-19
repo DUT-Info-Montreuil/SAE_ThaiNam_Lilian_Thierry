@@ -14,6 +14,7 @@ import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Arc
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Epee.Epee;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.FlecheObjet;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Pioche.PiocheEnBois;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.vue.VueCraft;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.vue.VueObjet;
 
 
@@ -21,13 +22,15 @@ public class KeyPressed implements EventHandler<KeyEvent>{
     private Player player;
     private Controleur c;
     private VueObjet vueObjet;
+    private VueCraft vueCraft;
     private ListObjet listObjet;
     private boolean activerPane = false;
 
-    public KeyPressed(Player player, Controleur c, VueObjet vue) {
+    public KeyPressed(Player player, Controleur c, VueObjet vueObjet, VueCraft vueCraft) {
         this.player = player;
         this.c = c;
-        this.vueObjet = vue;
+        this.vueObjet = vueObjet;
+        this.vueCraft = vueCraft;
     }
 
     public void handle(KeyEvent event) {
@@ -45,11 +48,11 @@ public class KeyPressed implements EventHandler<KeyEvent>{
                 activerPane = !activerPane;
                 if(!activerPane){
                     vueObjet.dissimilerInv();
-                    c.dissimilerCraft();
+                    vueCraft.dissimilerCraft();
                 }
                 else{
                     vueObjet.afficherInv();
-                    c.afficherCraft();
+                    vueCraft.afficherCraft();
                 }
                 break;
             case N:

@@ -3,15 +3,10 @@ package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Arc;
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Epee.Epee;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Inventaire;
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.FlecheObjet;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Environnement;
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.vueTerrain;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.vue.vueTerrain;
 
 public class Player extends Entity {
     private Inventaire inventaire;

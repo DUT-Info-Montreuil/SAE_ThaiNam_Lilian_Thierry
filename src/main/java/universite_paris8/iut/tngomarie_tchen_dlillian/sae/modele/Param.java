@@ -1,4 +1,4 @@
-package universite_paris8.iut.tngomarie_tchen_dlillian.sae;
+package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele;
 
 public class Param {
     public static int width =256;
