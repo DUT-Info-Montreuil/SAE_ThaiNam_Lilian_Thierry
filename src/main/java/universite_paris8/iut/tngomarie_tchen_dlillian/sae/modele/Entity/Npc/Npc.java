@@ -1,6 +1,7 @@
 package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Npc;
 
 
+import javafx.scene.image.ImageView;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Entity;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Player;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Environnement;
@@ -129,6 +130,11 @@ public class Npc extends Entity {
             setY(getY() + (dy / dist) * v);
         }
         }
+    }
+
+    @Override
+    public ImageView getimage() {
+        return null;
     }
 
     @Override

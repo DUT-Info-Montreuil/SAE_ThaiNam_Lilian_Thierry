@@ -39,8 +39,6 @@ public class ListObjet {
         list.put(12, new EpeeMeteorite());
         list.put(13, new EpeeOr());
         list.put(7, new Plante(1));
-        list.put(8, new Arc());
-        list.put(9, new FlecheObjet(1));
         list.put(10, new EpeeBois());
         list.put(11, new EpeeFer());
         list.put(12, new EpeeMeteorite());

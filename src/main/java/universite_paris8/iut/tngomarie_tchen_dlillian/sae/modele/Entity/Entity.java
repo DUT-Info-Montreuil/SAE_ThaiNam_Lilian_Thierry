@@ -2,6 +2,7 @@ package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.scene.image.ImageView;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Environnement;
 
 
@@ -148,7 +149,7 @@ public abstract class Entity {
 	}
 
 	public abstract void seDeplace();
-
+	public abstract ImageView getimage();
 
     public abstract void agit(double SourisX, double SourisY);
 

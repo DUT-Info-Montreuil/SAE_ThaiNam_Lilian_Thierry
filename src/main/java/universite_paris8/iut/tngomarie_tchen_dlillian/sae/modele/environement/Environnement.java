@@ -42,10 +42,10 @@ public class Environnement {
 	}
 
 	private void creerliste() {
-		listeBlock.put(0,new  Block(true,false,"AIR"));
-		listeBlock.put(1,new Block(false,true,"DIRT"));
-		listeBlock.put(2,new Block(false,true,"STONE"));
-		listeBlock.put(3,new Block(false,true,"GRASS"));
+		listeBlock.put(0,new  Block(true,false,"AIR",0));
+		listeBlock.put(1,new Block(false,true,"DIRT",0));
+		listeBlock.put(2,new Block(false,true,"STONE",2));
+		listeBlock.put(3,new Block(false,true,"GRASS",7));
 	}
 	public Block getBlock(int id) {
 		return listeBlock.get(id);

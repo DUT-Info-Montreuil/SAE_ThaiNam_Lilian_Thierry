@@ -3,9 +3,8 @@ package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Fleche;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.projectile.Fleche;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Player;
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Objet;
 
 public class Arc extends Outil {
 

@@ -1,8 +1,8 @@
-package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity;
+package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.projectile;
 
+import javafx.scene.image.ImageView;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Entity;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Environnement;
-
-import java.util.ArrayList;
 
 public class Fleche extends Entity {
     private double dir;
@@ -17,6 +17,11 @@ public class Fleche extends Entity {
         colision();
         this.setY(getY()+this.getGravite());
         this.setX(getX()+this.getV());
+    }
+
+    @Override
+    public ImageView getimage() {
+        return null;
     }
 
     public void agit(double SourisX, double SourisY){

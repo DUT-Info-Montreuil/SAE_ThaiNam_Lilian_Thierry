@@ -2,8 +2,6 @@ package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Mob;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Entity;
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Player;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Environnement;
 
 public class Zombie extends Mobs{

@@ -31,9 +31,9 @@ import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Interface.ListR
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.ListObjet;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Param;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Environnement;
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.vue.vueTerrain;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.vue.VueCraft;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.vue.VueObjet;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.vue.vueTerrain;
 
 import java.net.URL;
 import java.util.Arrays;
@@ -87,10 +87,10 @@ public class Controleur implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        boutonMenu.setOnAction(e -> {
+        boutonMenu.setOnAction(y -> {
                     paneMenu.setVisible(false);
                     boutonMenu.setVisible(false);
-        // mettre cela pour que les acteurs ne sortent pas visuellement du panneau de jeu en bas et a sroite...
+
         this.env = new Environnement(Param.width*Param.scale,Param.height*Param.scale);
         this.terrain = new vueTerrain(panneauJeu,env);
         this.player = new Player(500,460,1,env,this.terrain,100);
@@ -109,15 +109,15 @@ public class Controleur implements Initializable{
         this.craft = new VueCraft(craftPane, craftScrolling, this);
         craft.ajoutListe(craftList, listRecipe, listObjet);
 
-        craftScrolling.setOnMouseClicked(ev -> {
+        craftScrolling.setOnMouseClicked(e -> {
             panneauEntity.requestFocus();
         });
 
-        craftPane.setOnKeyPressed(ev -> {
+        craftPane.setOnKeyPressed(e -> {
             e.consume();
         });
 
-        KeyPressed keyPressed = new KeyPressed(player, this, objet, craft);
+        KeyPressed keyPressed = new KeyPressed(player, this, objet,craft);
         KeyReleased keyReleased = new KeyReleased(player);
         MouseClick mouseClick = new MouseClick(player);
         pvBar.progressProperty().bind(this.player.getpvPropProperty());
@@ -127,59 +127,45 @@ public class Controleur implements Initializable{
         panneauEntity.translateXProperty().bind(this.player.getXProperty().multiply(-1).add(Param.scaledWidth/4));
         panneauEntity.translateYProperty().bind(this.player.getYProperty().multiply(-1).add(Param.scaledHeight/2));
 
+
+
+
+
+
         // demarre l'animation
         initAnimation();
         gameLoop.play();
-        });
-    }
 
+
+
+    });}
     private void gererSprite() {
         for(Entity e : env.entities) {
-            Circle r = null;
+            ImageView image=null;
             if(e.getPv()>0){
             if (!e.getasprite()){
                 if (e instanceof Player) {
-
+                    image= e.getimage();
                     e.gotasprite();
-
-                    Player p = (Player) e;
-                    ImageView joueurImage = p.getimage();
-                    joueurImage.setId(p.getId());
-                    joueurImage.setTranslateX(p.getX());
-                    joueurImage.setTranslateY(p.getY());
-                    panneauEntity.getChildren().add(joueurImage);
-
-                    joueurImage.translateXProperty().bind(p.getXProperty());
-                    joueurImage.translateYProperty().bind(p.getYProperty());
-
-                    p.gotasprite();
                 } else if (e instanceof Zombie) {
-                    Zombie z = (Zombie) e;
-                    ImageView zombieImage = z.getimage();
-                    zombieImage.setId(z.getId());
-                    zombieImage.setTranslateX(z.getX());
-                    zombieImage.setTranslateY(z.getY());
-                    panneauEntity.getChildren().add(zombieImage);
 
-                    zombieImage.translateXProperty().bind(z.getXProperty());
-                    zombieImage.translateYProperty().bind(z.getYProperty());
-
-                    z.gotasprite();
+                    image = e.getimage();
+                    e.gotasprite();
                 }
                 else
 
-                r =new Circle(3,Color.BLACK);
-                r.setId(e.getId());
+                image = new ImageView("default.png");
+                image.setId(e.getId());
                 e.gotasprite();
                 System.out.println(e.getId());
                 // ils ont le meme identifiant
 
-                r.setId(e.getId());
-                r.setTranslateX(e.getX());
-                r.setTranslateY(e.getY());
-                panneauEntity.getChildren().add(r);
-                r.translateXProperty().bind(e.getXProperty());
-                r.translateYProperty().bind(e.getYProperty());
+                image.setId(e.getId());
+                image.setTranslateX(e.getX());
+                image.setTranslateY(e.getY());
+                panneauEntity.getChildren().add(image);
+                image.translateXProperty().bind(e.getXProperty());
+                image.translateYProperty().bind(e.getYProperty());
             }
             }else{panneauEntity.getChildren().remove(e);}
         }

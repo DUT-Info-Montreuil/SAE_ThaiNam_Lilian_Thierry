@@ -47,21 +47,22 @@ public class Inventaire {
         caseVide++;
     }
 
-    public void ajouterObjet2(Objet objet){
-        for(int i = 0; i < this.Inventaire.size(); i++){
-            if(objet == this.Inventaire.get(i) && !(objet instanceof Outil)){
-                this.Inventaire.get(i).addNb(objet.getNb());
+    public void ajouterObjet2(Objet objet) {
+        if (this.Inventaire.size() > 24) {
+            for (int i = 0; i < this.Inventaire.size(); i++) {
+                if (objet == this.Inventaire.get(i) && !(objet instanceof Outil)) {
+                    this.Inventaire.get(i).addNb(objet.getNb());
+                }
             }
-        }
-        int i = 0;
-        while(this.Inventaire.get(i) != null){
-            if(this.Inventaire.get(i) == null){
-                this.Inventaire.get(i).addNb(objet.getNb());
+            int i = 0;
+            while (this.Inventaire.get(i) != null) {
+                if (this.Inventaire.get(i) == null) {
+                    this.Inventaire.get(i).addNb(objet.getNb());
+                }
+                i++;
             }
-            i++;
         }
     }
-
     public void supprimerObjet(Objet objet){
         this.Inventaire.remove(objet);
     }
