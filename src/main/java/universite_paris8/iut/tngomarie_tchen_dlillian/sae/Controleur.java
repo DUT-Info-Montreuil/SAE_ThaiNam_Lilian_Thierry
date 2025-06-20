@@ -100,7 +100,7 @@ public class Controleur implements Initializable{
         this.player = new Player(500,460,1,env,this.terrain,100);
         this.env.addentities(player);
         Zombie test = new Zombie(50,env);
-        this.env.entities.add(test);
+       this.env.entities.add(test);
             this.craft = new Craft(player.getInventaire());
         this.objet = new VueObjet(paneInv,this.player);
         objet.setSlotsInventairePrimaire(Arrays.asList(
@@ -205,7 +205,7 @@ public class Controleur implements Initializable{
     public void update() {
         //System.out.println(pvBar.progressProperty());
             gererSprite();
-            this.objet.getFullImage();
+
 
         this.player.getInventaire().affiche();
          for(Entity e :env.entities) {

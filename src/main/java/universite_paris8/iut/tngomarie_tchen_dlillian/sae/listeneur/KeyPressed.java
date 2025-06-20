@@ -117,6 +117,7 @@ public class KeyPressed implements EventHandler<KeyEvent>{
                 System.out.println(player.getPv());
                 break;
             case V:
+                this.vueObjet.getFullImage();
 //                this.player.getInventaire().craft();
                 break;
             case NUMPAD1:
