@@ -5,20 +5,20 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Entity;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Block.Block;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Block.ListBlock;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class Environnement {
 
 	private int width,height;
+	private ListBlock list;
 	public ObservableList<Entity> entities;
 	public int[][] map1;
-	public HashMap<Integer, Block> listeBlock;
 
 
 	public Environnement(int width, int height) {
@@ -26,8 +26,7 @@ public class Environnement {
 		this.width = width;
 		this.height = height;
 		this.entities= FXCollections.observableArrayList();
-		this.listeBlock=new HashMap<>();
-		creerliste();
+		this.list = new ListBlock();
 		this.entities.addListener(new ListChangeListener() {
 			@Override
 			public void onChanged(Change change) {
@@ -41,15 +40,6 @@ public class Environnement {
 		}
 	}
 
-	private void creerliste() {
-		listeBlock.put(0,new  Block(true,false,"AIR",0));
-		listeBlock.put(1,new Block(false,true,"DIRT",0));
-		listeBlock.put(2,new Block(false,true,"STONE",2));
-		listeBlock.put(3,new Block(false,true,"GRASS",7));
-	}
-	public Block getBlock(int id) {
-		return listeBlock.get(id);
-	}
 	public void changeBlock(int x, int y, int block) {
 		this.map1[x][y]=block;
 	}
@@ -66,7 +56,7 @@ public class Environnement {
 		return height;
 	}
 	public int[][] getMap1(){return map1;}
-
+	public ListBlock getListB(){return this.list;}
 
 	public boolean dansTerrain(double x, double y){
 		return (0 <= x && x<this.width && 0<=y && y< this.height);
@@ -102,7 +92,7 @@ public class Environnement {
 			return false;
 		}
 		int blockId = map1[y][x];
-		Block b = getBlock(blockId);
+		Block b = this.list.getBlock(blockId);
 		return b != null && b.getName().equals("AIR");// ou !b.isSolide(), selon ta logique
 	}
 

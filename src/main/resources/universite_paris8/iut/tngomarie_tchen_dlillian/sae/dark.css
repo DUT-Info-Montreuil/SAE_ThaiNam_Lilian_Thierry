@@ -1,6 +1,7 @@
-.background {
+/* .background {
     -fx-background-color: #1d1d1d;
-}
+} */
+/* Background désactivé pour permettre le background bleu personnalisé */
 
 .label {
     -fx-font-size: 11pt;

@@ -19,8 +19,6 @@ import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Interface.Recip
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.ListObjet;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Objet;
 
-import java.text.CompactNumberFormat;
-
 public class VueCraft {
 
     private ScrollPane scrollPane;

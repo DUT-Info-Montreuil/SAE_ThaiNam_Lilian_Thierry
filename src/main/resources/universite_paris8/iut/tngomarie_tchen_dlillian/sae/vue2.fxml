@@ -5,14 +5,17 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane focusTraversable="true" styleClass="background" stylesheets="@dark.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.tngomarie_tchen_dlillian.sae.Controleur">
+<StackPane focusTraversable="true" stylesheets="@dark.css" style="-fx-background-color: #b8fbff;" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.tngomarie_tchen_dlillian.sae.Controleur">
     <children>
-        <Pane fx:id="background" style="-fx-background-color: #b8fbff;" />
-      <Pane fx:id="panneauEntity" focusTraversable="true" prefHeight="1024.0" prefWidth="4096.0">
-         <children>
-              <TilePane fx:id="panneauJeu" focusTraversable="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="4096.0"> </TilePane>
-         </children>
-      </Pane>
+      <ScrollPane fx:id="scrollPane" focusTraversable="true" fitToWidth="true" fitToHeight="true" pannable="true" vbarPolicy="NEVER" hbarPolicy="NEVER" style="-fx-background: transparent; -fx-background-color: transparent;">
+         <content>
+            <Pane fx:id="panneauEntity" focusTraversable="true" prefHeight="1024.0" prefWidth="4096.0" style="-fx-background-color: transparent;">
+            <children>
+                 <TilePane fx:id="panneauJeu" focusTraversable="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="4096.0" style="-fx-background-color: transparent;"> </TilePane>
+            </children>
+            </Pane>
+         </content>
+      </ScrollPane>
       <ScrollPane fx:id="craftPane" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" opacity="0.8" prefHeight="300.0" prefWidth="200.0" visible="false" StackPane.alignment="TOP_RIGHT">
         <content>
           <AnchorPane fx:id="craftScrolling" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="900.0" prefWidth="182.0">

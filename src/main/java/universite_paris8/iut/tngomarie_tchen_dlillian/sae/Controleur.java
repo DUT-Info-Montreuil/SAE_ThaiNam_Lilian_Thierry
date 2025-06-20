@@ -15,8 +15,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.control.ScrollPane;
 
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.listeneur.KeyPressed;
@@ -52,6 +50,7 @@ public class Controleur implements Initializable{
 
     @FXML private TilePane panneauJeu;
     @FXML private Pane panneauEntity;
+    @FXML private ScrollPane scrollPane;
     @FXML private GridPane paneInv;
 
     @FXML private Pane slot1;
@@ -112,6 +111,11 @@ public class Controleur implements Initializable{
         craftScrolling.setOnMouseClicked(e -> {
             panneauEntity.requestFocus();
         });
+        
+        // CORRECTION 2: S'assurer que l'inventaire redonne le focus au jeu
+        paneInv.setOnMouseClicked(e -> {
+            panneauEntity.requestFocus();
+        });
 
         craftPane.setOnKeyPressed(e -> {
             e.consume();
@@ -123,14 +127,31 @@ public class Controleur implements Initializable{
         pvBar.progressProperty().bind(this.player.getpvPropProperty());
         panneauEntity.addEventHandler(KeyEvent.KEY_PRESSED, keyPressed);
         panneauEntity.addEventHandler(KeyEvent.KEY_RELEASED, keyReleased);
-        panneauEntity.setOnMouseClicked(mouseClick);
-        panneauEntity.translateXProperty().bind(this.player.getXProperty().multiply(-1).add(Param.scaledWidth/4));
-        panneauEntity.translateYProperty().bind(this.player.getYProperty().multiply(-1).add(Param.scaledHeight/2));
+        // MouseClick géré plus bas avec le focus
+        
+        // Utiliser les dimensions de l'écran pour centrer la vue
+        double centerX = Param.screenWidth / 2.0;
+        double centerY = Param.screenHeight / 2.0;
+        
+        panneauEntity.translateXProperty().bind(this.player.getXProperty().multiply(-1).add(centerX));
+        panneauEntity.translateYProperty().bind(this.player.getYProperty().multiply(-1).add(centerY));
+        
+        // Configurer le scrollPane pour le plein écran
+        scrollPane.setPrefSize(Param.screenWidth, Param.screenHeight);
 
+        // CORRECTION 1: Forcer le focus sur panneauEntity pour les inputs
+        panneauEntity.setFocusTraversable(true);
+        panneauEntity.requestFocus();
+        
+        // Assurer que le focus reste sur panneauEntity lors des clics
+        panneauEntity.setOnMouseClicked(e -> {
+            panneauEntity.requestFocus();
+            mouseClick.handle(e);
+        });
 
-
-
-
+        // CORRECTION 4: Forcer le background bleu programmatiquement
+        // Au cas où le CSS interfère encore
+        panneauEntity.getScene().getRoot().setStyle("-fx-background-color: #b8fbff;");
 
         // demarre l'animation
         initAnimation();

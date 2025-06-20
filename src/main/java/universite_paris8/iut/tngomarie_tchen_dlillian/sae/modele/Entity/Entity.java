@@ -139,10 +139,10 @@ public abstract class Entity {
 		if (futureX>255){futureX=255;this.v=0;}
 //		if (futureY>1){futureY=1;this.v=0;}
 //		if (futureY>63){futureY=63;this.v=0;}
-		if(!this.env.getBlock(this.env.getMap1()[y][futureX]).isTraversable()){
+		if(!this.env.getListB().getBlock(this.env.getMap1()[y][futureX]).isTraversable()){
 			this.v=0;
 		}
-		if(!this.env.getBlock(this.env.getMap1()[futureY][x]).isTraversable()){
+		if(!this.env.getListB().getBlock(this.env.getMap1()[futureY][x]).isTraversable()){
 			this.gravite=0;
 		}
 		//System.out.println(x+":"+y);

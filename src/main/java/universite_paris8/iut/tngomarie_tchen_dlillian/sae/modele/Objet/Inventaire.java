@@ -13,11 +13,13 @@ public class Inventaire {
     private ObservableList<Objet> Inventaire;
     private int enMain;
     private int caseVide;
+    private ListObjet listObjet;
 
     public Inventaire(){
         this.enMain = 0;
         this.caseVide =0;
         this.Inventaire = FXCollections.observableArrayList();
+        this.listObjet = new ListObjet();
         this.Inventaire.addListener(new ListChangeListener() {
             @Override
             public void onChanged(Change change) {
@@ -33,6 +35,7 @@ public class Inventaire {
     public ObservableList<Objet> getInventaire(){
         return this.Inventaire;
     }
+    public ListObjet getListObjet(){return this.listObjet;}
 
     public void changerObjet(int num){
         this.enMain = num;

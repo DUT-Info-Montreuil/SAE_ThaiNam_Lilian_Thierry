@@ -26,23 +26,23 @@ public class ListRecipe {
         int[][] o3 = new int[][] {{10},{1}};
         list.put(2, new Recipe(n3, o3));
 
-//    //Pioche Bois
-//        int[][] n4 = new int[][] {{28,0},{2,3}};
-//        int[][] o4 = new int[][] {{14},{1}};
-//        list.put(3, new Recipe(n4, o4));
-//    //Hache Bois
-//        int[][] n5 = new int[][] {{28,0},{2,3}};
-//        int[][] o5 = new int[][] {{18},{1}};
-//        list.put(4, new Recipe(n5, o5));
-//    //Baton
-//        int[][] n6 = new int[][] {{2},{0}};
-//        int[][] o6 = new int[][]{{28},{4}};
-//        list.put(5, new Recipe(n6, o6));
-//    //Tissu
-//        int[][] n7 = new int[][] {{32},{2}};
-//        int[][] o7 = new int[][]{{29},{1}};
-//        list.put(6,new Recipe(n7,o7));
-//    //
+    //Pioche Bois
+        int[][] n4 = new int[][] {{28,0},{2,3}};
+        int[][] o4 = new int[][] {{14},{1}};
+        list.put(3, new Recipe(n4, o4));
+    //Hache Bois
+        int[][] n5 = new int[][] {{28,0},{2,3}};
+        int[][] o5 = new int[][] {{18},{1}};
+        list.put(4, new Recipe(n5, o5));
+    //Baton
+        int[][] n6 = new int[][] {{2},{0}};
+        int[][] o6 = new int[][]{{28},{4}};
+        list.put(5, new Recipe(n6, o6));
+    //Tissu
+        int[][] n7 = new int[][] {{32},{2}};
+        int[][] o7 = new int[][]{{29},{1}};
+        list.put(6,new Recipe(n7,o7));
+    //
     }
 
 

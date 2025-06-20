@@ -1,4 +1,4 @@
-/*package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele;
+package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele;/*package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele;
 import javafx.geometry.Bounds;
 import javafx.scene.Node;
 import javafx.scene.image.Image;

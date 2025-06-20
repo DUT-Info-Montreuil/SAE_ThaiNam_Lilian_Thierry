@@ -5,26 +5,24 @@ import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Interface.ListR
 public class Craft {
     private ListRecipe listRecipe ;
     private Inventaire inventaire;
-    private ListObjet listObjet;
 
     public Craft(Inventaire inventaire){
         this.listRecipe= new ListRecipe();
-        this.listObjet =new ListObjet();
         this.inventaire = inventaire;
     }
 
-    /*public void crafting(int clef){
+    public void crafting(int clef){
         if(verif(clef)){
             for (int i = 0; i != this.listRecipe.getList(clef).getResulat().length ; i++) {
                 for (int j = 0; j !=this.listRecipe.getList(clef).getResulat()[i][1] ; j++) {
-                    this.inventaire.ajouterObjet2(ListObjet.getItem(this.listRecipe.getList(clef).getResulat()[i][0]));
+                    this.inventaire.ajouterObjet2(this.inventaire.getListObjet().getItem(this.listRecipe.getList(clef).getResulat()[i][0]));
 
                 }
 
             }
         }
 
-    }*/
+    }
     private boolean verif(int i) {
         int valid = 0;
         int nbingredient = listRecipe.getList(i).getRecette().length;
