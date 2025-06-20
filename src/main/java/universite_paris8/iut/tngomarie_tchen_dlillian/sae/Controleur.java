@@ -90,6 +90,7 @@ public class Controleur implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         boutonMenu.setOnAction(y -> {
                     paneMenu.setVisible(false);
                     boutonMenu.setVisible(false);
@@ -100,7 +101,7 @@ public class Controleur implements Initializable{
         this.env.addentities(player);
         Zombie test = new Zombie(50,env);
         this.env.entities.add(test);
-
+            this.craft = new Craft(player.getInventaire());
         this.objet = new VueObjet(paneInv,this.player);
         objet.setSlotsInventairePrimaire(Arrays.asList(
                 slot1, slot2, slot3, slot4, slot5, slot6, slot7
@@ -111,6 +112,7 @@ public class Controleur implements Initializable{
         ));
         this.vueCraft = new VueCraft(craftPane, craftScrolling, this, craft);
         vueCraft.ajoutListe(craftList, listRecipe, listObjet);
+
 
         craftScrolling.setOnMouseClicked(e -> {
             panneauEntity.requestFocus();
@@ -151,10 +153,9 @@ public class Controleur implements Initializable{
         // demarre l'animation
         initAnimation();
         gameLoop.play();
+        });
 
-
-
-    });}
+    }
     private void gererSprite() {
         for(Entity e : env.entities) {
             ImageView image=null;
@@ -203,8 +204,9 @@ public class Controleur implements Initializable{
     }
     public void update() {
         //System.out.println(pvBar.progressProperty());
-        gererSprite();
-        this.objet.getFullImage();
+            gererSprite();
+            this.objet.getFullImage();
+
         this.player.getInventaire().affiche();
          for(Entity e :env.entities) {
             e.seDeplace();

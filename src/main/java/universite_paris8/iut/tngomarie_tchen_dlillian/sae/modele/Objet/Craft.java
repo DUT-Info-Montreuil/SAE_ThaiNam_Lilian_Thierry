@@ -25,17 +25,22 @@ public class Craft {
     }
     private boolean verif(int i) {
         int valid = 0;
-        int nbingredient = listRecipe.getList(i).getRecette().length;
+        int nbingredient = listRecipe.getList(i).getRecette().length / 2;
         for (int j = 0; j < nbingredient; j++) {
             for (Objet obj : this.inventaire.getInventaire()) {
-                if ((listRecipe.getList(i).getRecette()[j][0] == obj.getIdObjet()) && (listRecipe.getList(i).getRecette()[j][1] < obj.getNb())) {
+                if ((listRecipe.getList(i).getRecette()[j][0] == obj.getIdObjet())
+                        && (listRecipe.getList(i).getRecette()[1][j] < obj.getNb())) {
                     valid++;
                 }
             }
         }
+        System.out.println(valid);
+        System.out.println(nbingredient);
+        System.out.println( valid == nbingredient);
 
         if (valid == nbingredient) {
             return true;
+
         }
         return false;
     }

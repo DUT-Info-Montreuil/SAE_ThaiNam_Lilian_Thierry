@@ -52,8 +52,7 @@ public class VueCraft {
         }
     }
 
-    public HBox creeHbox (Recipe recipe, ListObjet listObjet, double hauteur, int indexCraft) {
-
+    public HBox creeHbox (Recipe recipe, ListObjet listObjet, double hauteur, int indexCraft ) {
         HBox hBox = new HBox(10);
         hBox.setPrefHeight(hauteur);
         hBox.setStyle("-fx-border-color: gray;");
@@ -88,7 +87,8 @@ public class VueCraft {
         boutonCraft.setFocusTraversable(false);
         boutonCraft.setOnAction(e -> {
             Platform.runLater(() -> c.getPanneauEntity().requestFocus());
-            craft.crafting(indexCraft);
+            System.out.println(indexCraft + ": ");
+            this.craft.crafting(indexCraft);
         });
 
         int idObjetCree = recipe.getResulat()[0][0];
