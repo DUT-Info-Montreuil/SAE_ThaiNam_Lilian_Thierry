@@ -27,6 +27,7 @@ public class KeyPressed implements EventHandler<KeyEvent>{
     public KeyPressed(Player player, Controleur c, VueObjet vueObjet, VueCraft vueCraft) {
         this.player = player;
         this.c = c;
+        this.listObjet=new ListObjet();
         this.vueObjet = vueObjet;
         this.vueCraft = vueCraft;
     }
@@ -54,10 +55,9 @@ public class KeyPressed implements EventHandler<KeyEvent>{
                 }
                 break;
             case N:
-                player.getInventaire().ajoutObjet(new Arc());
-                player.getInventaire().ajoutObjet(new Pierre(1));
-                player.getInventaire().ajoutObjet(new Epee(0,20,50,"bois"));
-                player.getInventaire().ajoutObjet(new PiocheEnBois());
+                player.getInventaire().ajoutObjet(this.listObjet.getItem(8));;
+                player.getInventaire().ajoutObjet(this.listObjet.getItem(10));
+                player.getInventaire().ajoutObjet(this.listObjet.getItem(14));
                 System.out.println("keypresed objet");
                 vueObjet.getFullImage();
                 break;

@@ -14,7 +14,7 @@ public class Ingredient extends Objet {
 
     @Override
     public ImageView getimage() {
-        return null;
+        return new ImageView("default.png");
     }
 
     public void ajouterIngredient(){

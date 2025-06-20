@@ -12,7 +12,7 @@ public abstract class Outil extends Objet {
 
     @Override
     public ImageView getimage() {
-        return null;
+        return new ImageView("default.png");
     }
 
     @Override

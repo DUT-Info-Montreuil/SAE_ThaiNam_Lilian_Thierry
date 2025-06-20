@@ -7,4 +7,5 @@ public class Météorite extends BlocInv {
     public Météorite(int nb){
         super(5,nb);
     }
+
 }

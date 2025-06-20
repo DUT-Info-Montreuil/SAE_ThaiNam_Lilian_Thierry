@@ -17,8 +17,9 @@ public class PiocheEnBois extends Pioche {
     public void agit(Player player, double SourisX, double SourisY) {
         int x=Math.toIntExact(Math.round(SourisX)/ Param.scale);
         int y=Math.toIntExact(Math.round(SourisY)/ Param.scale);
-        player.getEnv().changeBlock(y, x, 0);
+
         player.getVueTerrain().changementTuileMinage(x, y, 0);
         player.getInventaire().ajoutObjet(player.getInventaire().getListObjet().getItem(player.getEnv().getListB().getBlock(player.getEnv().getMap1()[y][x]).getItem()));
+        player.getEnv().changeBlock(y, x, 0);
     }
 }

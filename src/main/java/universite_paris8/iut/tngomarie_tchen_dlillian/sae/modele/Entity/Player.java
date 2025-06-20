@@ -11,6 +11,7 @@ import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Epe
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Inventaire;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.FlecheObjet;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Environnement;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.vue.VueObjet;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.vue.vueTerrain;
 
 public class Player extends Entity {

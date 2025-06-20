@@ -3,9 +3,7 @@ package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Bloc.BlocInv;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredient.*;
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Outil;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.vue.VueObjet;
 
 public class Inventaire {
@@ -14,17 +12,14 @@ public class Inventaire {
     private int enMain;
     private int caseVide;
     private ListObjet listObjet;
-
-    public Inventaire(){
+    public Inventaire() {
         this.enMain = 0;
         this.caseVide =0;
         this.Inventaire = FXCollections.observableArrayList();
         this.listObjet = new ListObjet();
-                this.Inventaire.add(null);
         this.Inventaire.addListener(new ListChangeListener() {
             @Override
             public void onChanged(Change change) {
-//                VueObjet
             }
         });
     }
@@ -47,11 +42,15 @@ public class Inventaire {
     }
 
     public void ajoutObjet(Objet objet){
-        if(this.Inventaire.contains(objet)){
-            this.Inventaire.get(caseVide-1).addNb(objet.getNb());
+        for (Objet item : this.Inventaire) {
+            if (objet.equals(item)) {
+                item.addNb(objet.getNb());
+                return; // Fusion terminée, on sort
+            }
         }
-        this.Inventaire.add(caseVide,objet);
-        caseVide++;
+
+        // Si pas trouvé, on ajoute le nouvel objet
+        this.Inventaire.add(objet);
     }
 
     public void supprimerObjet(Objet objet){

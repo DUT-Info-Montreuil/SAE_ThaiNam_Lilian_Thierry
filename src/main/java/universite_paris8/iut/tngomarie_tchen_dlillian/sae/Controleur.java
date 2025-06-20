@@ -202,6 +202,7 @@ public class Controleur implements Initializable{
     public void update() {
         //System.out.println(pvBar.progressProperty());
         gererSprite();
+        this.objet.getFullImage();
         this.player.getInventaire().affiche();
          for(Entity e :env.entities) {
             e.seDeplace();
