@@ -11,7 +11,7 @@ public class Charbon extends Ingredient {
 
     @Override
     public ImageView getimage() {
-        Image image = new Image("Baton.png");
+        Image image = new Image("Charbon.png");
         ImageView imageView = new ImageView(image);
         return imageView;
     }

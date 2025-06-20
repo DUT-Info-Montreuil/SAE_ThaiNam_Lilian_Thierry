@@ -35,7 +35,7 @@ public class ListRecipe {
         int[][] o5 = new int[][] {{18},{1}};
         list.put(4, new Recipe(n5, o5));
     //Baton
-        int[][] n6 = new int[][] {{2},{0}};
+        int[][] n6 = new int[][] {{0},{1}};
         int[][] o6 = new int[][]{{28},{4}};
         list.put(5, new Recipe(n6, o6));
     //Tissu
@@ -45,5 +45,7 @@ public class ListRecipe {
     //
     }
 
-
+    public HashMap<Integer, Recipe> getList() {
+        return list;
+    }
 }

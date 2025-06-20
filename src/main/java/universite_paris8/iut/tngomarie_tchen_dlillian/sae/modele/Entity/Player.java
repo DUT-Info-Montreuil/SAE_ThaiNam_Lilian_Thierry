@@ -22,6 +22,7 @@ public class Player extends Entity {
     private boolean Droite = false;
     private boolean Gauche = false;
     private boolean afficherInv;
+
     public Player(double x, double y, double v, Environnement env,vueTerrain vue, int pv) {
         super(x, y, v, env, pv);
         double temp=pv;

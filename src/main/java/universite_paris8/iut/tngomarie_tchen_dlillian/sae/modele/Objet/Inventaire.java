@@ -12,6 +12,7 @@ public class Inventaire {
     private int enMain;
     private int caseVide;
     private ListObjet listObjet;
+
     public Inventaire() {
         this.enMain = 0;
         this.caseVide =0;

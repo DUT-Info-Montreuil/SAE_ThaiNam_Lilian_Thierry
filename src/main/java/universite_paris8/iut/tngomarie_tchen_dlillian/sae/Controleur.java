@@ -27,6 +27,7 @@ import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Mob.Zomb
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Player;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Interface.ListRecipe;
 
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Craft;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.ListObjet;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Param;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Environnement;
@@ -44,7 +45,8 @@ public class Controleur implements Initializable{
     private vueTerrain terrain;
     private Player player;
     private VueObjet objet;
-    private VueCraft craft;
+    private VueCraft vueCraft;
+    private Craft craft;
 
     private ListRecipe listRecipe = new ListRecipe();
     private ListObjet listObjet = new ListObjet();
@@ -107,8 +109,8 @@ public class Controleur implements Initializable{
                 slotS1, slotS2, slotS3, slotS4, slotS5, slotS6, slotS7,
                 slotS8, slotS9, slotS10, slotS11, slotS12, slotS13, slotS14
         ));
-        this.craft = new VueCraft(craftPane, craftScrolling, this);
-        craft.ajoutListe(craftList, listRecipe, listObjet);
+        this.vueCraft = new VueCraft(craftPane, craftScrolling, this, craft);
+        vueCraft.ajoutListe(craftList, listRecipe, listObjet);
 
         craftScrolling.setOnMouseClicked(e -> {
             panneauEntity.requestFocus();
@@ -123,7 +125,7 @@ public class Controleur implements Initializable{
             e.consume();
         });
 
-        KeyPressed keyPressed = new KeyPressed(player, this, objet,craft);
+        KeyPressed keyPressed = new KeyPressed(player, this, objet, vueCraft);
         KeyReleased keyReleased = new KeyReleased(player);
         MouseClick mouseClick = new MouseClick(player);
         panneauEntity.addEventHandler(KeyEvent.KEY_PRESSED, keyPressed);

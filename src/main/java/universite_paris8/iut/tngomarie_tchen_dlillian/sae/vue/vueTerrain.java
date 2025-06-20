@@ -13,11 +13,12 @@ public class vueTerrain {
     private Image[] imageTerrain;
     private Environnement env;
     private void vueTerraintableau() {
-        this.imageTerrain = new Image[4];{
+        this.imageTerrain = new Image[5];{
             imageTerrain[0] = new Image("Texture vide.png");
             imageTerrain[1] = new Image("Texture terre.png");
             imageTerrain[2] = new Image("Texture de pierre.png");
             imageTerrain[3] = new Image("Texture herbe.png");
+            imageTerrain[4] = new Image("Bois.png");
 
         }
 
@@ -49,6 +50,7 @@ public class vueTerrain {
                     case 1 -> new ImageView(imageTerrain[1]);
                     case 2 -> new ImageView(imageTerrain[2]);
                     case 3 -> new ImageView(imageTerrain[3]);
+                    case 4 -> new ImageView(imageTerrain[4]);
                     default -> null;
                 };
                 decors.getChildren().add(images); //ajoute les images dans le tilePane

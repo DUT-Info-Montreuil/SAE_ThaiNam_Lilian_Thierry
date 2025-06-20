@@ -12,7 +12,7 @@ public class Bois extends BlocInv   {
 
     @Override
     public ImageView getimage() {
-        Image image = new Image("default.png");
+        Image image = new Image("Bois.png");
         ImageView imageView = new ImageView(image);
 
         return imageView;

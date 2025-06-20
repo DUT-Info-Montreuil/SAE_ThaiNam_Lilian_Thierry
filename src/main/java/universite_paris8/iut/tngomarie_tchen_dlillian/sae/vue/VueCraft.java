@@ -16,6 +16,7 @@ import javafx.util.Duration;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.Controleur;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Interface.ListRecipe;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Interface.Recipe;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Craft;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.ListObjet;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Objet;
 
@@ -23,12 +24,14 @@ public class VueCraft {
 
     private ScrollPane scrollPane;
     private AnchorPane anchorPane;
+    private Craft craft;
     private Controleur c;
 
-    public VueCraft(ScrollPane scPane, AnchorPane aPane, Controleur c){
+    public VueCraft(ScrollPane scPane, AnchorPane aPane, Controleur c, Craft craft){
         this.scrollPane = scPane;
         this.anchorPane = aPane;
         this.c = c;
+        this.craft = craft;
     }
 
     public void ajoutListe(VBox vBox, ListRecipe listRecipe, ListObjet listObjet){
@@ -36,8 +39,14 @@ public class VueCraft {
         double hauteur = 200;
         double hauteurNbCraft = hauteur / nbCraft;
 
-        for (int i = 0; i < nbCraft; i++) {
+        for (int i = 0; i < listRecipe.getList().size() ; i++) {
             Recipe recipe = listRecipe.getList(i);
+            int idObjetCree = recipe.getResulat()[0][0];
+
+            if (listObjet.getItem(idObjetCree) == null) {
+                continue;
+            }
+
             HBox hBox = creeHbox(recipe, listObjet, hauteurNbCraft, i);
             vBox.getChildren().add(hBox);
         }
@@ -79,7 +88,7 @@ public class VueCraft {
         boutonCraft.setFocusTraversable(false);
         boutonCraft.setOnAction(e -> {
             Platform.runLater(() -> c.getPanneauEntity().requestFocus());
-            System.out.println("Craft bouton ");
+            craft.crafting(indexCraft);
         });
 
         int idObjetCree = recipe.getResulat()[0][0];
