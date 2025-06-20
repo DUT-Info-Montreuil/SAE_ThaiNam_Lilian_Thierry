@@ -20,6 +20,7 @@ public class Inventaire {
         this.caseVide =0;
         this.Inventaire = FXCollections.observableArrayList();
         this.listObjet = new ListObjet();
+                this.Inventaire.add(null);
         this.Inventaire.addListener(new ListChangeListener() {
             @Override
             public void onChanged(Change change) {
@@ -46,26 +47,13 @@ public class Inventaire {
     }
 
     public void ajoutObjet(Objet objet){
+        if(this.Inventaire.contains(objet)){
+            this.Inventaire.get(caseVide-1).addNb(objet.getNb());
+        }
         this.Inventaire.add(caseVide,objet);
         caseVide++;
     }
 
-    public void ajouterObjet2(Objet objet) {
-        if (this.Inventaire.size() > 24) {
-            for (int i = 0; i < this.Inventaire.size(); i++) {
-                if (objet == this.Inventaire.get(i) && !(objet instanceof Outil)) {
-                    this.Inventaire.get(i).addNb(objet.getNb());
-                }
-            }
-            int i = 0;
-            while (this.Inventaire.get(i) != null) {
-                if (this.Inventaire.get(i) == null) {
-                    this.Inventaire.get(i).addNb(objet.getNb());
-                }
-                i++;
-            }
-        }
-    }
     public void supprimerObjet(Objet objet){
         this.Inventaire.remove(objet);
     }
