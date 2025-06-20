@@ -3,6 +3,7 @@ package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.image.ImageView;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Param;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Environnement;
 
 
@@ -73,7 +74,7 @@ public abstract class Entity {
 	}
 	public int getPv() {return pv;}
 	public void decrementerPv(int degat){
-		if(this.pv - degat > 0){
+		if(pv>0){
 			this.pv = this.pv-degat;
 		}
 		else{
@@ -120,8 +121,8 @@ public abstract class Entity {
 		if(this.y.getValue() == lastY){
 			this.gravite=0;
 
-		} else if (gravite>5) {
-			gravite=5;
+		} else if (gravite>7) {
+			gravite=7;
 		} else
 			this.gravite+=0.1;
 		lastY=this.y.getValue();
@@ -131,10 +132,10 @@ public abstract class Entity {
 	}
 
 	public void colision() {
-		int x =Math.toIntExact(Math.round(this.getX()))/16;
-		int y =Math.toIntExact(Math.round(this.getY()))/16;
-		int futureX= Math.toIntExact(Math.round(this.getX() + this.getV()))/16;
-		int futureY= Math.toIntExact(Math.round(this.getY() + this.getGravite()))/16;
+		int x =Math.toIntExact(Math.round(this.getX()))/ Param.scale;
+		int y =Math.toIntExact(Math.round(this.getY()))/Param.scale;
+		int futureX= Math.toIntExact(Math.round(this.getX() + this.getV()))/Param.scale;
+		int futureY= Math.toIntExact(Math.round(this.getY() + this.getGravite()))/Param.scale;
 		if (futureX<1){futureX=1;this.v=0;}
 		if (futureX>255){futureX=255;this.v=0;}
 //		if (futureY>1){futureY=1;this.v=0;}

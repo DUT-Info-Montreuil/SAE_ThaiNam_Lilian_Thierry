@@ -23,7 +23,7 @@ public class Player extends Entity {
     private boolean afficherInv;
     public Player(double x, double y, double v, Environnement env,vueTerrain vue, int pv) {
         super(x, y, v, env, pv);
-        double temp=pv/100;
+        double temp=pv;
         this.pvProp = new SimpleDoubleProperty(temp);
         this.inventaire = new Inventaire();
         this.vueTerrain = vue;
@@ -31,7 +31,7 @@ public class Player extends Entity {
     public DoubleProperty getpvPropProperty() {return this.pvProp;}
     public void degatjoueur(int i){
         decrementerPv(i);
-        double temp=this.getPv()/100;
+        double temp=this.getPv();
         this.pvProp.setValue(temp);
 
     }

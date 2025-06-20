@@ -15,6 +15,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.control.ScrollPane;
 
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.listeneur.KeyPressed;
@@ -52,6 +53,7 @@ public class Controleur implements Initializable{
     @FXML private Pane panneauEntity;
     @FXML private ScrollPane scrollPane;
     @FXML private GridPane paneInv;
+    @FXML private Rectangle pvBar1;
 
     @FXML private Pane slot1;
     @FXML private Pane slot2;
@@ -124,34 +126,25 @@ public class Controleur implements Initializable{
         KeyPressed keyPressed = new KeyPressed(player, this, objet,craft);
         KeyReleased keyReleased = new KeyReleased(player);
         MouseClick mouseClick = new MouseClick(player);
-        pvBar.progressProperty().bind(this.player.getpvPropProperty());
         panneauEntity.addEventHandler(KeyEvent.KEY_PRESSED, keyPressed);
         panneauEntity.addEventHandler(KeyEvent.KEY_RELEASED, keyReleased);
-        // MouseClick géré plus bas avec le focus
-        
-        // Utiliser les dimensions de l'écran pour centrer la vue
         double centerX = Param.screenWidth / 2.0;
         double centerY = Param.screenHeight / 2.0;
-        
         panneauEntity.translateXProperty().bind(this.player.getXProperty().multiply(-1).add(centerX));
         panneauEntity.translateYProperty().bind(this.player.getYProperty().multiply(-1).add(centerY));
-        
-        // Configurer le scrollPane pour le plein écran
+
         scrollPane.setPrefSize(Param.screenWidth, Param.screenHeight);
 
-        // CORRECTION 1: Forcer le focus sur panneauEntity pour les inputs
         panneauEntity.setFocusTraversable(true);
         panneauEntity.requestFocus();
-        
-        // Assurer que le focus reste sur panneauEntity lors des clics
+
         panneauEntity.setOnMouseClicked(e -> {
             panneauEntity.requestFocus();
             mouseClick.handle(e);
         });
 
-        // CORRECTION 4: Forcer le background bleu programmatiquement
-        // Au cas où le CSS interfère encore
         panneauEntity.getScene().getRoot().setStyle("-fx-background-color: #b8fbff;");
+            pvBar1.widthProperty().bind(player.getpvPropProperty().multiply(3));
 
         // demarre l'animation
         initAnimation();

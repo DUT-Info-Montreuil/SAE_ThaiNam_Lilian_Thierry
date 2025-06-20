@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
-<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 
-<StackPane focusTraversable="true" stylesheets="@dark.css" style="-fx-background-color: #b8fbff;" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.tngomarie_tchen_dlillian.sae.Controleur">
+<StackPane focusTraversable="true" style="-fx-background-color: #b8fbff;" stylesheets="@dark.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.tngomarie_tchen_dlillian.sae.Controleur">
     <children>
-      <ScrollPane fx:id="scrollPane" focusTraversable="true" fitToWidth="true" fitToHeight="true" pannable="true" vbarPolicy="NEVER" hbarPolicy="NEVER" style="-fx-background: transparent; -fx-background-color: transparent;">
+      <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" focusTraversable="true" hbarPolicy="NEVER" pannable="true" style="-fx-background: transparent; -fx-background-color: transparent;" vbarPolicy="NEVER">
          <content>
             <Pane fx:id="panneauEntity" focusTraversable="true" prefHeight="1024.0" prefWidth="4096.0" style="-fx-background-color: transparent;">
             <children>
@@ -28,7 +28,9 @@
             <Insets bottom="50.0" left="50.0" right="25.0" top="40.0" />
          </StackPane.margin>
       </ScrollPane>
-      <ProgressBar fx:id="pvBar" nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="300.0" progress="1.0" StackPane.alignment="TOP_RIGHT" />
+       <Rectangle fx:id="pvBar1" fill="RED" height="25.0" nodeOrientation="RIGHT_TO_LEFT" style="-fx-background-color: #ff0000" width="300.0" StackPane.alignment="TOP_RIGHT" />
+        <Rectangle fill="#9e9999" height="25.0" nodeOrientation="RIGHT_TO_LEFT" opacity="0.4" style="-fx-background-color: gray" width="300.0" StackPane.alignment="TOP_RIGHT" />
+
         <GridPane fx:id="paneInv" focusTraversable="false" gridLinesVisible="true" maxHeight="200.0" maxWidth="550.0" prefHeight="60.0" prefWidth="500.0" scaleShape="false" style="-fx-border-color: white;" visible="false" StackPane.alignment="TOP_LEFT">
             <children>
 
@@ -75,6 +77,7 @@
       <Pane fx:id="paneMenu" style="-fx-background-color: white;">
          <children>
             <Button fx:id="boutonMenu" alignment="CENTER" layoutX="750.0" layoutY="512.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Jouer" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="26.0" layoutX="3800.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="284.0" />
          </children>
       </Pane>
     </children>

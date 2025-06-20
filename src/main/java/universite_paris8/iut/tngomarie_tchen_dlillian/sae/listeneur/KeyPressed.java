@@ -113,8 +113,8 @@ public class KeyPressed implements EventHandler<KeyEvent>{
                 break;
 
             case C:
-//                this.player.getInventaire().setCraftArc();
-                System.out.println("setcraftarc");
+                player.degatjoueur(10);
+                System.out.println(player.getPv());
                 break;
             case V:
 //                this.player.getInventaire().craft();
