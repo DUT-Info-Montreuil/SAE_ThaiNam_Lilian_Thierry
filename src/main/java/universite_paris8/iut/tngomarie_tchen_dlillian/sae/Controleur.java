@@ -156,37 +156,7 @@ public class Controleur implements Initializable{
         });
 
     }
-    private void gererSprite() {
-        for(Entity e : env.entities) {
-            ImageView image=null;
-            if(e.getPv()>0){
-            if (!e.getasprite()){
-                if (e instanceof Player) {
-                    image= e.getimage();
-                    e.gotasprite();
-                } else if (e instanceof Zombie) {
 
-                    image = e.getimage();
-                    e.gotasprite();
-                }
-                else
-
-                image = new ImageView("default.png");
-                image.setId(e.getId());
-                e.gotasprite();
-                System.out.println(e.getId());
-                // ils ont le meme identifiant
-
-                image.setId(e.getId());
-                image.setTranslateX(e.getX());
-                image.setTranslateY(e.getY());
-                panneauEntity.getChildren().add(image);
-                image.translateXProperty().bind(e.getXProperty());
-                image.translateYProperty().bind(e.getYProperty());
-            }
-            }else{panneauEntity.getChildren().remove(e);}
-        }
-    }
     private void initAnimation() {
 
         gameLoop.setCycleCount(Timeline.INDEFINITE);
@@ -205,9 +175,6 @@ public class Controleur implements Initializable{
     public void update() {
         //System.out.println(pvBar.progressProperty());
             gererSprite();
-
-
-        this.player.getInventaire().affiche();
          for(Entity e :env.entities) {
             e.seDeplace();
         }
@@ -215,6 +182,37 @@ public class Controleur implements Initializable{
 
     public Pane getPanneauEntity() {
         return panneauEntity;
+    }
+    private void gererSprite() {
+        for(Entity e : env.entities) {
+            ImageView image=null;
+            if(e.getPv()>0){
+                if (!e.getasprite()){
+                    if (e instanceof Player) {
+                        image= e.getimage();
+                        e.gotasprite();
+                    } else if (e instanceof Zombie) {
+
+                        image = e.getimage();
+                        e.gotasprite();
+                    }
+                    else
+
+                        image = new ImageView("default.png");
+                    image.setId(e.getId());
+                    e.gotasprite();
+                    System.out.println(e.getId());
+                    // ils ont le meme identifiant
+
+                    image.setId(e.getId());
+                    image.setTranslateX(e.getX());
+                    image.setTranslateY(e.getY());
+                    panneauEntity.getChildren().add(image);
+                    image.translateXProperty().bind(e.getXProperty());
+                    image.translateYProperty().bind(e.getYProperty());
+                }
+            }else{panneauEntity.getChildren().remove(e);}
+        }
     }
 
     public void lancer(Button button){
