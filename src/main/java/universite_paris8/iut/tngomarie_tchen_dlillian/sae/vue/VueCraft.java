@@ -13,6 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
+import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.Controleur;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Interface.ListRecipe;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Interface.Recipe;
