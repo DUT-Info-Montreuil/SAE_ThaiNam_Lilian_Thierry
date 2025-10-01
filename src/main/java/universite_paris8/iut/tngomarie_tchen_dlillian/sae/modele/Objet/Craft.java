@@ -25,18 +25,18 @@ public class Craft {
         int valid = 0;
         int[][] listeDeRecette = listRecipe.getList(i).getRecette();
         int nbingredient = listeDeRecette.length / 2;
+
         for (int j = 0; j < nbingredient; j++) {
             for (Objet obj : this.inventaire.getInventaire()) {
                 if ((listeDeRecette[j][0] == obj.getIdObjet())
-                        && (listeDeRecette[1][j] < obj.getNb())) {
+                        && (obj.getNb() >= listeDeRecette[j][1])) {
                     valid++;
+                    break; // Exit inner loop once ingredient is found
                 }
             }
         }
-        if (valid == nbingredient) {
-            return true;
-        }
-        return false;
+
+        return valid == nbingredient;
     }
 
 }
