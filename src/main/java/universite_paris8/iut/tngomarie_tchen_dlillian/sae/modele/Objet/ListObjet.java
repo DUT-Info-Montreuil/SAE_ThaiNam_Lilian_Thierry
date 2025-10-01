@@ -26,28 +26,28 @@ public class ListObjet {
 
     private void créeRecipe() {
         list.put(0, new Bois(1));
-        listVue.put(0,new ImageView("Bois.png"));
+        //listVue.put(0,new ImageView("Bois.png"));
 
         list.put(1, new Pierre(1));
         listVue.put(1,new ImageView("Texture de pierre.png"));
 
         list.put(2, new Fer(1));
-        listVue.put(2,new ImageView("Fer.png"));
+        //listVue.put(2,new ImageView("Fer.png"));
 
         list.put(3, new Or(1));
-        listVue.put(3,new ImageView("Or.png"));
+       // listVue.put(3,new ImageView("Or.png"));
 
         list.put(4, new Charbon(1));
-        listVue.put(4,new ImageView("Charbon.png"));
+        //listVue.put(4,new ImageView("Charbon.png"));
 
         list.put(5, new Météorite(1));
-        listVue.put(5,new ImageView("Météorite.png"));
+        //listVue.put(5,new ImageView("Météorite.png"));
 
         list.put(6, new Obsidienne(1));
-        listVue.put(6,new ImageView("Bois.png"));
+        //listVue.put(6,new ImageView("Bois.png"));
 
         list.put(7, new Plante(1));
-        listVue.put(7,new ImageView("Bois.png"));
+        //listVue.put(7,new ImageView("Bois.png"));
 
         list.put(8, new Arc());
         listVue.put(8,new ImageView("Arc Bois.png"));
@@ -71,7 +71,7 @@ public class ListObjet {
         listVue.put(28,new ImageView("Baton.png"));
 
         list.put(29, new Tissu(1));
-        listVue.put(29,new ImageView("Tissu.png"));
+        //listVue.put(29,new ImageView("Tissu.png"));
 
         list.put(32, new Fils(1));
         listVue.put(32,new ImageView("Fils.png"));

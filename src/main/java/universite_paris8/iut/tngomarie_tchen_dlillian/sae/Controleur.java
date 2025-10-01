@@ -36,6 +36,7 @@ import universite_paris8.iut.tngomarie_tchen_dlillian.sae.vue.VueObjet;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.vue.vueTerrain;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 
@@ -100,9 +101,10 @@ public class Controleur implements Initializable{
         this.player = new Player(500,460,1,env,this.terrain,100);
         this.env.addentities(player);
         Zombie test = new Zombie(50,env);
-       this.env.entities.add(test);
-            this.craft = new Craft(player.getInventaire());
+        this.env.entities.add(test);
+        this.craft = new Craft(player.getInventaire());
         this.objet = new VueObjet(paneInv,this.player);
+
         objet.setSlotsInventairePrimaire(Arrays.asList(
                 slot1, slot2, slot3, slot4, slot5, slot6, slot7
         ));
@@ -207,7 +209,7 @@ public class Controleur implements Initializable{
             gererSprite();
 
 
-        this.player.getInventaire().affiche();
+//        this.player.getInventaire().affiche();
          for(Entity e :env.entities) {
             e.seDeplace();
         }
