@@ -28,6 +28,7 @@ import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Player;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Interface.ListRecipe;
 
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Craft;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Inventaire;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.ListObjet;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Param;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Environnement;
@@ -101,7 +102,7 @@ public class Controleur implements Initializable{
         this.env.addentities(player);
         Zombie test = new Zombie(50,env);
        this.env.entities.add(test);
-            this.craft = new Craft(player.getInventaire());
+            this.craft = new Craft(Inventaire.getInstance());
         this.objet = new VueObjet(paneInv,this.player);
         objet.setSlotsInventairePrimaire(Arrays.asList(
                 slot1, slot2, slot3, slot4, slot5, slot6, slot7
@@ -207,7 +208,7 @@ public class Controleur implements Initializable{
             gererSprite();
 
 
-        this.player.getInventaire().affiche();
+
          for(Entity e :env.entities) {
             e.seDeplace();
         }

@@ -25,6 +25,7 @@ public abstract class  Objet{
     public void addNb(int nb) {
         this.nb += nb;
     }
+    public void supnb(int nb) {this.nb -= nb;}
 
     abstract public ImageView getimage();
 

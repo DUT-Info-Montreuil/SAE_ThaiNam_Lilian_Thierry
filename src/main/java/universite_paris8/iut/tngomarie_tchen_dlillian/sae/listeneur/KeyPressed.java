@@ -7,6 +7,7 @@ import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Player;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Bloc.Pierre;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredient.Baton;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredient.Fils;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Inventaire;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.ListObjet;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Arc;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Epee.Epee;
@@ -55,18 +56,18 @@ public class KeyPressed implements EventHandler<KeyEvent>{
                 }
                 break;
             case N:
-                player.getInventaire().ajoutObjet(this.listObjet.getItem(8));;
-                player.getInventaire().ajoutObjet(this.listObjet.getItem(10));
-                player.getInventaire().ajoutObjet(this.listObjet.getItem(14));
+                Inventaire.getInstance().ajoutObjet(this.listObjet.getItem(8));;
+                Inventaire.getInstance().ajoutObjet(this.listObjet.getItem(10));
+                Inventaire.getInstance().ajoutObjet(this.listObjet.getItem(14));
                 System.out.println("keypresed objet");
                 vueObjet.getFullImage();
                 break;
             case B:
                 boolean fleche=false;
-                for(int i=0 ; i<player.getInventaire().getInventaire().size() ; i++){
-                    if(player.getInventaire().getInventaire().get(i) instanceof FlecheObjet){
+                for(int i=0 ; i<Inventaire.getInstance().getInventaire().size() ; i++){
+                    if(Inventaire.getInstance().getInventaire().get(i) instanceof FlecheObjet){
                         for(int j = 0;j<20;j++){  //pour avoir 20 flech d'un coup
-                            ((FlecheObjet) player.getInventaire().getInventaire().get(i)).ajouterIngredient();
+                            ((FlecheObjet) Inventaire.getInstance().getInventaire().get(i)).ajouterIngredient();
                         }
                         System.out.println("20 fleches ajouté");
                         fleche=true;
@@ -74,16 +75,16 @@ public class KeyPressed implements EventHandler<KeyEvent>{
                 }
                 if(!fleche){
                     System.out.println("fleche ajouté");
-                    player.getInventaire().ajoutObjet(new FlecheObjet(1));
+                    Inventaire.getInstance().ajoutObjet(new FlecheObjet(1));
                 }
                 break;
             case W:
                 boolean baton=false;
 
-                for(int i=0 ; i<player.getInventaire().getInventaire().size() ; i++){
-                    if(player.getInventaire().getInventaire().get(i) instanceof Baton){
+                for(int i=0 ; i<Inventaire.getInstance().getInventaire().size() ; i++){
+                    if(Inventaire.getInstance().getInventaire().get(i) instanceof Baton){
                         for(int j = 0;j<20;j++){  //pour avoir 20 bois d'un coup
-                            ((Baton) player.getInventaire().getInventaire().get(i)).ajouterIngredient();
+                            ((Baton) Inventaire.getInstance().getInventaire().get(i)).ajouterIngredient();
                         }
                         System.out.println("20 baton ajouté");
                         baton=true;
@@ -91,16 +92,16 @@ public class KeyPressed implements EventHandler<KeyEvent>{
                 }
                 if(!baton){
                     System.out.println("baton ajouté");
-                    player.getInventaire().ajoutObjet(new Baton(1));
+                    Inventaire.getInstance().ajoutObjet(new Baton(1));
                 }
                 vueObjet.getFullImage();
                 break;
             case X:
                 boolean fils=false;
-                for(int i=0 ; i<player.getInventaire().getInventaire().size() ; i++){
-                    if(player.getInventaire().getInventaire().get(i) instanceof Fils){
+                for(int i=0 ; i<Inventaire.getInstance().getInventaire().size() ; i++){
+                    if(Inventaire.getInstance().getInventaire().get(i) instanceof Fils){
                         for(int j = 0;j<20;j++){  //pour avoir 20 bois d'un coup
-                            ((Fils) player.getInventaire().getInventaire().get(i)).ajouterIngredient();
+                            ((Fils) Inventaire.getInstance().getInventaire().get(i)).ajouterIngredient();
                         }
                         System.out.println("20 fils ajouté");
                         fils=true;
@@ -108,7 +109,7 @@ public class KeyPressed implements EventHandler<KeyEvent>{
                 }
                 if(!fils){
                     System.out.println("fils ajouté");
-                    player.getInventaire().ajoutObjet(new Fils(1));
+                    Inventaire.getInstance().ajoutObjet(new Fils(1));
                 }
                 break;
 
@@ -124,43 +125,43 @@ public class KeyPressed implements EventHandler<KeyEvent>{
                 System.out.println("1");
                 vueObjet.getIndexPane(1);
                 vueObjet.afficherCaseInv(vueObjet.getSlotDepuisIndice(1));
-                player.getInventaire().changerObjet(0);
+                Inventaire.getInstance().changerObjet(0);
                 break;
             case NUMPAD2:
                 System.out.println("2");
                 vueObjet.getIndexPane(2);
                 vueObjet.afficherCaseInv(vueObjet.getSlotDepuisIndice(2));
-                player.getInventaire().changerObjet(1);
+                Inventaire.getInstance().changerObjet(1);
                 break;
             case NUMPAD3:
                 System.out.println("3");
                 vueObjet.getIndexPane(3);
                 vueObjet.afficherCaseInv(vueObjet.getSlotDepuisIndice(3));
-                player.getInventaire().changerObjet(2);
+                Inventaire.getInstance().changerObjet(2);
                 break;
             case NUMPAD4:
                 System.out.println("4");
                 vueObjet.getIndexPane(4);
                 vueObjet.afficherCaseInv(vueObjet.getSlotDepuisIndice(4));
-                player.getInventaire().changerObjet(3);
+                Inventaire.getInstance().changerObjet(3);
                 break;
             case NUMPAD5:
                 System.out.println("5");
                 vueObjet.getIndexPane(5);
                 vueObjet.afficherCaseInv(vueObjet.getSlotDepuisIndice(5));
-                player.getInventaire().changerObjet(4);
+                Inventaire.getInstance().changerObjet(4);
                 break;
             case NUMPAD6:
                 System.out.println("6");
                 vueObjet.getIndexPane(6);
                 vueObjet.afficherCaseInv(vueObjet.getSlotDepuisIndice(6));
-                player.getInventaire().changerObjet(5);
+                Inventaire.getInstance().changerObjet(5);
                 break;
             case NUMPAD7:
                 System.out.println("7");
                 vueObjet.getIndexPane(7);
                 vueObjet.afficherCaseInv(vueObjet.getSlotDepuisIndice(7));
-                player.getInventaire().changerObjet(6);
+                Inventaire.getInstance().changerObjet(6);
                 break;
         }
     }

@@ -71,7 +71,7 @@ public class VueObjet {
     }
 
     public void getFullImage(){
-        List<Objet> objets = this.player.getInventaire().getInventaire();
+        List<Objet> objets = Inventaire.getInstance().getInventaire();
 
         for (int i = 0; i < this.slotsInventairePrimaire.size(); i++) {
             if(i < objets.size()) {

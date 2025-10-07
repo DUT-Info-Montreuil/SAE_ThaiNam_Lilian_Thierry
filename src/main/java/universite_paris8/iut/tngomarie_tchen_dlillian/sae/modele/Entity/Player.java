@@ -27,7 +27,6 @@ public class Player extends Entity {
         super(x, y, v, env, pv);
         double temp=pv;
         this.pvProp = new SimpleDoubleProperty(temp);
-        this.inventaire = new Inventaire();
         this.vueTerrain = vue;
     }
     public DoubleProperty getpvPropProperty() {return this.pvProp;}
@@ -51,11 +50,6 @@ public class Player extends Entity {
         this.setY(getY()+this.getGravite());
         this.setX(getX()+this.getV());
     }
-
-    public Inventaire getInventaire() {
-        return inventaire;
-    }
-
     public Environnement getEnv(){
         return this.env;
     }
@@ -72,7 +66,7 @@ public class Player extends Entity {
 
     @Override
     public void agit(double sourisX,double sourisY) {
-        if(this.getInventaire().objetEnMain()!=null){this.getInventaire().objetEnMain().agit(this,sourisX,sourisY);}
+        if(Inventaire.getInstance().objetEnMain()!=null){Inventaire.getInstance().objetEnMain().agit(this,sourisX,sourisY);}
     }
 
     public void activeDroite(){

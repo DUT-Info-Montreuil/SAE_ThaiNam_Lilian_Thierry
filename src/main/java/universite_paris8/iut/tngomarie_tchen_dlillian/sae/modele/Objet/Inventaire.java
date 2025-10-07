@@ -12,8 +12,9 @@ public class Inventaire {
     private int enMain;
     private int caseVide;
     private ListObjet listObjet;
+    private static Inventaire inv=new Inventaire();
 
-    public Inventaire() {
+    private Inventaire() {
         this.enMain = 0;
         this.caseVide =0;
         this.Inventaire = FXCollections.observableArrayList();
@@ -23,6 +24,12 @@ public class Inventaire {
             public void onChanged(Change change) {
             }
         });
+    }
+    public static Inventaire getInstance() {
+        if (inv==null){
+            inv = new Inventaire();
+        }
+        return inv;
     }
 
     public Objet objetEnMain(){
@@ -53,21 +60,14 @@ public class Inventaire {
         // Si pas trouvé, on ajoute le nouvel objet
         this.Inventaire.add(objet);
     }
-
-    public void supprimerObjet(Objet objet){
-        this.Inventaire.remove(objet);
-    }
-
-    public void supprimerIngredient(Ingredient ingredient,int quantité){
-        for(int i = 0 ; i<this.Inventaire.size() ; i++){
-            if(this.Inventaire.get(i).getIdObjet()==ingredient.getIdObjet()){
-                if(ingredient.getNbObjet()>quantité){
-                    ingredient.decrementIngredient(quantité);
+    public void supprimerObjet(int idObjet, int quantite) {
+        for (Objet obj : this.Inventaire) {
+            if (obj.getIdObjet() == idObjet) {
+                obj.supnb(quantite);
+                if (obj.getNb() <= 0) {
+                    this.Inventaire.remove(obj);
                 }
-                else{
-                    ingredient.decrementIngredient(ingredient.getNbObjet());
-                    supprimerObjet(ingredient);
-                }
+                break;
             }
         }
     }
