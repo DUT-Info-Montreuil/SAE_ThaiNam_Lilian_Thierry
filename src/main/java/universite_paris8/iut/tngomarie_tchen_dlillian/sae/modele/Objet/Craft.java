@@ -13,36 +13,30 @@ public class Craft {
 
     public void crafting(int clef){
         if(verif(clef)){
-            for (int i = 0; i != this.listRecipe.getList(clef).getResulat().length ; i++) {
-                for (int j = 0; j !=this.listRecipe.getList(clef).getResulat()[i][1] ; j++) {
-                    this.inventaire.ajoutObjet(this.inventaire.getListObjet().getItem(this.listRecipe.getList(clef).getResulat()[i][0]));
-
+            int[][] resultatRecette = this.listRecipe.getList(clef).getResulat();
+            for (int i = 0; i != resultatRecette.length ; i++) {
+                for (int j = 0; j != resultatRecette[i][1] ; j++) {
+                    this.inventaire.ajoutObjet(this.inventaire.getListObjet().getItem(resultatRecette[i][0]));
                 }
-
             }
         }
-
     }
     private boolean verif(int i) {
         int valid = 0;
-        int nbingredient = listRecipe.getList(i).getRecette().length / 2;
+        int[][] listeDeRecette = listRecipe.getList(i).getRecette();
+        int nbingredient = listeDeRecette.length / 2;
+
         for (int j = 0; j < nbingredient; j++) {
             for (Objet obj : this.inventaire.getInventaire()) {
-                if ((listRecipe.getList(i).getRecette()[j][0] == obj.getIdObjet())
-                        && (listRecipe.getList(i).getRecette()[1][j] < obj.getNb())) {
+                if ((listeDeRecette[j][0] == obj.getIdObjet())
+                        && (obj.getNb() >= listeDeRecette[j][1])) {
                     valid++;
+                    break; // Exit inner loop once ingredient is found
                 }
             }
         }
-        System.out.println(valid);
-        System.out.println(nbingredient);
-        System.out.println( valid == nbingredient);
 
-        if (valid == nbingredient) {
-            return true;
-
-        }
-        return false;
+        return valid == nbingredient;
     }
 
 }

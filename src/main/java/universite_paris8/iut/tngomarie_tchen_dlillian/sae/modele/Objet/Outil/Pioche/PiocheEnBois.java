@@ -10,9 +10,6 @@ public class PiocheEnBois extends Pioche {
         super(10, 50, "bois");
     }
 
-
-
-
     @Override
     public void agit(Player player, double SourisX, double SourisY) {
         int x=Math.toIntExact(Math.round(SourisX)/ Param.scale);

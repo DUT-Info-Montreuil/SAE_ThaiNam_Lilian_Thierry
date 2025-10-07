@@ -30,7 +30,6 @@ public abstract class Entity {
 		this.gravite=0;
 		compteur++;
 	}
-
 	/*public Entity( double v, Environnement env, int pv) {
 		this.pv=pv;
 		Random random=new Random();
@@ -93,8 +92,6 @@ public abstract class Entity {
 	public void setV(double n){this.v=n;}
 	public double getGravite() {return gravite;}
 	public void setGravité(double n){this.gravite=n;}
-
-
 
 
 	public boolean estVivant() {
