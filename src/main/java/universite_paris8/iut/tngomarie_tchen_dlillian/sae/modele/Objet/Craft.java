@@ -12,6 +12,7 @@ public class Craft {
     }
 
     public void crafting(int clef){
+        System.out.println(verif(clef));
         if(verif(clef)){
             int[][] resultatRecette = this.listRecipe.getList(clef).getResulat();
             for (int i = 0; i != resultatRecette.length ; i++) {
@@ -28,8 +29,8 @@ public class Craft {
 
         for (int j = 0; j < nbingredient; j++) {
             for (Objet obj : this.inventaire.getInventaire()) {
-                if ((listeDeRecette[j][0] == obj.getIdObjet())
-                        && (obj.getNb() >= listeDeRecette[j][1])) {
+                if ((listeDeRecette[0][j] == obj.getIdObjet())
+                        && (obj.getNb() >= listeDeRecette[1][j])) {
                     valid++;
                     break; // Exit inner loop once ingredient is found
                 }

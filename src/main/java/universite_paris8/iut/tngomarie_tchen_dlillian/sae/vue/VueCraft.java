@@ -104,7 +104,6 @@ public class VueCraft {
         hBox.getChildren().addAll(boutonCraft, imageView);
 
         return hBox;
-
     }
 
     public void afficherCraft(){scrollPane.setVisible(true);}

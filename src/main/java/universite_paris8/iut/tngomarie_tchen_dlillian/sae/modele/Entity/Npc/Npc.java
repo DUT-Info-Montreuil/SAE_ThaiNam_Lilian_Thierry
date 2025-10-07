@@ -9,8 +9,8 @@ import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.En
 public class Npc extends Entity {
     private int forwardbackward=1;
     public double co;
-    public Npc(double x, double y, int v, Environnement env, int pv) {
-        super(x, y, v, env, pv);
+    public Npc(double x, double y, int v, int pv) {
+        super(x, y, v, pv);
         this.co = x;
     }
 

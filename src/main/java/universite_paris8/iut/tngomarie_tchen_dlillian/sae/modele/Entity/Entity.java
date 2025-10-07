@@ -18,13 +18,14 @@ public abstract class Entity {
 	private int maxPv;
 	private double gravite;
 	private boolean asaptrite;
-	public Entity(double x, double y, double v, Environnement env,int maxPv) {
+
+	public Entity(double x, double y, double v,int maxPv) {
 		this.maxPv = maxPv;
 		this.pv=maxPv;
 		this.x= new SimpleDoubleProperty(x);
 		this.y = new SimpleDoubleProperty(y);
 		this.v = v;
-		this.env=env;	
+		this.env= Environnement.getInstance();
 		this.id="A"+compteur;
 		this.asaptrite=false;
 		this.gravite=0;

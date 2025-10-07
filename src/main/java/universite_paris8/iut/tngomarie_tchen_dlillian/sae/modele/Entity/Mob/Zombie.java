@@ -6,8 +6,8 @@ import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.En
 
 public class Zombie extends Mobs{
 
-    public Zombie(int x, Environnement env){
-        super(x,100,1,env,20,2);
+    public Zombie(int x){
+        super(x,100,1,20,2);
     }
 
     @Override

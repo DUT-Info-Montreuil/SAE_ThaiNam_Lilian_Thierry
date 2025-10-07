@@ -96,11 +96,11 @@ public class Controleur implements Initializable{
                     paneMenu.setVisible(false);
                     boutonMenu.setVisible(false);
 
-        this.env = new Environnement(Param.width*Param.scale,Param.height*Param.scale);
+        this.env = Environnement.getInstance();
         this.terrain = new vueTerrain(panneauJeu,env);
-        this.player = new Player(500,460,1,env,this.terrain,100);
+        this.player = new Player(500,460,1,this.terrain,100);
         this.env.addentities(player);
-        Zombie test = new Zombie(50,env);
+        Zombie test = new Zombie(50);
        this.env.entities.add(test);
             this.craft = new Craft(Inventaire.getInstance());
         this.objet = new VueObjet(paneInv,this.player);

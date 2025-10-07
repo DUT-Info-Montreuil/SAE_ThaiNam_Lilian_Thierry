@@ -111,16 +111,18 @@ public class KeyPressed implements EventHandler<KeyEvent>{
                     System.out.println("fils ajouté");
                     Inventaire.getInstance().ajoutObjet(new Fils(1));
                 }
+                vueObjet.getFullImage();
                 break;
 
             case C:
                 player.degatjoueur(10);
                 System.out.println(player.getPv());
                 break;
+
             case V:
                 this.vueObjet.getFullImage();
-//                this.player.getInventaire().craft();
                 break;
+
             case NUMPAD1:
                 System.out.println("1");
                 vueObjet.getIndexPane(1);
