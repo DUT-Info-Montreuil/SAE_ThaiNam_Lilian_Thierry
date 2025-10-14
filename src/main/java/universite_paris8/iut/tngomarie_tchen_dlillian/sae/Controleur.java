@@ -33,6 +33,7 @@ import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Craft;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredient.Fer;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Inventaire;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.ListObjet;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Objet;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Arc;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Epee.EpeeBois;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.FlecheObjet;
@@ -295,6 +296,26 @@ public class Controleur implements Initializable{
                 inventaire.ajoutObjet(new EpeeBois());
                 System.out.println("Épée en bois ajoutée !");
                 break;
+        }
+    }
+    
+    /**
+     * Méthode de test pour vérifier la suppression d'objets
+     */
+    public void retirerObjetDeTest() {
+        Inventaire inventaire = Inventaire.getInstance();
+        
+        if (!inventaire.estVide()) {
+            // Retirer le premier objet disponible pour test
+            var objets = inventaire.getInventaire();
+            if (!objets.isEmpty()) {
+                Objet objet = objets.get(0);
+                int quantiteARetirer = Math.min(1, objet.getNb());
+                inventaire.supprimerObjet(objet.getIdObjet(), quantiteARetirer);
+                System.out.println("Objet retiré : " + objet.getClass().getSimpleName() + " (quantité: " + quantiteARetirer + ")");
+            }
+        } else {
+            System.out.println("Inventaire vide !");
         }
     }
 

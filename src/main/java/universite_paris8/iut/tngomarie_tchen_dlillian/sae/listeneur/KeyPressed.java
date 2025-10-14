@@ -165,6 +165,11 @@ public class KeyPressed implements EventHandler<KeyEvent>{
                 vueObjet.afficherCaseInv(vueObjet.getSlotDepuisIndice(7));
                 Inventaire.getInstance().changerObjet(6);
                 break;
+                
+            case R:
+                System.out.println("Test de suppression d'objet (touche R)");
+                c.retirerObjetDeTest();
+                break;
         }
     }
 
