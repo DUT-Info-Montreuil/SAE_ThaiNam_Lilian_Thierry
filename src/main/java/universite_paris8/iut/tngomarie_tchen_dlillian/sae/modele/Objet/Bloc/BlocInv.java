@@ -3,6 +3,7 @@ package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Bloc;
 import javafx.scene.image.ImageView;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Param;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Player;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Inventaire;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Objet;
 
 public class BlocInv extends Objet {
@@ -29,7 +30,7 @@ public class BlocInv extends Objet {
             player.getVueTerrain().changementTuileMinage(x,y,getIdObjet());
             
             // Retirer un bloc de l'inventaire
-            player.getInventaire().supprimerObjet(this.getIdObjet(), 1);
+            Inventaire.getInstance().supprimerObjet(this.getIdObjet(), 1);
             System.out.println("Bloc placé et retiré de l'inventaire. Quantité restante: " + (this.getNb() - 1));
         } else {
             System.out.println("Aucun bloc disponible pour le placement!");

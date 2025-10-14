@@ -7,6 +7,7 @@ import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Player;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.StrategieDeDeplacementInterface;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.StrategieDeDeplacementBFS;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.StrategieDeDeplacementDirect;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Param;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Environnement;
 
 public class Npc extends Entity {
@@ -59,7 +60,8 @@ public class Npc extends Entity {
         }
 
         if (joueur != null) {
-            int tailleTuile = 32; // Taille d'un bloc
+            // Utiliser la taille de tuile depuis Param
+            int tailleTuile = Param.scale;
             
             // Limite horizontale de la zone de déplacement (en pixels)
             double minX = (co - 20) * tailleTuile;

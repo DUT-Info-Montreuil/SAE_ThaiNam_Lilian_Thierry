@@ -130,6 +130,17 @@ public class Controleur implements Initializable{
         // Ajouter quelques objets de test pour démontrer les mises à jour automatiques
         ajouterObjetsDeTest();
         this.vueCraft = new VueCraft(craftPane, craftScrolling, this, craft);
+        
+        // Diagnostic des recettes pour déboguer les problèmes
+        System.out.println("Vérification des recettes au démarrage...");
+        listRecipe.diagnostiquerRecettes();
+        
+        // Tester le format des recettes
+        listRecipe.testerFormatRecettes();
+        
+        // Vérifier que tous les objets des recettes existent
+        listRecipe.validerObjetsRecettes(listObjet);
+        
         vueCraft.ajoutListe(craftList, listRecipe, listObjet);
 
 
@@ -326,6 +337,19 @@ public class Controleur implements Initializable{
         } else {
             System.out.println("Inventaire vide !");
         }
+    }
+    
+    /**
+     * Méthode de test pour le crafting
+     */
+    public void testerCrafting() {
+        System.out.println("=== Test du crafting ===");
+        
+        // Tester le craft des bâtons (recette 5 : 1 bois -> 4 bâtons)
+        System.out.println("Test du craft des bâtons (ID 5):");
+        craft.crafting(5);
+        
+        System.out.println("=== Fin du test de crafting ===");
     }
 
 }

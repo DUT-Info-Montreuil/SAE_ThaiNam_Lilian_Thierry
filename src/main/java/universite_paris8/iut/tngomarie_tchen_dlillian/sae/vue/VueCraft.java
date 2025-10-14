@@ -40,20 +40,35 @@ public class VueCraft {
         double hauteur = 200;
         double hauteurNbCraft = hauteur / nbCraft;
 
-        for (int i = 0; i < listRecipe.getList().size() ; i++) {
-            Recipe recipe = listRecipe.getList(i);
+        // Itérer sur les clés de la HashMap pour éviter les recettes null
+        for (Integer key : listRecipe.getList().keySet()) {
+            Recipe recipe = listRecipe.getList(key);
+            
+            // Vérification de sécurité pour éviter les recettes null
+            if (recipe == null) {
+                System.out.println("Attention: Recette null détectée pour la clé " + key);
+                continue;
+            }
+            
             int idObjetCree = recipe.getResulat()[0][0];
 
             if (listObjet.getItem(idObjetCree) == null) {
+                System.out.println("Objet cible non trouvé pour la recette " + key + " (ID: " + idObjetCree + ")");
                 continue;
             }
 
-            HBox hBox = creeHbox(recipe, listObjet, hauteurNbCraft, i);
+            HBox hBox = creeHbox(recipe, listObjet, hauteurNbCraft, key);
             vBox.getChildren().add(hBox);
         }
     }
 
     public HBox creeHbox (Recipe recipe, ListObjet listObjet, double hauteur, int indexCraft ) {
+        // Vérification de sécurité pour éviter les recettes null
+        if (recipe == null) {
+            System.err.println("Erreur: Tentative de création d'HBox avec une recette null (index: " + indexCraft + ")");
+            return new HBox(); // Retourner une HBox vide pour éviter le crash
+        }
+        
         HBox hBox = new HBox(10);
         hBox.setPrefHeight(hauteur);
         hBox.setStyle("-fx-border-color: gray;");
@@ -65,19 +80,30 @@ public class VueCraft {
 
         StringBuilder contenuTooltip = new StringBuilder("Besoin :\n");
         int[][] input = recipe.getRecette();
+        
+        // Vérifier que les données de la recette sont valides
+        if (input == null || input.length == 0) {
+            System.err.println("Erreur: Données de recette invalides (input null ou vide) pour l'index " + indexCraft);
+            contenuTooltip.append("- Recette invalide\n");
+        } else {
+            for (int j = 0; j < input.length; j++) {
+                if (input[j] == null || input[j].length < 2) {
+                    System.err.println("Erreur: Données d'ingrédient invalides à l'index " + j + " pour la recette " + indexCraft);
+                    continue;
+                }
+                
+                int idObjet = input[j][0];
+                int quantite = input[j][1];
+                Objet objet = listObjet.getItem(idObjet);
 
-        for (int j = 0; j < input.length; j++) {
-            int idObjet = input[j][0];
-            int quantite = input[j][1];
-            Objet objet = listObjet.getItem(idObjet);
+                String nomObjet = (objet != null) ? objet.getClass().getSimpleName() : "Objet inconnu (ID: " + idObjet + ")";
 
-            String nomObjet = (objet != null) ? objet.getClass().getSimpleName() : "Objet inconnu";
-
-            contenuTooltip.append("- ")
-                    .append(nomObjet)
-                    .append(" x")
-                    .append(quantite)
-                    .append("\n");
+                contenuTooltip.append("- ")
+                        .append(nomObjet)
+                        .append(" x")
+                        .append(quantite)
+                        .append("\n");
+            }
         }
 
         Tooltip tooltip = new Tooltip(contenuTooltip.toString());
@@ -92,13 +118,32 @@ public class VueCraft {
             this.craft.crafting(indexCraft);
         });
 
-        int idObjetCree = recipe.getResulat()[0][0];
+        // Vérifier que les données de résultat sont valides
+        int[][] resultat = recipe.getResulat();
+        if (resultat == null || resultat.length == 0 || resultat[0] == null || resultat[0].length == 0) {
+            System.err.println("Erreur: Données de résultat invalides pour la recette " + indexCraft);
+            // Ajouter une image par défaut en cas d'erreur
+            ImageView imageView = new ImageView(new Image("default.png"));
+            imageView.setFitWidth(50);
+            imageView.setFitHeight(50);
+            hBox.getChildren().addAll(boutonCraft, imageView);
+            return hBox;
+        }
+        
+        int idObjetCree = resultat[0][0];
         Objet objetCree = listObjet.getItem(idObjetCree);
 
-        ImageView imageView = objetCree.getimage();
-        if (imageView == null) {
-            imageView = new ImageView(new Image("default.png")); // pour ceux qui ont pas d'image
+        ImageView imageView;
+        if (objetCree != null) {
+            imageView = objetCree.getimage();
+            if (imageView == null) {
+                imageView = new ImageView(new Image("default.png")); // pour ceux qui ont pas d'image
+            }
+        } else {
+            System.err.println("Attention: Objet résultat non trouvé pour l'ID " + idObjetCree + " (recette " + indexCraft + ")");
+            imageView = new ImageView(new Image("default.png")); // Image par défaut
         }
+        
         imageView.setFitWidth(50);
         imageView.setFitHeight(50);
         hBox.getChildren().addAll(boutonCraft, imageView);

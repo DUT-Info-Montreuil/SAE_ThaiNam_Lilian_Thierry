@@ -5,6 +5,7 @@ import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Player;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.StrategieDeDeplacementInterface;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.StrategieDeDeplacementBFS;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.StrategieDeDeplacementDirect;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Param;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Environnement;
 
 import java.util.Arrays;
@@ -62,7 +63,7 @@ public abstract class Mobs extends Entity {
 
 private int frameCounter = 0;
     private final int frameInterval = 10;
-    private final int tailleTuile = 32;
+    // Utiliser les constantes de Param pour la taille des tuiles
     private final int porteePoursuite = 15;  // en tuiles
     private final int porteeRetour = 25;     // en tuiles
 
@@ -87,7 +88,7 @@ private int frameCounter = 0;
             
             // Appliquer la stratégie si elle peut être utilisée
             if (strategieActuelle.peutEtreAppliquee(this, joueur, env)) {
-                double[] mouvement = strategieActuelle.calculerMouvement(this, joueur, env, tailleTuile);
+                double[] mouvement = strategieActuelle.calculerMouvement(this, joueur, env, Param.scale);
                 
                 // Appliquer le mouvement
                 setX(getX() + mouvement[0]);
@@ -105,9 +106,12 @@ private int frameCounter = 0;
             Math.pow(getY() - joueur.getY(), 2)
         );
         
+        // Distance de basculement basée sur la taille de l'écran (10% de la largeur)
+        double distanceBasculement = Param.getDistanceFromScreenRatio(0.10);
+        
         // Si le joueur est loin, utiliser la stratégie directe (plus rapide)
         // Si le joueur est proche, utiliser BFS pour éviter les obstacles
-        if (distance > 200) {
+        if (distance > distanceBasculement) {
             strategieActuelle = strategieDirect;
         } else {
             strategieActuelle = strategieBFS;

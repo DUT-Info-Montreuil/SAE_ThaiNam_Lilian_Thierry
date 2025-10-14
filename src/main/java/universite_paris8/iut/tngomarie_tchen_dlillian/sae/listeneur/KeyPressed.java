@@ -170,6 +170,11 @@ public class KeyPressed implements EventHandler<KeyEvent>{
                 System.out.println("Test de suppression d'objet (touche R)");
                 c.retirerObjetDeTest();
                 break;
+                
+            case T:
+                System.out.println("Test de crafting (touche T)");
+                c.testerCrafting();
+                break;
         }
     }
 
