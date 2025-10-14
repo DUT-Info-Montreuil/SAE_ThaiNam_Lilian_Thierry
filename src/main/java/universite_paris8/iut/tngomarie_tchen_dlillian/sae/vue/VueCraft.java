@@ -66,9 +66,9 @@ public class VueCraft {
         StringBuilder contenuTooltip = new StringBuilder("Besoin :\n");
         int[][] input = recipe.getRecette();
 
-        for (int j = 0; j < input[0].length; j++) {
-            int idObjet = input[0][j];
-            int quantite = input[1][j];
+        for (int j = 0; j < input.length; j++) {
+            int idObjet = input[j][0];
+            int quantite = input[j][1];
             Objet objet = listObjet.getItem(idObjet);
 
             String nomObjet = (objet != null) ? objet.getClass().getSimpleName() : "Objet inconnu";

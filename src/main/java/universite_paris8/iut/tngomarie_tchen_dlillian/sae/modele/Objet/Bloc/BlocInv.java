@@ -19,9 +19,20 @@ public class BlocInv extends Objet {
 
     @Override
     public void agit(Player player,double sourisX, double sourisY) {
-        int x=Math.toIntExact(Math.round(sourisX))/ Param.scale;
-        int y=Math.toIntExact(Math.round(sourisY))/ Param.scale;
-        player.getEnv().changeBlock(x,y,getIdObjet());
-        player.getVueTerrain().changementTuileMinage(x,y,getIdObjet());
+        // Vérifier qu'on a au moins un bloc à placer
+        if (this.getNb() > 0) {
+            int x=Math.toIntExact(Math.round(sourisX))/ Param.scale;
+            int y=Math.toIntExact(Math.round(sourisY))/ Param.scale;
+            
+            // Placer le bloc dans le terrain
+            player.getEnv().changeBlock(x,y,getIdObjet());
+            player.getVueTerrain().changementTuileMinage(x,y,getIdObjet());
+            
+            // Retirer un bloc de l'inventaire
+            player.getInventaire().supprimerObjet(this.getIdObjet(), 1);
+            System.out.println("Bloc placé et retiré de l'inventaire. Quantité restante: " + (this.getNb() - 1));
+        } else {
+            System.out.println("Aucun bloc disponible pour le placement!");
+        }
     }
 }

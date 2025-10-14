@@ -20,12 +20,27 @@ public class Arc extends Outil {
     }
 
     public void agit(Player player,double SourisX, double SourisY){
+        // Chercher des flèches dans l'inventaire
+        FlecheObjet flecheDisponible = null;
+        
         for(int i = 0; i < Inventaire.getInstance().getInventaire().size(); i++) {
-            if (Inventaire.getInstance().getInventaire().get(i) instanceof FlecheObjet && ((FlecheObjet) Inventaire.getInstance().getInventaire().get(i)).getNbObjet() >= 1) {
-                Fleche f = new Fleche(player.getX(), player.getY(), (int) (20 * player.getDirection()), player.getEnv(), 1,player.getDirection());
-                player.getEnv().addentities(f);
-                ((FlecheObjet) Inventaire.getInstance().getInventaire().get(i)).decrementIngredient(1);
+            if (Inventaire.getInstance().getInventaire().get(i) instanceof FlecheObjet) {
+                FlecheObjet fleche = (FlecheObjet) Inventaire.getInstance().getInventaire().get(i);
+                if (fleche.getNb() >= 1) { // Utiliser getNb() au lieu de getNbObjet()
+                    flecheDisponible = fleche;
+                    break; // Sortir de la boucle dès qu'on trouve une flèche
+                }
             }
+        }
+        
+        // Si on a trouvé des flèches, tirer une flèche
+        if (flecheDisponible != null) {
+            Fleche f = new Fleche(player.getX(), player.getY(), (int) (20 * player.getDirection()), player.getEnv(), 1,player.getDirection());
+            player.getEnv().addentities(f);
+            flecheDisponible.decrementIngredient(1); // Consommer une flèche
+            System.out.println("Flèche tirée ! Flèches restantes : " + flecheDisponible.getNb());
+        } else {
+            System.out.println("Pas de flèches disponibles !");
         }
     }
 }

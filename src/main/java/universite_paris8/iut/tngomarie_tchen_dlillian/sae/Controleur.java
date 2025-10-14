@@ -30,7 +30,9 @@ import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Interface.ListR
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Bloc.Bois;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Bloc.Pierre;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Craft;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredient.Baton;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredient.Fer;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredient.Fils;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Inventaire;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.ListObjet;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Objet;
@@ -266,8 +268,15 @@ public class Controleur implements Initializable{
         // Ajouter des flèches (quantité : 10)
         inventaire.ajoutObjet(new FlecheObjet(10));
         
+        // Ajouter des batons pour les recettes de craft (quantité : 10)
+        inventaire.ajoutObjet(new Baton(10));
+        
+        // Ajouter des fils pour les recettes de craft (quantité : 5)
+        inventaire.ajoutObjet(new Fils(5));
+        
         System.out.println("Objets de test ajoutés à l'inventaire - l'interface devrait se mettre à jour automatiquement!");
         System.out.println("Testez l'utilisation des objets pour voir s'ils sont retirés automatiquement!");
+        System.out.println("Vous pouvez maintenant tester le crafting avec les matériaux disponibles!");
     }
     
     /**
