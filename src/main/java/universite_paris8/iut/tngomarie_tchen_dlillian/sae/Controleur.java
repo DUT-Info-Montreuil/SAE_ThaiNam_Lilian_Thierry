@@ -206,9 +206,6 @@ public class Controleur implements Initializable{
     public void update() {
         //System.out.println(pvBar.progressProperty());
             gererSprite();
-
-
-
          for(Entity e :env.entities) {
             e.seDeplace();
         }
