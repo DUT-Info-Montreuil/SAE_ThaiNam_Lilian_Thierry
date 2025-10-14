@@ -27,9 +27,15 @@ import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Mob.Zomb
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Player;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Interface.ListRecipe;
 
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Bloc.Bois;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Bloc.Pierre;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Craft;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredient.Fer;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Inventaire;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.ListObjet;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Arc;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Epee.EpeeBois;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.FlecheObjet;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Param;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Environnement;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.vue.VueCraft;
@@ -111,6 +117,15 @@ public class Controleur implements Initializable{
                 slotS1, slotS2, slotS3, slotS4, slotS5, slotS6, slotS7,
                 slotS8, slotS9, slotS10, slotS11, slotS12, slotS13, slotS14
         ));
+        
+        // Enregistrer la VueObjet comme observateur de l'inventaire pour les mises à jour automatiques
+        Inventaire.getInstance().addObserver(objet);
+        
+        // Affichage initial de l'inventaire
+        objet.getFullImage();
+        
+        // Ajouter quelques objets de test pour démontrer les mises à jour automatiques
+        ajouterObjetsDeTest();
         this.vueCraft = new VueCraft(craftPane, craftScrolling, this, craft);
         vueCraft.ajoutListe(craftList, listRecipe, listObjet);
 
@@ -223,6 +238,64 @@ public class Controleur implements Initializable{
             paneMenu.setVisible(false);
             boutonMenu.setVisible(false);
         });
+    }
+    
+    /**
+     * Méthode de test pour démontrer les mises à jour automatiques de l'inventaire
+     */
+    private void ajouterObjetsDeTest() {
+        // Ajouter quelques objets de test avec des quantités différentes
+        Inventaire inventaire = Inventaire.getInstance();
+        
+        // Ajouter du bois (quantité : 5)
+        inventaire.ajoutObjet(new Bois(5));
+        
+        // Ajouter de la pierre (quantité : 3)
+        inventaire.ajoutObjet(new Pierre(3));
+        
+        // Ajouter du fer (quantité : 2)
+        inventaire.ajoutObjet(new Fer(2));
+        
+        // Ajouter une épée en bois (quantité : 1)
+        inventaire.ajoutObjet(new EpeeBois());
+        
+        // Ajouter un arc (quantité : 1)
+        inventaire.ajoutObjet(new Arc());
+        
+        // Ajouter des flèches (quantité : 10)
+        inventaire.ajoutObjet(new FlecheObjet(10));
+        
+        System.out.println("Objets de test ajoutés à l'inventaire - l'interface devrait se mettre à jour automatiquement!");
+        System.out.println("Testez l'utilisation des objets pour voir s'ils sont retirés automatiquement!");
+    }
+    
+    /**
+     * Méthode publique pour ajouter des objets à l'inventaire (utilisable par les event handlers)
+     * Ceci démontrera la mise à jour automatique de l'interface
+     */
+    public void ajouterObjetAuInventaire() {
+        Inventaire inventaire = Inventaire.getInstance();
+        
+        // Ajouter un objet aléatoire pour tester
+        int random = (int)(Math.random() * 4);
+        switch(random) {
+            case 0:
+                inventaire.ajoutObjet(new Bois(1));
+                System.out.println("Bois ajouté !");
+                break;
+            case 1:
+                inventaire.ajoutObjet(new Pierre(1));
+                System.out.println("Pierre ajoutée !");
+                break;
+            case 2:
+                inventaire.ajoutObjet(new Fer(1));
+                System.out.println("Fer ajouté !");
+                break;
+            case 3:
+                inventaire.ajoutObjet(new EpeeBois());
+                System.out.println("Épée en bois ajoutée !");
+                break;
+        }
     }
 
 }

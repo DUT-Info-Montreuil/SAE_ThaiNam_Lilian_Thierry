@@ -1,9 +1,14 @@
 package universite_paris8.iut.tngomarie_tchen_dlillian.sae.vue;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import org.controlsfx.control.spreadsheet.Grid;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Player;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Inventaire;
@@ -53,6 +58,17 @@ public class VueObjet {
 
         slot.getChildren().clear();
         slot.getChildren().add(imageView);
+        
+        // Ajouter le nombre d'objets si supérieur à 1
+        if (objet.getNb() > 1) {
+            Label quantityLabel = new Label(String.valueOf(objet.getNb()));
+            quantityLabel.setTextFill(Color.WHITE);
+            quantityLabel.setFont(Font.font("Arial", FontWeight.BOLD, 12));
+            quantityLabel.setLayoutX(45); // Position en bas à droite
+            quantityLabel.setLayoutY(45);
+            quantityLabel.setStyle("-fx-background-color: rgba(0,0,0,0.7); -fx-padding: 2px; -fx-background-radius: 3px;");
+            slot.getChildren().add(quantityLabel);
+        }
     }
 
     public Pane getSlotDepuisIndice(int indice) {
@@ -73,26 +89,34 @@ public class VueObjet {
     public void getFullImage(){
         List<Objet> objets = Inventaire.getInstance().getInventaire();
 
+        // Mettre à jour les slots primaires
         for (int i = 0; i < this.slotsInventairePrimaire.size(); i++) {
             if(i < objets.size()) {
                 Objet objet = objets.get(i);
                 if (objet != null) {
                     mettreObjetVue(slotsInventairePrimaire.get(i), objet);
-                }else{
+                } else {
                     slotsInventairePrimaire.get(i).getChildren().clear();
                 }
+            } else {
+                // Vider les slots qui n'ont pas d'objets correspondants
+                slotsInventairePrimaire.get(i).getChildren().clear();
             }
         }
 
+        // Mettre à jour les slots secondaires
         for (int i = 0; i < this.slotsInvSecondaire.size(); i++) {
             int indexInventaire = i + slotsInventairePrimaire.size();
             if(indexInventaire < objets.size()) {
                 Objet objet = objets.get(indexInventaire);
                 if (objet != null) {
                     mettreObjetVue(slotsInvSecondaire.get(i), objet);
-                }else{
+                } else {
                     slotsInvSecondaire.get(i).getChildren().clear();
                 }
+            } else {
+                // Vider les slots qui n'ont pas d'objets correspondants
+                slotsInvSecondaire.get(i).getChildren().clear();
             }
         }
     }
