@@ -4,9 +4,8 @@ package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Npc;
 import javafx.scene.image.ImageView;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Entity;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Player;
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.StrategieDeDeplacementInterface;
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.StrategieDeDeplacementBFS;
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.StrategieDeDeplacementDirect;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Strategie.StrategieDeDeplacementInterface;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Strategie.StrategieDeDeplacementBFS;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Param;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Environnement;
 
@@ -14,33 +13,29 @@ public class Npc extends Entity {
     private int forwardbackward=1;
     public double co;
     
-    // Stratégies de déplacement disponibles
-    private StrategieDeDeplacementInterface strategieBFS;
-    private StrategieDeDeplacementInterface strategieDirect;
-    private StrategieDeDeplacementInterface strategieActuelle;
+    // Stratégie de déplacement unique
+    private StrategieDeDeplacementInterface strategie;
     
     public Npc(double x, double y, int v, int pv) {
         super(x, y, v, pv);
         this.co = x;
         
-        // Initialiser les stratégies
-        this.strategieBFS = new StrategieDeDeplacementBFS();
-        this.strategieDirect = new StrategieDeDeplacementDirect();
-        this.strategieActuelle = strategieBFS; // Par défaut, utiliser BFS
+        // Les NPCs utilisent la stratégie BFS pour un mouvement précis
+        this.strategie = new StrategieDeDeplacementBFS();
     }
     
     /**
      * Change la stratégie de déplacement
      */
     public void setStrategieDeplacement(StrategieDeDeplacementInterface strategie) {
-        this.strategieActuelle = strategie;
+        this.strategie = strategie;
     }
     
     /**
      * Obtient la stratégie de déplacement actuelle
      */
     public StrategieDeDeplacementInterface getStrategieDeplacement() {
-        return this.strategieActuelle;
+        return this.strategie;
     }
 
     @Override
@@ -78,12 +73,9 @@ public class Npc extends Entity {
                 return;
             }
             
-            // Choisir la stratégie appropriée
-            choisirStrategie(joueur);
-            
             // Appliquer la stratégie si elle peut être utilisée
-            if (strategieActuelle.peutEtreAppliquee(this, joueur, env)) {
-                double[] mouvement = strategieActuelle.calculerMouvement(this, joueur, env, tailleTuile);
+            if (strategie.peutEtreAppliquee(this, joueur, env)) {
+                double[] mouvement = strategie.calculerMouvement(this, joueur, env, tailleTuile);
                 
                 // Appliquer le mouvement en respectant les limites de zone
                 double newX = getX() + mouvement[0];
@@ -98,20 +90,6 @@ public class Npc extends Entity {
         }
     }
     
-    /**
-     * Choisit la stratégie de déplacement appropriée selon le contexte
-     * Les NPCs utilisent principalement BFS pour un mouvement intelligent
-     */
-    private void choisirStrategie(Player joueur) {
-        double distance = Math.sqrt(
-            Math.pow(getX() - joueur.getX(), 2) + 
-            Math.pow(getY() - joueur.getY(), 2)
-        );
-        
-        // Les NPCs utilisent toujours BFS pour un mouvement précis
-        // (contrairement aux mobs qui peuvent utiliser le mouvement direct)
-        strategieActuelle = strategieBFS;
-    }
 
     @Override
     public ImageView getimage() {

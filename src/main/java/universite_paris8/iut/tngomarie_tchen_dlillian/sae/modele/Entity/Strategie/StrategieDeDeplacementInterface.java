@@ -1,5 +1,6 @@
-package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity;
+package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Strategie;
 
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Entity;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Environnement;
 
 /**

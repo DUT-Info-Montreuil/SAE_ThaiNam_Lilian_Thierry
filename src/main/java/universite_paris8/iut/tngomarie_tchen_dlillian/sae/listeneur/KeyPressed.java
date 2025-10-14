@@ -175,6 +175,21 @@ public class KeyPressed implements EventHandler<KeyEvent>{
                 System.out.println("Test de crafting (touche T)");
                 c.testerCrafting();
                 break;
+                
+            case P:
+                System.out.println("Test de craft de pioche (touche P)");
+                c.testerCraftPioche();
+                break;
+                
+            case I:
+                System.out.println("Affichage détail inventaire (touche I)");
+                c.afficherInventaireDetail();
+                break;
+                
+            case S:
+                System.out.println("Test des stratégies (touche S)");
+                c.testerStrategies();
+                break;
         }
     }
 

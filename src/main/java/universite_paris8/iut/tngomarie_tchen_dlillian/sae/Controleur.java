@@ -351,5 +351,85 @@ public class Controleur implements Initializable{
         
         System.out.println("=== Fin du test de crafting ===");
     }
+    
+    /**
+     * Méthode de test spécifique pour la pioche
+     */
+    public void testerCraftPioche() {
+        System.out.println("=== Test du craft de la pioche ===");
+        
+        Inventaire inventaire = Inventaire.getInstance();
+        
+        // Vérifier les ingrédients avant le craft
+        System.out.println("Inventaire avant le craft:");
+        for (Objet obj : inventaire.getInventaire()) {
+            System.out.println("  - " + obj.getClass().getSimpleName() + " (ID: " + obj.getIdObjet() + ") x" + obj.getNb());
+        }
+        
+        // Tester le craft de la pioche (recette 3 : 2 bâtons + 3 bois -> 1 pioche)
+        System.out.println("\nTest du craft de la pioche (ID 3):");
+        craft.crafting(3);
+        
+        // Vérifier l'inventaire après le craft
+        System.out.println("\nInventaire après le craft:");
+        for (Objet obj : inventaire.getInventaire()) {
+            System.out.println("  - " + obj.getClass().getSimpleName() + " (ID: " + obj.getIdObjet() + ") x" + obj.getNb());
+        }
+        
+        System.out.println("=== Fin du test de craft de la pioche ===");
+    }
+    
+    /**
+     * Méthode pour afficher le détail de l'inventaire
+     */
+    public void afficherInventaireDetail() {
+        System.out.println("=== Détail de l'inventaire ===");
+        
+        Inventaire inventaire = Inventaire.getInstance();
+        
+        if (inventaire.estVide()) {
+            System.out.println("Inventaire vide !");
+        } else {
+            for (int i = 0; i < inventaire.getInventaire().size(); i++) {
+                Objet obj = inventaire.getInventaire().get(i);
+                System.out.println((i+1) + ". " + obj.getClass().getSimpleName() + 
+                    " (ID: " + obj.getIdObjet() + ") x" + obj.getNb());
+            }
+        }
+        
+        System.out.println("=== Fin du détail de l'inventaire ===");
+    }
+    
+    /**
+     * Méthode de test pour le nouveau système de stratégie
+     */
+    public void testerStrategies() {
+        System.out.println("=== Test du nouveau système de stratégies ===");
+        
+        // Vérifier les stratégies des entités
+        for (Entity entity : env.getEntities()) {
+            if (entity instanceof universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Mob.Mobs) {
+                universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Mob.Mobs mob = 
+                    (universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Mob.Mobs) entity;
+                System.out.println("Mob - Stratégie: " + mob.getStrategieDeplacement().getClass().getSimpleName());
+                
+                // Si c'est une StrategieAvancee, afficher la stratégie actuellement utilisée
+                if (mob.getStrategieDeplacement() instanceof universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.StrategieAvancee) {
+                    universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.StrategieAvancee strategieAvancee = 
+                        (universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.StrategieAvancee) mob.getStrategieDeplacement();
+                    String strategieActuelle = strategieAvancee.getStrategieActuelle(mob, player);
+                    System.out.println("  -> Stratégie actuelle: " + strategieActuelle);
+                }
+            }
+            
+            if (entity instanceof universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Npc.Npc) {
+                universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Npc.Npc npc = 
+                    (universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Npc.Npc) entity;
+                System.out.println("NPC - Stratégie: " + npc.getStrategieDeplacement().getClass().getSimpleName());
+            }
+        }
+        
+        System.out.println("=== Fin du test des stratégies ===");
+    }
 
 }
