@@ -5,7 +5,7 @@ import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.En
 /**
  * Interface représentant une stratégie de déplacement pour les entités
  */
-public interface StrategieDeDéplacement {
+public interface StrategieDeDeplacementInterface {
     
     /**
      * Calcule le prochain mouvement pour une entité
