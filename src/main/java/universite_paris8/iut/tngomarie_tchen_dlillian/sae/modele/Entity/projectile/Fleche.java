@@ -7,7 +7,7 @@ import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.En
 public class Fleche extends Entity {
     private double dir;
     public Fleche(double x, double y, int v, Environnement env, int pv,double dir) {
-        super(x, y, v, env, pv);
+        super(x, y, v, pv);
         this.dir = dir;
     }
 

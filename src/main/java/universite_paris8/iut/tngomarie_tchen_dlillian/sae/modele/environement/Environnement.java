@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Entity;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Param;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Block.Block;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Block.ListBlock;
 
@@ -20,11 +21,19 @@ public class Environnement {
 	public ObservableList<Entity> entities;
 	public int[][] map1;
 
+	private static Environnement uniqueInstance = null;
 
-	public Environnement(int width, int height) {
+	public static Environnement getInstance(){
+		if(uniqueInstance == null){
+			uniqueInstance = new Environnement();
+		}
+		return uniqueInstance;
+	}
+
+	public Environnement() {
 		super();
-		this.width = width;
-		this.height = height;
+		this.width = Param.width*Param.scale;
+		this.height = Param.height*Param.scale;
 		this.entities= FXCollections.observableArrayList();
 		this.list = new ListBlock();
 		this.entities.addListener(new ListChangeListener() {

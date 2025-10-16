@@ -21,4 +21,6 @@ module universite_paris8.iut.tngomarie {
     opens universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Interface to javafx.fxml;
     exports universite_paris8.iut.tngomarie_tchen_dlillian.sae.listeneur;
     opens universite_paris8.iut.tngomarie_tchen_dlillian.sae.listeneur to javafx.fxml;
+    exports universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Strategie;
+    opens universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Strategie to javafx.fxml;
 }

@@ -22,4 +22,31 @@ public class Param {
         
         System.out.println("Écran détecté: " + screenWidth + "x" + screenHeight);
     }
+    
+    /**
+     * Calcule une distance basée sur un pourcentage de la largeur d'écran
+     * @param ratio Le ratio (0.0 à 1.0) de la largeur d'écran
+     * @return La distance en pixels
+     */
+    public static double getDistanceFromScreenRatio(double ratio) {
+        return screenWidth * ratio;
+    }
+    
+    /**
+     * Convertit des coordonnées du monde en coordonnées de grille
+     * @param worldCoord Coordonnée dans le monde
+     * @return Coordonnée de grille correspondante
+     */
+    public static int worldToGrid(double worldCoord) {
+        return (int) (worldCoord / scale);
+    }
+    
+    /**
+     * Convertit des coordonnées de grille en coordonnées du monde (centre de la tuile)
+     * @param gridCoord Coordonnée de grille
+     * @return Coordonnée dans le monde au centre de la tuile
+     */
+    public static double gridToWorldCenter(int gridCoord) {
+        return gridCoord * scale + scale / 2.0;
+    }
 }

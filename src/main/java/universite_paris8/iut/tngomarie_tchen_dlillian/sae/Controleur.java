@@ -27,9 +27,18 @@ import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Mob.Zomb
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Player;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Interface.ListRecipe;
 
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Bloc.Bois;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Bloc.Pierre;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Craft;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredient.Baton;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredient.Fer;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredient.Fils;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Inventaire;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.ListObjet;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Objet;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Arc;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.Epee.EpeeBois;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Outil.FlecheObjet;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Param;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Environnement;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.vue.VueCraft;
@@ -96,11 +105,11 @@ public class Controleur implements Initializable{
                     paneMenu.setVisible(false);
                     boutonMenu.setVisible(false);
 
-        this.env = new Environnement(Param.width*Param.scale,Param.height*Param.scale);
+        this.env = Environnement.getInstance();
         this.terrain = new vueTerrain(panneauJeu,env);
-        this.player = new Player(500,460,1,env,this.terrain,100);
+        this.player = new Player(500,460,1,this.terrain,100);
         this.env.addentities(player);
-        Zombie test = new Zombie(50,env);
+        Zombie test = new Zombie(50);
        this.env.entities.add(test);
             this.craft = new Craft(Inventaire.getInstance());
         this.objet = new VueObjet(paneInv,this.player);
@@ -111,7 +120,27 @@ public class Controleur implements Initializable{
                 slotS1, slotS2, slotS3, slotS4, slotS5, slotS6, slotS7,
                 slotS8, slotS9, slotS10, slotS11, slotS12, slotS13, slotS14
         ));
+        
+        // Enregistrer la VueObjet comme observateur de l'inventaire pour les mises à jour automatiques
+        Inventaire.getInstance().addObserver(objet);
+        
+        // Affichage initial de l'inventaire
+        objet.getFullImage();
+        
+        // Ajouter quelques objets de test pour démontrer les mises à jour automatiques
+        ajouterObjetsDeTest();
         this.vueCraft = new VueCraft(craftPane, craftScrolling, this, craft);
+        
+        // Diagnostic des recettes pour déboguer les problèmes
+        System.out.println("Vérification des recettes au démarrage...");
+        listRecipe.diagnostiquerRecettes();
+        
+        // Tester le format des recettes
+        listRecipe.testerFormatRecettes();
+        
+        // Vérifier que tous les objets des recettes existent
+        listRecipe.validerObjetsRecettes(listObjet);
+        
         vueCraft.ajoutListe(craftList, listRecipe, listObjet);
 
 
@@ -220,6 +249,184 @@ public class Controleur implements Initializable{
             paneMenu.setVisible(false);
             boutonMenu.setVisible(false);
         });
+    }
+    
+    /**
+     * Méthode de test pour démontrer les mises à jour automatiques de l'inventaire
+     */
+    private void ajouterObjetsDeTest() {
+        // Ajouter quelques objets de test avec des quantités différentes
+        Inventaire inventaire = Inventaire.getInstance();
+        
+        // Ajouter du bois (quantité : 5)
+        inventaire.ajoutObjet(new Bois(5));
+        
+        // Ajouter de la pierre (quantité : 3)
+        inventaire.ajoutObjet(new Pierre(3));
+        
+        // Ajouter du fer (quantité : 2)
+        inventaire.ajoutObjet(new Fer(2));
+        
+        // Ajouter une épée en bois (quantité : 1)
+        inventaire.ajoutObjet(new EpeeBois());
+        
+        // Ajouter un arc (quantité : 1)
+        inventaire.ajoutObjet(new Arc());
+        
+        // Ajouter des flèches (quantité : 10)
+        inventaire.ajoutObjet(new FlecheObjet(10));
+        
+        // Ajouter des batons pour les recettes de craft (quantité : 10)
+        inventaire.ajoutObjet(new Baton(10));
+        
+        // Ajouter des fils pour les recettes de craft (quantité : 5)
+        inventaire.ajoutObjet(new Fils(5));
+        
+        System.out.println("Objets de test ajoutés à l'inventaire - l'interface devrait se mettre à jour automatiquement!");
+        System.out.println("Testez l'utilisation des objets pour voir s'ils sont retirés automatiquement!");
+        System.out.println("Vous pouvez maintenant tester le crafting avec les matériaux disponibles!");
+    }
+    
+    /**
+     * Méthode publique pour ajouter des objets à l'inventaire (utilisable par les event handlers)
+     * Ceci démontrera la mise à jour automatique de l'interface
+     */
+    public void ajouterObjetAuInventaire() {
+        Inventaire inventaire = Inventaire.getInstance();
+        
+        // Ajouter un objet aléatoire pour tester
+        int random = (int)(Math.random() * 4);
+        switch(random) {
+            case 0:
+                inventaire.ajoutObjet(new Bois(1));
+                System.out.println("Bois ajouté !");
+                break;
+            case 1:
+                inventaire.ajoutObjet(new Pierre(1));
+                System.out.println("Pierre ajoutée !");
+                break;
+            case 2:
+                inventaire.ajoutObjet(new Fer(1));
+                System.out.println("Fer ajouté !");
+                break;
+            case 3:
+                inventaire.ajoutObjet(new EpeeBois());
+                System.out.println("Épée en bois ajoutée !");
+                break;
+        }
+    }
+    
+    /**
+     * Méthode de test pour vérifier la suppression d'objets
+     */
+    public void retirerObjetDeTest() {
+        Inventaire inventaire = Inventaire.getInstance();
+        
+        if (!inventaire.estVide()) {
+            // Retirer le premier objet disponible pour test
+            var objets = inventaire.getInventaire();
+            if (!objets.isEmpty()) {
+                Objet objet = objets.get(0);
+                int quantiteARetirer = Math.min(1, objet.getNb());
+                inventaire.supprimerObjet(objet.getIdObjet(), quantiteARetirer);
+                System.out.println("Objet retiré : " + objet.getClass().getSimpleName() + " (quantité: " + quantiteARetirer + ")");
+            }
+        } else {
+            System.out.println("Inventaire vide !");
+        }
+    }
+    
+    /**
+     * Méthode de test pour le crafting
+     */
+    public void testerCrafting() {
+        System.out.println("=== Test du crafting ===");
+        
+        // Tester le craft des bâtons (recette 5 : 1 bois -> 4 bâtons)
+        System.out.println("Test du craft des bâtons (ID 5):");
+        craft.crafting(5);
+        
+        System.out.println("=== Fin du test de crafting ===");
+    }
+    
+    /**
+     * Méthode de test spécifique pour la pioche
+     */
+    public void testerCraftPioche() {
+        System.out.println("=== Test du craft de la pioche ===");
+        
+        Inventaire inventaire = Inventaire.getInstance();
+        
+        // Vérifier les ingrédients avant le craft
+        System.out.println("Inventaire avant le craft:");
+        for (Objet obj : inventaire.getInventaire()) {
+            System.out.println("  - " + obj.getClass().getSimpleName() + " (ID: " + obj.getIdObjet() + ") x" + obj.getNb());
+        }
+        
+        // Tester le craft de la pioche (recette 3 : 2 bâtons + 3 bois -> 1 pioche)
+        System.out.println("\nTest du craft de la pioche (ID 3):");
+        craft.crafting(3);
+        
+        // Vérifier l'inventaire après le craft
+        System.out.println("\nInventaire après le craft:");
+        for (Objet obj : inventaire.getInventaire()) {
+            System.out.println("  - " + obj.getClass().getSimpleName() + " (ID: " + obj.getIdObjet() + ") x" + obj.getNb());
+        }
+        
+        System.out.println("=== Fin du test de craft de la pioche ===");
+    }
+    
+    /**
+     * Méthode pour afficher le détail de l'inventaire
+     */
+    public void afficherInventaireDetail() {
+        System.out.println("=== Détail de l'inventaire ===");
+        
+        Inventaire inventaire = Inventaire.getInstance();
+        
+        if (inventaire.estVide()) {
+            System.out.println("Inventaire vide !");
+        } else {
+            for (int i = 0; i < inventaire.getInventaire().size(); i++) {
+                Objet obj = inventaire.getInventaire().get(i);
+                System.out.println((i+1) + ". " + obj.getClass().getSimpleName() + 
+                    " (ID: " + obj.getIdObjet() + ") x" + obj.getNb());
+            }
+        }
+        
+        System.out.println("=== Fin du détail de l'inventaire ===");
+    }
+    
+    /**
+     * Méthode de test pour le nouveau système de stratégie
+     */
+    public void testerStrategies() {
+        System.out.println("=== Test du nouveau système de stratégies ===");
+        
+        // Vérifier les stratégies des entités
+        for (Entity entity : env.getEntities()) {
+            if (entity instanceof universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Mob.Mobs) {
+                universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Mob.Mobs mob = 
+                    (universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Mob.Mobs) entity;
+                System.out.println("Mob - Stratégie: " + mob.getStrategieDeplacement().getClass().getSimpleName());
+                
+                // Si c'est une StrategieAvancee, afficher la stratégie actuellement utilisée
+                if (mob.getStrategieDeplacement() instanceof universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.StrategieAvancee) {
+                    universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.StrategieAvancee strategieAvancee = 
+                        (universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.StrategieAvancee) mob.getStrategieDeplacement();
+                    String strategieActuelle = strategieAvancee.getStrategieActuelle(mob, player);
+                    System.out.println("  -> Stratégie actuelle: " + strategieActuelle);
+                }
+            }
+            
+            if (entity instanceof universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Npc.Npc) {
+                universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Npc.Npc npc = 
+                    (universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Npc.Npc) entity;
+                System.out.println("NPC - Stratégie: " + npc.getStrategieDeplacement().getClass().getSimpleName());
+            }
+        }
+        
+        System.out.println("=== Fin du test des stratégies ===");
     }
 
 }

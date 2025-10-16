@@ -5,6 +5,8 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet.Ingredient.*;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.vue.VueObjet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Inventaire {
 
@@ -13,6 +15,9 @@ public class Inventaire {
     private int caseVide;
     private ListObjet listObjet;
     private static Inventaire inv=new Inventaire();
+    
+    // Liste des observateurs de l'inventaire (les vues qui doivent être mises à jour)
+    private List<VueObjet> observers = new ArrayList<>();
 
     private Inventaire() {
         this.enMain = 0;
@@ -22,8 +27,27 @@ public class Inventaire {
         this.Inventaire.addListener(new ListChangeListener() {
             @Override
             public void onChanged(Change change) {
+                // Notifier tous les observateurs que l'inventaire a changé
+                notifyObservers();
             }
         });
+    }
+
+    public void addObserver(VueObjet observer) {
+        if (!observers.contains(observer)) {
+            observers.add(observer);
+        }
+    }
+    
+
+    public void removeObserver(VueObjet observer) {
+        observers.remove(observer);
+    }
+
+    private void notifyObservers() {
+        for (VueObjet observer : observers) {
+            observer.getFullImage(); // Met à jour la vue
+        }
     }
     public static Inventaire getInstance() {
         if (inv==null){
@@ -70,6 +94,20 @@ public class Inventaire {
                 break;
             }
         }
+    }
+    
+
+    public void forceUpdate() {
+        notifyObservers();
+    }
+    
+
+    public boolean estVide() {
+        return Inventaire.isEmpty();
+    }
+
+    public int getNombreEmplacements() {
+        return Inventaire.size();
     }
 }
 

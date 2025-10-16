@@ -111,16 +111,18 @@ public class KeyPressed implements EventHandler<KeyEvent>{
                     System.out.println("fils ajouté");
                     Inventaire.getInstance().ajoutObjet(new Fils(1));
                 }
+                vueObjet.getFullImage();
                 break;
 
             case C:
                 player.degatjoueur(10);
                 System.out.println(player.getPv());
                 break;
+
             case V:
                 this.vueObjet.getFullImage();
-//                this.player.getInventaire().craft();
                 break;
+
             case NUMPAD1:
                 System.out.println("1");
                 vueObjet.getIndexPane(1);
@@ -162,6 +164,31 @@ public class KeyPressed implements EventHandler<KeyEvent>{
                 vueObjet.getIndexPane(7);
                 vueObjet.afficherCaseInv(vueObjet.getSlotDepuisIndice(7));
                 Inventaire.getInstance().changerObjet(6);
+                break;
+                
+            case R:
+                System.out.println("Test de suppression d'objet (touche R)");
+                c.retirerObjetDeTest();
+                break;
+                
+            case T:
+                System.out.println("Test de crafting (touche T)");
+                c.testerCrafting();
+                break;
+                
+            case P:
+                System.out.println("Test de craft de pioche (touche P)");
+                c.testerCraftPioche();
+                break;
+                
+            case I:
+                System.out.println("Affichage détail inventaire (touche I)");
+                c.afficherInventaireDetail();
+                break;
+                
+            case S:
+                System.out.println("Test des stratégies (touche S)");
+                c.testerStrategies();
                 break;
         }
     }

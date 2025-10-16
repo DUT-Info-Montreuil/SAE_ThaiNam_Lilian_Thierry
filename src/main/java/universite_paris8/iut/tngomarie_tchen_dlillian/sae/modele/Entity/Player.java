@@ -23,8 +23,8 @@ public class Player extends Entity {
     private boolean Gauche = false;
     private boolean afficherInv;
 
-    public Player(double x, double y, double v, Environnement env,vueTerrain vue, int pv) {
-        super(x, y, v, env, pv);
+    public Player(double x, double y, double v, vueTerrain vue, int pv) {
+        super(x, y, v, pv);
         double temp=pv;
         this.pvProp = new SimpleDoubleProperty(temp);
         this.vueTerrain = vue;

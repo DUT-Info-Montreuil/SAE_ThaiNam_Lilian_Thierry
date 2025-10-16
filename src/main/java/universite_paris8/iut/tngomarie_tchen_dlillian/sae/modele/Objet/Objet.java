@@ -4,7 +4,7 @@ package universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Objet;
 import javafx.scene.image.ImageView;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Player;
 
-public abstract class  Objet{
+public abstract class Objet{
 
     private int idObjet;
     public int nb;
