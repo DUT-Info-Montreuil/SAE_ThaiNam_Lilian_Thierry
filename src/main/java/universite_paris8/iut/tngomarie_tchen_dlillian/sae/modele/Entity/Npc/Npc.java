@@ -5,7 +5,7 @@ import javafx.scene.image.ImageView;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Entity;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Player;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Strategie.StrategieDeDeplacementInterface;
-import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.Strategie.StrategieDeDeplacementBFS;
+import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Entity.StrategieAvancee;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.Param;
 import universite_paris8.iut.tngomarie_tchen_dlillian.sae.modele.environement.Environnement;
 
@@ -20,8 +20,8 @@ public class Npc extends Entity {
         super(x, y, v, pv);
         this.co = x;
         
-        // Les NPCs utilisent la stratégie BFS pour un mouvement précis
-        this.strategie = new StrategieDeDeplacementBFS();
+        // Les NPCs utilisent la stratégie avancée (qui gère automatiquement le choix BFS/Direct)
+        this.strategie = new StrategieAvancee();
     }
     
     /**
